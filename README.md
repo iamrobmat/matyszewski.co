@@ -6,8 +6,10 @@ Personal website for Robert Matyszewski, deployed through GitHub Pages.
 
 - `index.html` - static one-page website
 - `styles.css` - responsive visual system
-- `CNAME` - custom domain for GitHub Pages
 - `.nojekyll` - disables Jekyll processing
+
+The intended custom domain is `matyszewski.co`. Add a `CNAME` file with that value
+after the domain is registered and DNS points to GitHub Pages.
 
 ## Local preview
 
