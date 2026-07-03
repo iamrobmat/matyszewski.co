@@ -1,15 +1,18 @@
 # matyszewski.co
 
-Personal website for Robert Matyszewski, deployed through GitHub Pages.
+Local static website for Robert Matyszewski.
+
+This repository is prepared for a future personal site, public notebook and optional GitHub Pages
+deployment. It is not published from this workspace unless deployment is explicitly enabled later.
 
 ## Structure
 
 - `index.html` - static one-page website
 - `styles.css` - responsive visual system
-- `.nojekyll` - disables Jekyll processing
+- `.nojekyll` - disables Jekyll processing if GitHub Pages is enabled later
 
-The intended custom domain is `matyszewski.co`. Add a `CNAME` file with that value
-after the domain is registered and DNS points to GitHub Pages.
+No `CNAME` file is included. Add one only after `matyszewski.co` is registered, DNS is configured,
+and publishing is intentionally enabled.
 
 ## Local preview
 

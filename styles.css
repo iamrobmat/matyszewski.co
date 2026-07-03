@@ -343,9 +343,9 @@ h3 {
 }
 
 .notes-section {
-  background: var(--white);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  background: var(--white);
 }
 
 .note-list {
@@ -439,16 +439,16 @@ h3 {
   }
 
   .nav {
-    width: 100%;
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
   }
 
   .nav a {
     padding: 8px 4px;
-    text-align: center;
     font-size: 12px;
+    text-align: center;
   }
 
   .hero {
