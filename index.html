@@ -30,7 +30,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
-        <a href="#notes">Notes</a>
+        <a href="#blog">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -170,28 +170,17 @@
         </div>
       </section>
 
-      <section id="notes" class="section notes-section">
+      <section id="blog" class="section blog-section">
         <div class="section-head">
-          <p class="eyebrow">Notes</p>
-          <h2>A public notebook is next.</h2>
+          <p class="eyebrow">Blog</p>
+          <h2>Public notebook.</h2>
           <p>
-            This site is designed to grow into a compact digital garden: practical AI experiments,
-            product notes, software sales lessons and local tech ecosystem work.
+            Practical AI experiments, product notes, software sales lessons and local tech
+            ecosystem work. Posts are plain Markdown files in this repository.
           </p>
         </div>
-        <div class="note-list">
-          <a href="https://github.com/iamrobmat" class="note-row">
-            <span>Building with AI-assisted development</span>
-            <small>GitHub</small>
-          </a>
-          <a href="https://www.linkedin.com/in/iamrobert123/" class="note-row">
-            <span>Product, sales and local tech updates</span>
-            <small>LinkedIn</small>
-          </a>
-          <a href="mailto:robert.matyszewski@gmail.com" class="note-row">
-            <span>Have a workflow worth automating?</span>
-            <small>Email</small>
-          </a>
+        <div id="blog-app" class="blog-app" aria-live="polite">
+          <p class="blog-status">Loading posts...</p>
         </div>
       </section>
 
@@ -216,5 +205,6 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
+    <script src="blog.js"></script>
   </body>
 </html>

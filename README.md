@@ -1,18 +1,37 @@
 # matyszewski.co
 
-Local static website for Robert Matyszewski.
+Public static website for Robert Matyszewski.
 
-This repository is prepared for a future personal site, public notebook and optional GitHub Pages
-deployment. It is not published from this workspace unless deployment is explicitly enabled later.
+This repository is published with GitHub Pages from the `main` branch and uses `matyszewski.co`
+as its custom domain.
 
 ## Structure
 
-- `index.html` - static one-page website
+- `index.html` - static one-page website with a blog section
 - `styles.css` - responsive visual system
-- `.nojekyll` - disables Jekyll processing if GitHub Pages is enabled later
+- `blog.js` - small client-side Markdown loader and renderer
+- `posts/` - Markdown posts and the blog manifest
+- `CNAME` - configures the `matyszewski.co` custom domain
+- `.nojekyll` - disables Jekyll processing for GitHub Pages
 
-No `CNAME` file is included. Add one only after `matyszewski.co` is registered, DNS is configured,
-and publishing is intentionally enabled.
+## Blog posts
+
+Add a Markdown file to `posts/`, then add its metadata to `posts/posts.json`:
+
+```json
+{
+  "slug": "my-post",
+  "title": "My Post",
+  "description": "Short summary shown on the blog list.",
+  "date": "2026-07-09",
+  "file": "my-post.md"
+}
+```
+
+The blog is rendered in the browser and supports a small Markdown subset: headings, paragraphs,
+lists, blockquotes, links, bold, italic, inline code and fenced code blocks.
+
+DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 
 ## Local preview
 
