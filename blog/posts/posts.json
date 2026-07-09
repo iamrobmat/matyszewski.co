@@ -1,10 +1,10 @@
 [
   {
     "slug": "jak-zalogowac-codex-do-github",
-    "title": "Jak zalogowac Codex do GitHuba",
-    "description": "Krotka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urzadzenia i autoryzacja.",
+    "title": "Jak zalogować Codex do GitHuba",
+    "description": "Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.",
     "date": "2026-07-09",
-    "tags": ["Codex", "GitHub", "AI tools"],
+    "tags": ["Codex", "GitHub", "Narzędzia AI"],
     "file": "jak-zalogowac-codex-do-github.md"
   },
   {
@@ -12,7 +12,7 @@
     "title": "Pierwszy wpis",
     "description": "Krótka notatka startowa o tym, co będzie trafiało na blog.",
     "date": "2026-07-09",
-    "tags": ["Blog", "AI", "Product"],
+    "tags": ["Blog", "AI", "Produkt"],
     "file": "pierwszy-wpis.md"
   }
 ]

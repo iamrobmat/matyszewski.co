@@ -1,22 +1,22 @@
-## Jak zalogowac Codex do GitHuba
+## Jak zalogować Codex do GitHuba
 
-Ten wpis pokazuje prosty proces logowania Codex do konta GitHub przez GitHub CLI. Taki login jest potrzebny, kiedy chcesz, zeby Codex pobral prywatne repozytorium i zainstalowal zaleznosci projektu.
+Ten wpis pokazuje prosty proces logowania Codex do konta GitHub przez GitHub CLI. Taki login jest potrzebny, kiedy chcesz, żeby Codex pobrał prywatne repozytorium i zainstalował zależności projektu.
 
 ## 1. Wpisz prompt w Codex
 
 W czacie Codex wpisz:
 
 ```text
-zaloguj sie na mojego githuba, pobierz projekt eeg i zainstaluj niezbedne elementy
+zaloguj się na mojego GitHuba, pobierz projekt eeg i zainstaluj niezbędne elementy
 ```
 
-Codex powinien uruchomic logowanie przez GitHub CLI. Jesli nie jest jeszcze zalogowany, otworzy przegladarke z ekranem autoryzacji GitHuba.
+Codex powinien uruchomić logowanie przez GitHub CLI. Jeśli nie jest jeszcze zalogowany, otworzy przeglądarkę z ekranem autoryzacji GitHuba.
 
-![Prompt w Codex i koncowy wynik logowania](assets/github-login/01-codex-prompt-result.png)
+![Prompt w Codex i końcowy wynik logowania](assets/github-login/01-codex-prompt-result.png)
 
 ## 2. Przepisz kod z czatu Codex
 
-Codex wyswietli w czacie jednorazowy kod urzadzenia. Ten kod trzeba wpisac w przegladarce na stronie GitHuba.
+Codex wyświetli w czacie jednorazowy kod urządzenia. Ten kod trzeba wpisać w przeglądarce na stronie GitHuba.
 
 Na ekranie GitHuba zobaczysz widok podobny do:
 
@@ -25,9 +25,9 @@ Authorize your device
 Enter the code displayed in the app or on the device you're signing in to.
 ```
 
-Wpisz kod dokladnie taki, jaki pokazuje Codex w czacie. Kod jest jednorazowy, wiec nie uzywaj kodu ze zrzutu ekranu ani z poprzedniej proby.
+Wpisz kod dokładnie taki, jaki pokazuje Codex w czacie. Kod jest jednorazowy, więc nie używaj kodu ze zrzutu ekranu ani z poprzedniej próby.
 
-![Ekran GitHuba do wpisania kodu urzadzenia](assets/github-login/02-authorize-device-code.png)
+![Ekran GitHuba do wpisania kodu urządzenia](assets/github-login/02-authorize-device-code.png)
 
 ## 3. Kliknij Continue
 
@@ -37,58 +37,58 @@ Po wpisaniu kodu kliknij zielony przycisk:
 Continue
 ```
 
-GitHub przejdzie do kolejnego ekranu, na ktorym pokazuje, jaka aplikacja prosi o dostep.
+GitHub przejdzie do kolejnego ekranu, na którym pokazuje, jaka aplikacja prosi o dostęp.
 
 ## 4. Kliknij Authorize github
 
-Na ekranie `Authorize GitHub CLI` sprawdz, czy autoryzacja dotyczy GitHub CLI i Twojego konta.
+Na ekranie `Authorize GitHub CLI` sprawdź, czy autoryzacja dotyczy GitHub CLI i Twojego konta.
 
-GitHub moze pokazac informacje o uprawnieniach, np. dostep do prywatnych repozytoriow. To jest potrzebne, jezeli Codex ma pobrac prywatny projekt.
+GitHub może pokazać informacje o uprawnieniach, np. dostęp do prywatnych repozytoriów. To jest potrzebne, jeżeli Codex ma pobrać prywatny projekt.
 
 ![Ekran autoryzacji GitHub CLI](assets/github-login/03-authorize-github-cli.png)
 
-Jesli wszystko sie zgadza, kliknij:
+Jeśli wszystko się zgadza, kliknij:
 
 ```text
 Authorize github
 ```
 
-## 5. Sprawdz ekran potwierdzenia
+## 5. Sprawdź ekran potwierdzenia
 
-Po poprawnej autoryzacji GitHub pokaze komunikat:
+Po poprawnej autoryzacji GitHub pokaże komunikat:
 
 ```text
 Congratulations, you're all set!
 Your device is now connected.
 ```
 
-To oznacza, ze Codex zostal polaczony z GitHubem.
+To oznacza, że Codex został połączony z GitHubem.
 
-![Ekran potwierdzenia polaczenia urzadzenia](assets/github-login/04-device-connected.png)
+![Ekran potwierdzenia połączenia urządzenia](assets/github-login/04-device-connected.png)
 
-## 6. Wroc do Codex
+## 6. Wróć do Codex
 
-Po autoryzacji wroc do czatu Codex. Codex powinien kontynuowac zadanie, czyli:
+Po autoryzacji wróć do czatu Codex. Codex powinien kontynuować zadanie, czyli:
 
-- sprawdzic logowanie do GitHuba,
-- pobrac repozytorium `eeg`,
-- wejsc do katalogu projektu,
-- utworzyc lub uzyc lokalnego srodowiska,
-- zainstalowac potrzebne zaleznosci,
-- uruchomic test lub skrypt sprawdzajacy, czy projekt dziala.
+- sprawdzić logowanie do GitHuba,
+- pobrać repozytorium `eeg`,
+- wejść do katalogu projektu,
+- utworzyć lub użyć lokalnego środowiska,
+- zainstalować potrzebne zależności,
+- uruchomić test lub skrypt sprawdzający, czy projekt działa.
 
-Przykladowy koncowy komunikat Codex moze wygladac tak:
+Przykładowy końcowy komunikat Codex może wyglądać tak:
 
 ```text
 Gotowe.
 
-Zalogowalem gh do GitHuba, sklonowalem repozytorium i zainstalowalem wymagane zaleznosci.
+Zalogowałem gh do GitHuba, sklonowałem repozytorium i zainstalowałem wymagane zależności.
 ```
 
-## Wazne zasady bezpieczenstwa
+## Ważne zasady bezpieczeństwa
 
-- Wpisuj tylko kod, ktory Codex pokazuje w Twoim aktualnym czacie.
-- Nie wpisuj kodu przeslanego przez obca osobe.
-- Klikaj `Authorize github` tylko wtedy, gdy to Ty rozpoczales logowanie.
-- Sprawdz, czy ekran autoryzacji dotyczy `GitHub CLI`.
-- Jezeli GitHub pokazuje nietypowa lokalizacje, urzadzenie albo konto, przerwij logowanie i zacznij od nowa.
+- Wpisuj tylko kod, który Codex pokazuje w Twoim aktualnym czacie.
+- Nie wpisuj kodu przesłanego przez obcą osobę.
+- Klikaj `Authorize github` tylko wtedy, gdy to Ty rozpocząłeś logowanie.
+- Sprawdź, czy ekran autoryzacji dotyczy `GitHub CLI`.
+- Jeżeli GitHub pokazuje nietypową lokalizację, urządzenie albo konto, przerwij logowanie i zacznij od nowa.

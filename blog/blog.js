@@ -30,7 +30,7 @@
   function formatDate(value) {
     const date = new Date(`${value}T12:00:00`);
 
-    return new Intl.DateTimeFormat("en", {
+    return new Intl.DateTimeFormat("pl-PL", {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -47,7 +47,7 @@
     }
 
     return `
-      <ul class="post-tags" aria-label="Post tags">
+      <ul class="post-tags" aria-label="Tagi wpisu">
         ${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}
       </ul>
     `;
@@ -215,27 +215,27 @@
     if (!post) {
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="./">Back to all posts</a>
-          <h2>Post not found</h2>
-          <p>The requested Markdown file is not listed in <code>posts/posts.json</code>.</p>
+          <a class="back-link" href="./">Wróć do wszystkich wpisów</a>
+          <h2>Nie znaleziono wpisu</h2>
+          <p>Wybrany plik Markdown nie jest wpisany w <code>posts/posts.json</code>.</p>
         </article>
       `;
       return;
     }
 
-    blogRoot.innerHTML = '<p class="blog-status">Loading post...</p>';
+    blogRoot.innerHTML = '<p class="blog-status">Ładowanie wpisu...</p>';
 
     try {
       const response = await fetch(`posts/${post.file}`);
 
       if (!response.ok) {
-        throw new Error(`Could not load ${post.file}`);
+        throw new Error(`Nie udało się załadować ${post.file}`);
       }
 
       const markdown = await response.text();
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="./">Back to all posts</a>
+          <a class="back-link" href="./">Wróć do wszystkich wpisów</a>
           <p class="post-date">${formatDate(post.date)}</p>
           <h2>${escapeHtml(post.title)}</h2>
           ${renderTags(post.tags)}
@@ -245,8 +245,8 @@
     } catch (error) {
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="./">Back to all posts</a>
-          <h2>Could not load post</h2>
+          <a class="back-link" href="./">Wróć do wszystkich wpisów</a>
+          <h2>Nie udało się załadować wpisu</h2>
           <p>${escapeHtml(error.message)}</p>
         </article>
       `;
@@ -269,7 +269,7 @@
       const response = await fetch(postsUrl);
 
       if (!response.ok) {
-        throw new Error("Could not load posts manifest.");
+        throw new Error("Nie udało się załadować manifestu wpisów.");
       }
 
       posts = await response.json();
@@ -277,7 +277,7 @@
       renderCurrentRoute();
     } catch (error) {
       blogRoot.innerHTML = `
-        <p class="blog-status">Blog is unavailable: ${escapeHtml(error.message)}</p>
+        <p class="blog-status">Blog jest niedostępny: ${escapeHtml(error.message)}</p>
       `;
     }
   }

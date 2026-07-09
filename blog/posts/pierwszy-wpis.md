@@ -6,7 +6,7 @@ Będą tu trafiać krótkie notatki o:
 
 - praktycznym użyciu AI w pracy,
 - budowaniu produktów i prototypów,
-- sprzedaży software'u,
+- sprzedaży oprogramowania,
 - lokalnym ekosystemie technologicznym.
 
 > Format ma pomagać w szybkim publikowaniu, nie przeszkadzać.

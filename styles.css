@@ -22,6 +22,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: clip;
   background:
     linear-gradient(rgba(21, 21, 21, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(21, 21, 21, 0.035) 1px, transparent 1px),
@@ -58,6 +59,10 @@ a {
   gap: 10px;
   min-width: 0;
   font-weight: 750;
+}
+
+.brand span:last-child {
+  overflow-wrap: anywhere;
 }
 
 .brand-mark {
@@ -122,10 +127,9 @@ p {
 h1 {
   max-width: 900px;
   margin-bottom: 18px;
-  font-size: clamp(56px, 8.1vw, 112px);
+  font-size: clamp(50px, 7vw, 96px);
   line-height: 0.92;
   letter-spacing: 0;
-  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -167,6 +171,8 @@ h3 {
   border-radius: 8px;
   font-weight: 750;
   line-height: 1.1;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .button.primary {
@@ -259,8 +265,9 @@ h3 {
 
 .signal-band strong {
   margin-bottom: 8px;
-  font-size: clamp(28px, 3.6vw, 48px);
+  font-size: clamp(24px, 3.2vw, 48px);
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 
 .signal-band span {
@@ -327,7 +334,9 @@ h3 {
   color: var(--green);
   font-size: 12px;
   font-weight: 800;
+  line-height: 1.15;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .project:nth-child(2) .project-kicker,
@@ -387,15 +396,6 @@ h3 {
 }
 
 @media (max-width: 920px) {
-  .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .nav {
-    justify-content: flex-start;
-  }
-
   .hero,
   .two-column,
   .contact {
@@ -417,8 +417,21 @@ h3 {
   }
 }
 
+@media (max-width: 760px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project {
+    min-height: auto;
+  }
+}
+
 @media (max-width: 620px) {
   .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
     padding: 14px 16px;
   }
 
@@ -427,29 +440,35 @@ h3 {
   }
 
   .nav {
-    display: grid;
+    display: flex;
     width: 100%;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
+    justify-content: flex-start;
   }
 
   .nav a {
-    padding: 8px 4px;
+    flex: 1 1 calc(50% - 4px);
+    padding: 8px 6px;
     font-size: 12px;
     text-align: center;
   }
 
   .hero {
-    padding-top: 42px;
+    padding-top: 34px;
   }
 
   h1 {
-    font-size: clamp(48px, 14.8vw, 58px);
+    font-size: clamp(40px, 13.4vw, 58px);
     line-height: 0.96;
   }
 
+  h2 {
+    font-size: clamp(28px, 10vw, 42px);
+    line-height: 1.04;
+  }
+
   .lead {
-    font-size: 20px;
+    font-size: 19px;
   }
 
   .hero-actions,
@@ -468,8 +487,7 @@ h3 {
     margin-top: 10px;
   }
 
-  .signal-band,
-  .project-grid {
+  .signal-band {
     grid-template-columns: 1fr;
   }
 
@@ -485,5 +503,20 @@ h3 {
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .site-header {
+    padding-inline: 12px;
+  }
+
+  .hero,
+  .section {
+    padding-inline: 14px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 12.8vw, 44px);
   }
 }
