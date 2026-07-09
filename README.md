@@ -7,16 +7,17 @@ as its custom domain.
 
 ## Structure
 
-- `index.html` - static one-page website with a blog section
+- `index.html` - static one-page website with a link to the blog
 - `styles.css` - responsive visual system
-- `blog.js` - small client-side Markdown loader and renderer
-- `posts/` - Markdown posts and the blog manifest
+- `blog/` - self-contained Markdown blog
 - `CNAME` - configures the `matyszewski.co` custom domain
 - `.nojekyll` - disables Jekyll processing for GitHub Pages
 
 ## Blog posts
 
-Add a Markdown file to `posts/`, then add its metadata to `posts/posts.json`:
+Blog files live in `blog/` so they are easy to edit independently from the homepage.
+
+Add a Markdown file to `blog/posts/`, then add its metadata to `blog/posts/posts.json`:
 
 ```json
 {
@@ -28,8 +29,9 @@ Add a Markdown file to `posts/`, then add its metadata to `posts/posts.json`:
 }
 ```
 
-The blog is rendered in the browser and supports a small Markdown subset: headings, paragraphs,
-lists, blockquotes, links, bold, italic, inline code and fenced code blocks.
+The public URL will be `/blog/#my-post`. The blog is rendered in the browser and supports a small
+Markdown subset: headings, paragraphs, lists, blockquotes, links, images, bold, italic, inline code
+and fenced code blocks.
 
 DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 

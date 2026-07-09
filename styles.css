@@ -348,149 +348,22 @@ h3 {
   background: var(--white);
 }
 
-.blog-app {
-  min-height: 160px;
-}
-
-.blog-status {
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.6;
-}
-
-.post-list {
-  display: grid;
-  border-top: 1px solid var(--line);
-}
-
-.post-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+.blog-teaser {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 18px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--line);
+  gap: 14px;
 }
 
-.post-row span {
-  display: grid;
-  gap: 8px;
-}
-
-.post-row strong {
-  font-size: clamp(22px, 3vw, 34px);
-  font-weight: 750;
-  line-height: 1.12;
-}
-
-.post-row em {
-  max-width: 720px;
+.blog-teaser span {
   color: var(--muted);
   font-size: 16px;
-  font-style: normal;
-  line-height: 1.5;
 }
 
-.post-row small,
-.post-date {
-  color: var(--muted);
-  font-weight: 750;
-  text-transform: uppercase;
-}
-
-.post-row:hover strong,
-.back-link:hover {
-  color: var(--green);
-}
-
-.post-view {
-  max-width: 820px;
-}
-
-.back-link {
-  display: inline-flex;
-  margin-bottom: 28px;
-  color: var(--muted);
-  font-weight: 750;
-}
-
-.post-date {
-  margin-bottom: 12px;
-  font-size: 13px;
-}
-
-.post-view h3 {
-  margin-bottom: 22px;
-  font-size: clamp(34px, 5vw, 64px);
-  line-height: 1;
-}
-
-.post-content {
-  color: #303330;
-  font-size: 18px;
-  line-height: 1.72;
-}
-
-.post-content h3,
-.post-content h4 {
-  margin-top: 34px;
-  margin-bottom: 12px;
-  color: var(--ink);
-  line-height: 1.12;
-}
-
-.post-content h3 {
-  font-size: 30px;
-}
-
-.post-content h4 {
-  font-size: 24px;
-}
-
-.post-content p,
-.post-content ul,
-.post-content blockquote,
-.post-content pre {
-  margin: 0 0 20px;
-}
-
-.post-content ul {
-  padding-left: 24px;
-}
-
-.post-content a {
-  color: var(--blue);
-  font-weight: 750;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-
-.post-content blockquote {
-  padding: 16px 18px;
-  border-left: 5px solid var(--yellow);
-  background: rgba(216, 178, 63, 0.12);
-  color: var(--ink);
-}
-
-.post-content code {
+.blog-teaser code {
   border-radius: 5px;
   background: rgba(21, 21, 21, 0.08);
   padding: 2px 5px;
-  font-size: 0.9em;
-}
-
-.post-content pre {
-  overflow-x: auto;
-  padding: 18px;
-  border-radius: 8px;
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.post-content pre code {
-  background: transparent;
-  padding: 0;
 }
 
 .contact {
@@ -608,11 +481,6 @@ h3 {
 
   .signal-band div:last-child {
     border-bottom: 0;
-  }
-
-  .post-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .site-footer {

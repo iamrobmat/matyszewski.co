@@ -17,6 +17,16 @@
       .replace(/'/g, "&#039;");
   }
 
+  function isSafeResourceUrl(value) {
+    const trimmed = value.trim();
+
+    return (
+      !/[\s"'<>]/.test(trimmed) &&
+      !trimmed.toLowerCase().startsWith("javascript:") &&
+      /^(https?:\/\/|\.{0,2}\/|[a-z0-9_/-])/i.test(trimmed)
+    );
+  }
+
   function formatDate(value) {
     const date = new Date(`${value}T12:00:00`);
 
@@ -32,7 +42,7 @@
   }
 
   function getSlugFromHash() {
-    const match = window.location.hash.match(/^#blog\/([a-z0-9-]+)$/);
+    const match = window.location.hash.match(/^#([a-z0-9-]+)$/);
     return match ? match[1] : null;
   }
 
@@ -113,6 +123,22 @@
         return;
       }
 
+      const image = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (image) {
+        flushParagraph(paragraph, html);
+        flushList(list, html);
+
+        const alt = image[1];
+        const src = image[2].trim();
+
+        if (isSafeResourceUrl(src)) {
+          html.push(
+            `<figure class="post-image"><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy"></figure>`,
+          );
+          return;
+        }
+      }
+
       const heading = line.match(/^(#{1,3})\s+(.+)$/);
       if (heading) {
         flushParagraph(paragraph, html);
@@ -156,7 +182,7 @@
         ${posts
           .map(
             (post) => `
-              <a class="post-row" href="#blog/${post.slug}">
+              <a class="post-row" href="#${post.slug}">
                 <span>
                   <strong>${escapeHtml(post.title)}</strong>
                   <em>${escapeHtml(post.description)}</em>
@@ -176,8 +202,8 @@
     if (!post) {
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="#blog">Back to all posts</a>
-          <h3>Post not found</h3>
+          <a class="back-link" href="./">Back to all posts</a>
+          <h2>Post not found</h2>
           <p>The requested Markdown file is not listed in <code>posts/posts.json</code>.</p>
         </article>
       `;
@@ -196,17 +222,17 @@
       const markdown = await response.text();
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="#blog">Back to all posts</a>
+          <a class="back-link" href="./">Back to all posts</a>
           <p class="post-date">${formatDate(post.date)}</p>
-          <h3>${escapeHtml(post.title)}</h3>
+          <h2>${escapeHtml(post.title)}</h2>
           <div class="post-content">${markdownToHtml(markdown)}</div>
         </article>
       `;
     } catch (error) {
       blogRoot.innerHTML = `
         <article class="post-view">
-          <a class="back-link" href="#blog">Back to all posts</a>
-          <h3>Could not load post</h3>
+          <a class="back-link" href="./">Back to all posts</a>
+          <h2>Could not load post</h2>
           <p>${escapeHtml(error.message)}</p>
         </article>
       `;

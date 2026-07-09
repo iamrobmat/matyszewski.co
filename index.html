@@ -30,7 +30,7 @@
       <nav class="nav" aria-label="Main navigation">
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
+        <a href="blog/">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -176,11 +176,12 @@
           <h2>Public notebook.</h2>
           <p>
             Practical AI experiments, product notes, software sales lessons and local tech
-            ecosystem work. Posts are plain Markdown files in this repository.
+            ecosystem work. The blog lives in its own folder and posts are plain Markdown files.
           </p>
         </div>
-        <div id="blog-app" class="blog-app" aria-live="polite">
-          <p class="blog-status">Loading posts...</p>
+        <div class="blog-teaser">
+          <a class="button primary" href="blog/">Read the blog</a>
+          <span>Edit posts in <code>blog/posts/</code></span>
         </div>
       </section>
 
@@ -205,6 +206,5 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-    <script src="blog.js"></script>
   </body>
 </html>
