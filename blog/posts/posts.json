@@ -4,6 +4,7 @@
     "title": "Jak zalogowac Codex do GitHuba",
     "description": "Krotka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urzadzenia i autoryzacja.",
     "date": "2026-07-09",
+    "tags": ["Codex", "GitHub", "AI tools"],
     "file": "jak-zalogowac-codex-do-github.md"
   },
   {
@@ -11,6 +12,7 @@
     "title": "Pierwszy wpis",
     "description": "Krótka notatka startowa o tym, co będzie trafiało na blog.",
     "date": "2026-07-09",
+    "tags": ["Blog", "AI", "Product"],
     "file": "pierwszy-wpis.md"
   }
 ]

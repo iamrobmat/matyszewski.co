@@ -41,6 +41,18 @@
     return new Date(`${value}T12:00:00`).getTime();
   }
 
+  function renderTags(tags) {
+    if (!Array.isArray(tags) || tags.length === 0) {
+      return "";
+    }
+
+    return `
+      <ul class="post-tags" aria-label="Post tags">
+        ${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}
+      </ul>
+    `;
+  }
+
   function getSlugFromHash() {
     const match = window.location.hash.match(/^#([a-z0-9-]+)$/);
     return match ? match[1] : null;
@@ -183,10 +195,11 @@
           .map(
             (post) => `
               <a class="post-row" href="#${post.slug}">
-                <span>
+                <div class="post-row-content">
                   <strong>${escapeHtml(post.title)}</strong>
                   <em>${escapeHtml(post.description)}</em>
-                </span>
+                  ${renderTags(post.tags)}
+                </div>
                 <small>${formatDate(post.date)}</small>
               </a>
             `,
@@ -225,6 +238,7 @@
           <a class="back-link" href="./">Back to all posts</a>
           <p class="post-date">${formatDate(post.date)}</p>
           <h2>${escapeHtml(post.title)}</h2>
+          ${renderTags(post.tags)}
           <div class="post-content">${markdownToHtml(markdown)}</div>
         </article>
       `;
