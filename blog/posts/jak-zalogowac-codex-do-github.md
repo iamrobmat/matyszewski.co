@@ -7,7 +7,7 @@ Ten wpis pokazuje prosty proces logowania Codex do konta GitHub przez GitHub CLI
 W czacie Codex wpisz:
 
 ```text
-zaloguj się na mojego GitHuba, pobierz projekt eeg i zainstaluj niezbędne elementy
+zaloguj się na mojego GitHuba, pobierz [wpisz tu nazwe projektu] i zainstaluj niezbędne elementy
 ```
 
 Codex powinien uruchomić logowanie przez GitHub CLI. Jeśli nie jest jeszcze zalogowany, otworzy przeglądarkę z ekranem autoryzacji GitHuba.
@@ -71,7 +71,7 @@ To oznacza, że Codex został połączony z GitHubem.
 Po autoryzacji wróć do czatu Codex. Codex powinien kontynuować zadanie, czyli:
 
 - sprawdzić logowanie do GitHuba,
-- pobrać repozytorium `eeg`,
+- pobrać repozytorium `[wpisz tu nazwe projektu]`,
 - wejść do katalogu projektu,
 - utworzyć lub użyć lokalnego środowiska,
 - zainstalować potrzebne zależności,
