@@ -53,6 +53,24 @@
     `;
   }
 
+  function setMeta(selector, content) {
+    const element = document.querySelector(selector);
+
+    if (element) {
+      element.setAttribute("content", content);
+    }
+  }
+
+  function setPageMeta(title, description) {
+    document.title = title;
+    setMeta('meta[name="title"]', title);
+    setMeta('meta[name="description"]', description);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[property="og:description"]', description);
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[name="twitter:description"]', description);
+  }
+
   function getSlugFromHash() {
     const match = window.location.hash.match(/^#([a-z0-9-]+)$/);
     return match ? match[1] : null;
@@ -213,6 +231,7 @@
     const post = posts.find((item) => item.slug === slug);
 
     if (!post) {
+      setPageMeta("Nie znaleziono wpisu - Blog Roberta Matyszewskiego", "Wybrany wpis nie istnieje.");
       blogRoot.innerHTML = `
         <article class="post-view">
           <a class="back-link" href="./">Wróć do wszystkich wpisów</a>
@@ -233,6 +252,10 @@
       }
 
       const markdown = await response.text();
+      setPageMeta(
+        `${post.title} - Blog Roberta Matyszewskiego`,
+        post.description,
+      );
       blogRoot.innerHTML = `
         <article class="post-view">
           <a class="back-link" href="./">Wróć do wszystkich wpisów</a>
@@ -261,6 +284,10 @@
       return;
     }
 
+    setPageMeta(
+      "Blog Roberta Matyszewskiego",
+      "Notatki Roberta Matyszewskiego o AI, produktach, sprzedaży oprogramowania i budowaniu lokalnego ekosystemu technologicznego.",
+    );
     renderPostList();
   }
 
