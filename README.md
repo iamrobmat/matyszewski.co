@@ -29,9 +29,15 @@ Add a Markdown file to `blog/posts/`, then add its metadata to `blog/posts/posts
 }
 ```
 
-The public URL will be `/blog/#my-post`. The blog is rendered in the browser and supports a small
-Markdown subset: headings, paragraphs, lists, blockquotes, links, images, bold, italic, inline code
-and fenced code blocks.
+Generate the public post pages and social preview images:
+
+```bash
+swift scripts/generate-blog-preview.swift
+```
+
+The public URL will be `/blog/my-post/`. The generated pages support a small Markdown subset:
+headings, paragraphs, lists, blockquotes, links, images, bold, italic, inline code and fenced code
+blocks.
 
 DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 

@@ -1,5 +1,3 @@
-## Jak zalogować się Githubem w Codexie i pobrać swój projekt
-
 Ten wpis pokazuje prosty proces logowania Codex do konta GitHub przez GitHub CLI. Taki login jest potrzebny, kiedy chcesz, żeby Codex pobrał prywatne repozytorium i zainstalował zależności projektu.
 
 ## 1. Wpisz prompt w Codex

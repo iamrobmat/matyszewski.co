@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jak zalogować się Githubem w Codexie i pobrać swój projekt - Blog Roberta Matyszewskiego</title>
+    <meta name="title" content="Jak zalogować się Githubem w Codexie i pobrać swój projekt - Blog Roberta Matyszewskiego">
+    <meta name="description" content="Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.">
+    <meta property="og:title" content="Jak zalogować się Githubem w Codexie i pobrać swój projekt - Blog Roberta Matyszewskiego">
+    <meta property="og:description" content="Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://matyszewski.co/blog/jak-zalogowac-codex-do-github/">
+    <meta property="og:image" content="https://matyszewski.co/blog/assets/social/jak-zalogowac-codex-do-github.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Jak zalogować się Githubem w Codexie i pobrać swój projekt">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jak zalogować się Githubem w Codexie i pobrać swój projekt - Blog Roberta Matyszewskiego">
+    <meta name="twitter:description" content="Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.">
+    <meta name="twitter:image" content="https://matyszewski.co/blog/assets/social/jak-zalogowac-codex-do-github.png">
+    <meta name="twitter:image:alt" content="Jak zalogować się Githubem w Codexie i pobrać swój projekt">
+    <link rel="canonical" href="https://matyszewski.co/blog/jak-zalogowac-codex-do-github/">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../blog.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151515'/%3E%3Cpath d='M15 45V19h8l9 14 9-14h8v26h-7V29L34 42h-4l-8-13v16z' fill='%23f8f8f5'/%3E%3C/svg%3E">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../../" aria-label="Strona główna Roberta Matyszewskiego">
+        <span class="brand-mark">RM</span>
+        <span>Robert Matyszewski</span>
+      </a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="../../#work">Praca</a>
+        <a href="../../#projects">Projekty</a>
+        <a href="../">Blog</a>
+        <a href="../../#contact">Kontakt</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="section blog-page">
+        <article class="post-view">
+          <a class="back-link" href="../">Wróć do wszystkich wpisów</a>
+          <p class="post-date">2026-07-09</p>
+          <h2>Jak zalogować się Githubem w Codexie i pobrać swój projekt</h2>
+                    <ul class="post-tags" aria-label="Tagi wpisu">
+            <li>Codex</li>
+            <li>GitHub</li>
+            <li>Narzędzia AI</li>
+          </ul>
+          <div class="post-content"><p>Ten wpis pokazuje prosty proces logowania Codex do konta GitHub przez GitHub CLI. Taki login jest potrzebny, kiedy chcesz, żeby Codex pobrał prywatne repozytorium i zainstalował zależności projektu.</p>
+<h3>1. Wpisz prompt w Codex</h3>
+<p>W czacie Codex wpisz:</p>
+<pre><code>zaloguj się na mojego GitHuba, pobierz [wpisz tu nazwe projektu] i zainstaluj niezbędne elementy</code></pre>
+<p>Codex powinien uruchomić logowanie przez GitHub CLI. Jeśli nie jest jeszcze zalogowany, otworzy przeglądarkę z ekranem autoryzacji GitHuba.</p>
+<figure class="post-image"><img src="../assets/github-login/01-codex-prompt-result.png" alt="Prompt w Codex i końcowy wynik logowania" loading="lazy"></figure>
+<h3>2. Przepisz kod z czatu Codex</h3>
+<p>Codex wyświetli w czacie jednorazowy kod urządzenia. Ten kod trzeba wpisać w przeglądarce na stronie GitHuba.</p>
+<p>Na ekranie GitHuba zobaczysz widok podobny do:</p>
+<pre><code>Authorize your device
+Enter the code displayed in the app or on the device you&#039;re signing in to.</code></pre>
+<p>Wpisz kod dokładnie taki, jaki pokazuje Codex w czacie. Kod jest jednorazowy, więc nie używaj kodu ze zrzutu ekranu ani z poprzedniej próby.</p>
+<figure class="post-image"><img src="../assets/github-login/02-authorize-device-code.png" alt="Ekran GitHuba do wpisania kodu urządzenia" loading="lazy"></figure>
+<h3>3. Kliknij Continue</h3>
+<p>Po wpisaniu kodu kliknij zielony przycisk:</p>
+<pre><code>Continue</code></pre>
+<p>GitHub przejdzie do kolejnego ekranu, na którym pokazuje, jaka aplikacja prosi o dostęp.</p>
+<h3>4. Kliknij Authorize github</h3>
+<p>Na ekranie <code>Authorize GitHub CLI</code> sprawdź, czy autoryzacja dotyczy GitHub CLI i Twojego konta.</p>
+<p>GitHub może pokazać informacje o uprawnieniach, np. dostęp do prywatnych repozytoriów. To jest potrzebne, jeżeli Codex ma pobrać prywatny projekt.</p>
+<figure class="post-image"><img src="../assets/github-login/03-authorize-github-cli.png" alt="Ekran autoryzacji GitHub CLI" loading="lazy"></figure>
+<p>Jeśli wszystko się zgadza, kliknij:</p>
+<pre><code>Authorize github</code></pre>
+<h3>5. Sprawdź ekran potwierdzenia</h3>
+<p>Po poprawnej autoryzacji GitHub pokaże komunikat:</p>
+<pre><code>Congratulations, you&#039;re all set!
+Your device is now connected.</code></pre>
+<p>To oznacza, że Codex został połączony z GitHubem.</p>
+<figure class="post-image"><img src="../assets/github-login/04-device-connected.png" alt="Ekran potwierdzenia połączenia urządzenia" loading="lazy"></figure>
+<h3>6. Wróć do Codex</h3>
+<p>Po autoryzacji wróć do czatu Codex. Codex powinien kontynuować zadanie, czyli:</p>
+<ul>
+<li>sprawdzić logowanie do GitHuba,</li>
+<li>pobrać repozytorium <code>[wpisz tu nazwe projektu]</code>,</li>
+<li>wejść do katalogu projektu,</li>
+<li>utworzyć lub użyć lokalnego środowiska,</li>
+<li>zainstalować potrzebne zależności,</li>
+<li>uruchomić test lub skrypt sprawdzający, czy projekt działa.</li>
+</ul>
+<p>Przykładowy końcowy komunikat Codex może wyglądać tak:</p>
+<pre><code>Gotowe.
+
+Zalogowałem gh do GitHuba, sklonowałem repozytorium i zainstalowałem wymagane zależności.</code></pre>
+<h3>Ważne zasady bezpieczeństwa</h3>
+<ul>
+<li>Wpisuj tylko kod, który Codex pokazuje w Twoim aktualnym czacie.</li>
+<li>Nie wpisuj kodu przesłanego przez obcą osobę.</li>
+<li>Klikaj <code>Authorize github</code> tylko wtedy, gdy to Ty rozpocząłeś logowanie.</li>
+<li>Sprawdź, czy ekran autoryzacji dotyczy <code>GitHub CLI</code>.</li>
+<li>Jeżeli GitHub pokazuje nietypową lokalizację, urządzenie albo konto, przerwij logowanie i zacznij od nowa.</li>
+</ul></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span id="year">2026</span> Robert Matyszewski</span>
+      <a href="#top">Wróć na górę</a>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

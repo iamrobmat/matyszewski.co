@@ -212,7 +212,7 @@
         ${posts
           .map(
             (post) => `
-              <a class="post-row" href="#${post.slug}">
+              <a class="post-row" href="${post.slug}/">
                 <div class="post-row-content">
                   <strong>${escapeHtml(post.title)}</strong>
                   <em>${escapeHtml(post.description)}</em>
