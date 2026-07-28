@@ -41,6 +41,21 @@ blocks.
 
 DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 
+## Google Analytics
+
+Analytics uses consent-gated Google tag loading. The tag is not requested until a visitor accepts
+analytics, while ad storage, ad user data and ad personalisation remain disabled.
+
+The GA4 measurement ID is injected at build time and is not stored in the source configuration:
+
+```bash
+GOOGLE_ANALYTICS_ID=G-ABC1234567 bash scripts/build-site.sh
+```
+
+For production, create a GitHub Actions repository variable named `GOOGLE_ANALYTICS_ID` and set
+the Pages publishing source to GitHub Actions. The workflow in `.github/workflows/pages.yml` builds
+the `_site` artifact and deploys it.
+
 ## Local preview
 
 ```bash
