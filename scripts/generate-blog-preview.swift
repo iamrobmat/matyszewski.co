@@ -516,9 +516,10 @@ func renderPostPage(post: Post, markdown: String) throws {
         <span>Robert Matyszewski</span>
       </a>
       <nav class="nav" aria-label="Główna nawigacja">
+        <a href="../../uslugi/">Usługi</a>
         <a href="../../#work">Praca</a>
         <a href="../../#projects">Projekty</a>
-        <a href="../">Blog</a>
+        <a href="../" aria-current="page">Blog</a>
         <a href="../../#contact">Kontakt</a>
       </nav>
     </header>

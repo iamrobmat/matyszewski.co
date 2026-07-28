@@ -95,6 +95,12 @@ a {
   color: var(--ink);
 }
 
+.nav a[aria-current="page"] {
+  background: rgba(31, 107, 74, 0.1);
+  color: var(--green);
+  font-weight: 750;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.12fr) minmax(300px, 0.88fr);
@@ -506,7 +512,7 @@ h3 {
   }
 
   .nav a {
-    flex: 1 1 calc(50% - 4px);
+    flex: 1 1 calc(33.333% - 4px);
     padding: 8px 6px;
     font-size: 12px;
     text-align: center;
