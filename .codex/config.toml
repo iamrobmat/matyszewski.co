@@ -1,0 +1,12 @@
+# Full-auto project defaults for matyszewski.co.
+# Codex loads this file only after the repository is trusted.
+approval_policy = "never"
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+[sandbox_workspace_write]
+network_access = true
+
+[agents.website_developer]
+description = "Autonomous implementation agent for developing and validating matyszewski.co."
+config_file = "./agents/website-developer.toml"
