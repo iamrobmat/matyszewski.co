@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Umów rozmowę | Robert Matyszewski</title>
+    <meta
+      name="description"
+      content="Wybierz termin rozmowy z Robertem Matyszewskim o produkcie, sprzedaży, procesie biznesowym lub praktycznym zastosowaniu AI."
+    >
+    <meta property="og:title" content="Umów rozmowę | Robert Matyszewski">
+    <meta
+      property="og:description"
+      content="Zacznijmy od problemu i znajdźmy konkretny następny krok. Wybierz dogodny termin rozmowy."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matyszewski.co/umow-rozmowe/">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/35330460?v=4">
+    <meta property="og:image:alt" content="Robert Matyszewski">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Umów rozmowę | Robert Matyszewski">
+    <meta
+      name="twitter:description"
+      content="Zacznijmy od problemu i znajdźmy konkretny następny krok. Wybierz dogodny termin rozmowy."
+    >
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/35330460?v=4">
+    <meta name="twitter:image:alt" content="Robert Matyszewski">
+    <link rel="canonical" href="https://matyszewski.co/umow-rozmowe/">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="umow-rozmowe.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151515'/%3E%3Cpath d='M15 45V19h8l9 14 9-14h8v26h-7V29L34 42h-4l-8-13v16z' fill='%23f8f8f5'/%3E%3C/svg%3E">
+    <script src="../analytics-config.js" defer></script>
+    <script src="../analytics.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Strona główna Roberta Matyszewskiego">
+        <span class="brand-mark">RM</span>
+        <span>Robert Matyszewski</span>
+      </a>
+      <nav class="nav" aria-label="Główna nawigacja">
+        <a href="../uslugi/">Usługi</a>
+        <a href="../#work">Praca</a>
+        <a href="../#projects">Projekty</a>
+        <a href="../blog/">Blog</a>
+        <a href="./" aria-current="page">Umów rozmowę</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="booking-section">
+        <div class="booking-intro">
+          <p class="eyebrow">Umów rozmowę</p>
+          <div class="booking-profile">
+            <img
+              src="https://avatars.githubusercontent.com/u/35330460?v=4"
+              alt="Robert Matyszewski"
+              width="112"
+              height="112"
+            >
+            <div>
+              <span class="project-kicker">Robert Matyszewski</span>
+              <p>Twórca produktów AI i operator produktowy</p>
+            </div>
+          </div>
+
+          <h1>Sprawdźmy, czy mogę pomóc.</h1>
+          <p class="booking-lead">
+            Pracuję na styku AI, produktu i sprzedaży. Wybierz krótką rozmowę wstępną,
+            jeśli chcesz sprawdzić dopasowanie, albo konsultację strategiczną, jeśli chcesz
+            wspólnie uporządkować konkretny problem i następne kroki.
+          </p>
+          <p class="booking-note">W obu przypadkach zaczynamy od Twojego kontekstu, nie od prezentacji.</p>
+          <a class="inline-link booking-email" href="mailto:robert.matyszewski@gmail.com">
+            Wolisz napisać? Wyślij e-mail →
+          </a>
+        </div>
+
+        <div class="booking-calendar-panel">
+          <div class="calendar-shell">
+            <div
+              id="cal-embed"
+              class="cal-embed"
+              role="region"
+              aria-label="Wybór rozmowy z Robertem Matyszewskim"
+            ></div>
+            <noscript>
+              <p class="calendar-noscript">
+                Kalendarz wymaga JavaScriptu.
+                <a href="https://cal.com/matyszewski">Otwórz wybór rozmowy w Cal.com</a>.
+              </p>
+            </noscript>
+          </div>
+          <p class="calendar-fallback">
+            Kalendarz się nie wyświetla?
+            <a
+              href="https://cal.com/matyszewski"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Otwórz Cal.com w nowej karcie</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer booking-footer">
+      <span>© <span id="year">2026</span> Robert Matyszewski</span>
+      <a href="#top">Wróć na górę</a>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script>
+      (function (C, A, L) {
+        const enqueue = function (api, args) {
+          api.q.push(args);
+        };
+        const document = C.document;
+        C.Cal = C.Cal || function () {
+          const cal = C.Cal;
+          const args = arguments;
+
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            document.head.appendChild(document.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+
+          if (args[0] === L) {
+            const api = function () {
+              enqueue(api, arguments);
+            };
+            const namespace = args[1];
+            api.q = api.q || [];
+
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              enqueue(cal.ns[namespace], args);
+              enqueue(cal, ["initNamespace", namespace]);
+            } else {
+              enqueue(cal, args);
+            }
+            return;
+          }
+
+          enqueue(cal, args);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      Cal("init", "matyszewski", { origin: "https://cal.com" });
+      Cal.ns.matyszewski("inline", {
+        elementOrSelector: "#cal-embed",
+        calLink: "matyszewski",
+        config: { layout: "month_view" }
+      });
+      Cal.ns.matyszewski("ui", {
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#1f6b4a" },
+          dark: { "cal-brand": "#91d5b5" }
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view"
+      });
+      let initialScrollRestored = false;
+      Cal.ns.matyszewski("on", {
+        action: "linkReady",
+        callback: function () {
+          if (!initialScrollRestored && !window.location.hash && window.scrollY < 320) {
+            initialScrollRestored = true;
+            window.setTimeout(function () {
+              window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+            }, 100);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
