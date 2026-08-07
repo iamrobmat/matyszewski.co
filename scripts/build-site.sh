@@ -9,6 +9,8 @@ if [[ -z "$output_dir" || "$output_dir" == "." || "$output_dir" == "/" ]]; then
   exit 1
 fi
 
+node scripts/sync-navigation.mjs --check .
+
 rm -rf -- "$output_dir"
 mkdir -p "$output_dir"
 
@@ -17,6 +19,7 @@ cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"
 cp -R umow-rozmowe "$output_dir/umow-rozmowe"
 
+node scripts/sync-navigation.mjs "$output_dir"
 node scripts/configure-analytics.mjs "$output_dir/analytics-config.js"
 
 echo "Built static site in $output_dir."

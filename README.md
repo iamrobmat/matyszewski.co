@@ -10,6 +10,7 @@ as its custom domain.
 - `index.html` - static one-page website with a link to the blog
 - `styles.css` - responsive visual system
 - `blog/` - self-contained Markdown blog
+- `scripts/sync-navigation.mjs` - the single source of truth for site navigation
 - `CNAME` - configures the `matyszewski.co` custom domain
 - `.nojekyll` - disables Jekyll processing for GitHub Pages
 
@@ -38,6 +39,19 @@ swift scripts/generate-blog-preview.swift
 The public URL will be `/blog/my-post/`. The generated pages support a small Markdown subset:
 headings, paragraphs, lists, blockquotes, links, images, bold, italic, inline code and fenced code
 blocks.
+
+## Navigation
+
+All page headers are generated from the navigation definition in
+`scripts/sync-navigation.mjs`. After changing navigation labels or destinations, synchronize the
+source pages with:
+
+```bash
+node scripts/sync-navigation.mjs
+```
+
+The blog generator runs this synchronization automatically, and the production build verifies that
+committed pages are current before creating the deployment artifact.
 
 DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 

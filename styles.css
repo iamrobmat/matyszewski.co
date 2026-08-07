@@ -554,7 +554,7 @@ h3 {
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 720px) {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
@@ -562,22 +562,32 @@ h3 {
     padding: 14px 16px;
   }
 
-  .brand {
+  .brand,
+  .nav {
     width: 100%;
   }
 
   .nav {
-    display: flex;
-    width: 100%;
-    gap: 4px;
     justify-content: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 4px;
   }
 
   .nav a {
-    flex: 1 1 calc(33.333% - 4px);
-    padding: 8px 6px;
+    min-width: 0;
+    padding: 8px 4px;
     font-size: 12px;
     text-align: center;
+  }
+
+  .nav .nav-cta {
+    grid-column: 1 / -1;
   }
 
   .hero {

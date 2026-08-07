@@ -24,6 +24,9 @@ swift scripts/generate-blog-preview.swift
 
 Run that command from the repository root.
 
+The generator also synchronizes every site header from the canonical navigation definition in
+`scripts/sync-navigation.mjs`.
+
 The public URL will be `/blog/my-post/`, and the post social image will be generated in
 `assets/social/my-post.png`.
 

@@ -472,6 +472,34 @@ func renderTags(_ tags: [String]?) -> String {
 """
 }
 
+func syncNavigation() throws {
+    let process = Process()
+    let output = Pipe()
+    process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
+    process.arguments = ["node", root.appendingPathComponent("scripts/sync-navigation.mjs").path, root.path]
+    process.currentDirectoryURL = root
+    process.standardOutput = output
+    process.standardError = output
+
+    try process.run()
+    process.waitUntilExit()
+
+    let data = output.fileHandleForReading.readDataToEndOfFile()
+    let message = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+
+    guard process.terminationStatus == 0 else {
+        throw NSError(
+            domain: "NavigationSync",
+            code: Int(process.terminationStatus),
+            userInfo: [NSLocalizedDescriptionKey: message.isEmpty ? "Navigation sync failed." : message]
+        )
+    }
+
+    if !message.isEmpty {
+        print(message)
+    }
+}
+
 func renderPostPage(post: Post, markdown: String) throws {
     let postDir = root.appendingPathComponent("blog/\(post.slug)", isDirectory: true)
     try FileManager.default.createDirectory(at: postDir, withIntermediateDirectories: true)
@@ -515,13 +543,7 @@ func renderPostPage(post: Post, markdown: String) throws {
         <span class="brand-mark">RM</span>
         <span>Robert Matyszewski</span>
       </a>
-      <nav class="nav" aria-label="Główna nawigacja">
-        <a href="../../uslugi/">Usługi</a>
-        <a href="../../#work">Praca</a>
-        <a href="../../#projects">Projekty</a>
-        <a href="../" aria-current="page">Blog</a>
-        <a href="../../#contact">Kontakt</a>
-      </nav>
+      <nav class="nav" aria-label="Główna nawigacja" data-nav-current="blog"></nav>
     </header>
 
     <main id="top">
@@ -564,5 +586,7 @@ for post in posts {
     try generateSocialCard(title: post.title, description: post.description, outputBaseName: post.slug, footerUrl: "matyszewski.co/blog", label: "WPIS")
     try renderPostPage(post: post, markdown: markdown)
 }
+
+try syncNavigation()
 
 print("Generated blog preview, \(posts.count) post pages and \(posts.count) post preview images.")
