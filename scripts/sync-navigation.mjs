@@ -25,7 +25,7 @@ const navigationPattern = /(^[ \t]*)<nav class="nav" aria-label="Główna nawiga
 function currentNavigationId(filePath) {
   const relativePath = relative(root, filePath).split(sep).join("/");
 
-  if (relativePath === "uslugi/index.html") {
+  if (relativePath.startsWith("uslugi/")) {
     return "services";
   }
 
