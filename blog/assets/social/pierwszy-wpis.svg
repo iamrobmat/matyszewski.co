@@ -13,7 +13,7 @@
 
   <rect width="1200" height="630" fill="#f8f8f5"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
-  <rect x="72" y="72" width="1056" height="486" rx="18" fill="#ffffff" fill-opacity="0.88" stroke="#151515" stroke-opacity="0.14" filter="url(#shadow)"/>
+  <rect x="32" y="32" width="1136" height="566" rx="18" fill="#ffffff" fill-opacity="0.88" stroke="#151515" stroke-opacity="0.14" filter="url(#shadow)"/>
   <text x="96" y="142" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">matyszewski.co</text>
   <image href="robert-matyszewski-profile.png" x="820" y="179" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-clip)"/>
   <circle cx="956" cy="315" r="136" fill="none" stroke="#151515" stroke-opacity="0.14" stroke-width="2"/>

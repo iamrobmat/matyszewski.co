@@ -267,7 +267,7 @@ func generateSocialCard(
     label: String? = "BLOG",
     showsSubtitle: Bool = true,
     ctaText: String = "Czytaj blog"
-) throws {
+) throws -> String {
     let lines = titleLines(title)
     let fontSize = lines.count >= 3 ? 54 : (lines.count == 2 ? 68 : 76)
     let firstTextTop: Int
@@ -300,7 +300,7 @@ func generateSocialCard(
 
   <rect width="1200" height="630" fill="#f8f8f5"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
-  <rect x="72" y="72" width="1056" height="486" rx="18" fill="#ffffff" fill-opacity="0.88" stroke="#151515" stroke-opacity="0.14" filter="url(#shadow)"/>
+  <rect x="32" y="32" width="1136" height="566" rx="18" fill="#ffffff" fill-opacity="0.88" stroke="#151515" stroke-opacity="0.14" filter="url(#shadow)"/>
   <text x="96" y="142" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">matyszewski.co</text>
   <image href="\(profileImageName)" x="820" y="179" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-clip)"/>
   <circle cx="956" cy="315" r="136" fill="none" stroke="#151515" stroke-opacity="0.14" stroke-width="2"/>
@@ -328,6 +328,20 @@ func generateSocialCard(
         profileImage: socialDir.appendingPathComponent(profileImageName),
         output: socialDir.appendingPathComponent("\(outputBaseName).png")
     )
+
+    return try imageVersion(at: socialDir.appendingPathComponent("\(outputBaseName).png"))
+}
+
+func imageVersion(at imageUrl: URL) throws -> String {
+    let bytes = try Data(contentsOf: imageUrl)
+    var hash: UInt64 = 0xcbf29ce484222325
+
+    for byte in bytes {
+        hash ^= UInt64(byte)
+        hash = hash &* 0x100000001b3
+    }
+
+    return String(format: "%016llx", hash)
 }
 
 func color(_ hex: UInt32, _ alpha: CGFloat = 1.0) -> NSColor {
@@ -429,7 +443,7 @@ func renderPngCard(
     shadow.set()
 
     let card = NSBezierPath(
-        roundedRect: NSRect(x: 72, y: topY(72, 486), width: 1056, height: 486),
+        roundedRect: NSRect(x: 32, y: topY(32, 566), width: 1136, height: 566),
         xRadius: 18,
         yRadius: 18
     )
@@ -538,13 +552,13 @@ func syncNavigation() throws {
     }
 }
 
-func renderPostPage(post: Post, markdown: String) throws {
+func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     let postDir = root.appendingPathComponent("blog/\(post.slug)", isDirectory: true)
     try FileManager.default.createDirectory(at: postDir, withIntermediateDirectories: true)
 
     let metaTitle = metadataTitle(for: post)
     let postUrl = "\(siteOrigin)/blog/\(post.slug)/"
-    let imageUrl = "\(siteOrigin)/blog/assets/social/\(post.slug).png"
+    let imageUrl = "\(siteOrigin)/blog/assets/social/\(post.slug).png?v=\(imageVersion)"
     let contentHtml = markdownToHtml(markdown, resourcePrefix: "../")
     let page = """
 <!doctype html>
@@ -612,17 +626,38 @@ func renderPostPage(post: Post, markdown: String) throws {
     try page.write(to: postDir.appendingPathComponent("index.html"), atomically: true, encoding: .utf8)
 }
 
+func updatingSocialImageMetadata(in html: String, imageUrl: String) -> String {
+    html
+        .replacingOccurrences(
+            of: #"<meta property="og:image" content="[^"]*">"#,
+            with: #"<meta property="og:image" content="\#(imageUrl)">"#,
+            options: .regularExpression
+        )
+        .replacingOccurrences(
+            of: #"<meta name="twitter:image" content="[^"]*">"#,
+            with: #"<meta name="twitter:image" content="\#(imageUrl)">"#,
+            options: .regularExpression
+        )
+}
+
 let html = try String(contentsOf: blogIndex, encoding: .utf8)
 let blogTitle = firstMatch(#"<title>\s*(.*?)\s*</title>"#, in: html) ?? "Blog Roberta Matyszewskiego"
 let blogDescription = firstMatch(#"<meta\s+name="description"\s+content="([^"]+)""#, in: html) ?? blogDescriptionFallback
 let posts = try JSONDecoder().decode([Post].self, from: Data(contentsOf: postsJson))
 
 try FileManager.default.createDirectory(at: socialDir, withIntermediateDirectories: true)
-try generateSocialCard(title: blogTitle, description: blogDescription, outputBaseName: "blog-preview", footerUrl: "matyszewski.co/blog")
+let blogImageVersion = try generateSocialCard(title: blogTitle, description: blogDescription, outputBaseName: "blog-preview", footerUrl: "matyszewski.co/blog")
+let versionedBlogIndex = updatingSocialImageMetadata(
+    in: html,
+    imageUrl: "\(siteOrigin)/blog/assets/social/blog-preview.png?v=\(blogImageVersion)"
+)
+if versionedBlogIndex != html {
+    try versionedBlogIndex.write(to: blogIndex, atomically: true, encoding: .utf8)
+}
 
 for post in posts {
     let markdown = try String(contentsOf: postsDir.appendingPathComponent(post.file), encoding: .utf8)
-    try generateSocialCard(
+    let postImageVersion = try generateSocialCard(
         title: post.metaTitle ?? post.title,
         description: post.description,
         outputBaseName: post.slug,
@@ -631,7 +666,7 @@ for post in posts {
         showsSubtitle: false,
         ctaText: "Przeczytaj wpis"
     )
-    try renderPostPage(post: post, markdown: markdown)
+    try renderPostPage(post: post, markdown: markdown, imageVersion: postImageVersion)
 }
 
 try syncNavigation()
