@@ -258,15 +258,26 @@ func svgTextLines(_ lines: [String], fontSize: Int, top: Int, spacing: Int) -> S
     }.joined(separator: "\n")
 }
 
-func generateSocialCard(title: String, description: String, outputBaseName: String, footerUrl: String, label: String = "BLOG") throws {
+func generateSocialCard(
+    title: String,
+    description: String,
+    outputBaseName: String,
+    footerUrl: String,
+    label: String? = "BLOG",
+    showsSubtitle: Bool = true
+) throws {
     let lines = titleLines(title)
-    let fontSize = lines.count >= 3 ? 54 : 76
-    let firstTextTop = lines.count >= 3 ? 274 : 330
-    let lineSpacing = lines.count >= 3 ? 62 : 88
-    let dividerTop = lines.count >= 3 ? 472 : 468
-    let descriptionTop = lines.count >= 3 ? 494 : 516
-    let footerTop = lines.count >= 3 ? 528 : 546
-    let subtitle = shortDescription(description)
+    let fontSize = lines.count >= 3 ? 54 : (lines.count == 2 ? 68 : 76)
+    let firstTextTop: Int
+    if showsSubtitle {
+        firstTextTop = lines.count >= 3 ? 274 : (lines.count == 2 ? 266 : 326)
+    } else {
+        firstTextTop = lines.count >= 3 ? 222 : (lines.count == 2 ? 235 : 277)
+    }
+    let lineSpacing = lines.count >= 3 ? 62 : 80
+    let ctaTop = showsSubtitle ? 492 : 482
+    let subtitle = showsSubtitle ? shortDescription(description) : nil
+    let profileImageName = "robert-matyszewski-profile.png"
 
     let svg = """
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
@@ -277,21 +288,23 @@ func generateSocialCard(title: String, description: String, outputBaseName: Stri
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
       <feDropShadow dx="0" dy="20" stdDeviation="24" flood-color="#151515" flood-opacity="0.14"/>
     </filter>
+    <clipPath id="profile-clip">
+      <circle cx="956" cy="315" r="136"/>
+    </clipPath>
   </defs>
 
   <rect width="1200" height="630" fill="#f8f8f5"/>
   <rect width="1200" height="630" fill="url(#grid)"/>
   <rect x="72" y="72" width="1056" height="486" rx="18" fill="#ffffff" fill-opacity="0.88" stroke="#151515" stroke-opacity="0.14" filter="url(#shadow)"/>
-  <rect x="96" y="96" width="74" height="74" rx="14" fill="#151515"/>
-  <text x="133" y="143" fill="#f8f8f5" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" text-anchor="middle">RM</text>
-  <text x="96" y="236" fill="#1f6b4a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="3">\(escapeHtml(label))</text>
+  <text x="96" y="142" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">matyszewski.co</text>
+  <image href="\(profileImageName)" x="820" y="179" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-clip)"/>
+  <circle cx="956" cy="315" r="136" fill="none" stroke="#151515" stroke-opacity="0.14" stroke-width="2"/>
+\(label.map { ##"  <text x="96" y="236" fill="#1f6b4a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="3">\##(escapeHtml($0))</text>"## } ?? "")
 \(svgTextLines(lines, fontSize: fontSize, top: firstTextTop, spacing: lineSpacing))
-  <rect x="96" y="\(dividerTop)" width="606" height="1" fill="#d8ddd6"/>
-  <text x="96" y="\(descriptionTop)" fill="#303330" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">\(escapeHtml(subtitle))</text>
-  <text x="96" y="\(footerTop)" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">\(escapeHtml(footerUrl))</text>
-  <circle cx="1007" cy="174" r="42" fill="#d8b23f"/>
-  <circle cx="1059" cy="230" r="30" fill="#285f9f"/>
-  <circle cx="1000" cy="277" r="22" fill="#a9412f"/>
+\(subtitle.map { ##"  <text x="96" y="466" fill="#303330" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">\##(escapeHtml($0))</text>"## } ?? "")
+  <rect x="96" y="\(ctaTop)" width="190" height="48" rx="12" fill="#1f6b4a"/>
+  <text x="191" y="\(ctaTop + 31)" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" text-anchor="middle">Czytaj blog</text>
+  <text x="310" y="\(ctaTop + 31)" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">\(escapeHtml(footerUrl))</text>
 </svg>
 """
 
@@ -304,9 +317,8 @@ func generateSocialCard(title: String, description: String, outputBaseName: Stri
         fontSize: CGFloat(fontSize),
         firstTextTop: CGFloat(firstTextTop),
         lineSpacing: CGFloat(lineSpacing),
-        dividerTop: CGFloat(dividerTop),
-        descriptionTop: CGFloat(descriptionTop),
-        footerTop: CGFloat(footerTop),
+        ctaTop: CGFloat(ctaTop),
+        profileImage: socialDir.appendingPathComponent(profileImageName),
         output: socialDir.appendingPathComponent("\(outputBaseName).png")
     )
 }
@@ -322,15 +334,14 @@ func color(_ hex: UInt32, _ alpha: CGFloat = 1.0) -> NSColor {
 
 func renderPngCard(
     titleLines: [String],
-    subtitle: String,
+    subtitle: String?,
     footerUrl: String,
-    label: String,
+    label: String?,
     fontSize: CGFloat,
     firstTextTop: CGFloat,
     lineSpacing: CGFloat,
-    dividerTop: CGFloat,
-    descriptionTop: CGFloat,
-    footerTop: CGFloat,
+    ctaTop: CGFloat,
+    profileImage: URL,
     output: URL
 ) throws {
     let width: CGFloat = 1200
@@ -420,36 +431,45 @@ func renderPngCard(
     card.lineWidth = 1
     card.stroke()
 
-    let mark = NSBezierPath(
-        roundedRect: NSRect(x: 96, y: topY(96, 74), width: 74, height: 74),
-        xRadius: 14,
-        yRadius: 14
-    )
-    color(0x151515).setFill()
-    mark.fill()
-    drawText("RM", x: 96, top: 119, w: 74, h: 30, size: 24, weight: .heavy, fill: color(0xf8f8f5), alignment: .center)
+    drawText("matyszewski.co", x: 96, top: 108, w: 360, h: 42, size: 30, weight: .heavy, fill: color(0x151515))
 
-    drawText(label, x: 96, top: 214, w: 240, h: 34, size: 26, weight: .heavy, fill: color(0x1f6b4a), spacing: 3)
+    guard let portrait = NSImage(contentsOf: profileImage) else {
+        throw NSError(
+            domain: "SocialCard",
+            code: 1,
+            userInfo: [NSLocalizedDescriptionKey: "Could not load profile image at \(profileImage.path)"]
+        )
+    }
+    let portraitRect = NSRect(x: 820, y: topY(179, 272), width: 272, height: 272)
+    NSGraphicsContext.saveGraphicsState()
+    NSBezierPath(ovalIn: portraitRect).addClip()
+    portrait.draw(in: portraitRect, from: .zero, operation: .sourceOver, fraction: 1)
+    NSGraphicsContext.restoreGraphicsState()
+    color(0x151515, 0.14).setStroke()
+    let portraitBorder = NSBezierPath(ovalIn: portraitRect)
+    portraitBorder.lineWidth = 2
+    portraitBorder.stroke()
+
+    if let label {
+        drawText(label, x: 96, top: 214, w: 240, h: 34, size: 26, weight: .heavy, fill: color(0x1f6b4a), spacing: 3)
+    }
     for (index, line) in titleLines.enumerated() {
-        drawText(line, x: 96, top: firstTextTop + (CGFloat(index) * lineSpacing), w: 920, h: lineSpacing, size: fontSize, weight: .heavy, fill: color(0x151515))
+        drawText(line, x: 96, top: firstTextTop + (CGFloat(index) * lineSpacing), w: 690, h: lineSpacing, size: fontSize, weight: .heavy, fill: color(0x151515))
     }
 
-    color(0xd8ddd6).setStroke()
-    let divider = NSBezierPath()
-    divider.move(to: NSPoint(x: 96, y: topY(dividerTop, 1)))
-    divider.line(to: NSPoint(x: 702, y: topY(dividerTop, 1)))
-    divider.lineWidth = 1
-    divider.stroke()
+    if let subtitle {
+        drawText(subtitle, x: 96, top: 439, w: 820, h: 34, size: 24, weight: .semibold, fill: color(0x303330))
+    }
 
-    drawText(subtitle, x: 96, top: descriptionTop, w: 820, h: 42, size: 30, weight: .semibold, fill: color(0x303330))
-    drawText(footerUrl, x: 96, top: footerTop, w: 520, h: 32, size: 24, weight: .semibold, fill: color(0x5e625f))
-
-    color(0xd8b23f).setFill()
-    NSBezierPath(ovalIn: NSRect(x: 965, y: topY(132, 84), width: 84, height: 84)).fill()
-    color(0x285f9f).setFill()
-    NSBezierPath(ovalIn: NSRect(x: 1029, y: topY(200, 60), width: 60, height: 60)).fill()
-    color(0xa9412f).setFill()
-    NSBezierPath(ovalIn: NSRect(x: 978, y: topY(255, 44), width: 44, height: 44)).fill()
+    let cta = NSBezierPath(
+        roundedRect: NSRect(x: 96, y: topY(ctaTop, 48), width: 190, height: 48),
+        xRadius: 12,
+        yRadius: 12
+    )
+    color(0x1f6b4a).setFill()
+    cta.fill()
+    drawText("Czytaj blog", x: 96, top: ctaTop + 10, w: 190, h: 28, size: 21, weight: .heavy, fill: color(0xffffff), alignment: .center)
+    drawText(footerUrl, x: 310, top: ctaTop + 10, w: 470, h: 28, size: 21, weight: .semibold, fill: color(0x5e625f))
 
     NSGraphicsContext.restoreGraphicsState()
 
@@ -583,7 +603,14 @@ try generateSocialCard(title: blogTitle, description: blogDescription, outputBas
 
 for post in posts {
     let markdown = try String(contentsOf: postsDir.appendingPathComponent(post.file), encoding: .utf8)
-    try generateSocialCard(title: post.title, description: post.description, outputBaseName: post.slug, footerUrl: "matyszewski.co/blog", label: "WPIS")
+    try generateSocialCard(
+        title: post.title,
+        description: post.description,
+        outputBaseName: post.slug,
+        footerUrl: "matyszewski.co/blog",
+        label: nil,
+        showsSubtitle: false
+    )
     try renderPostPage(post: post, markdown: markdown)
 }
 
