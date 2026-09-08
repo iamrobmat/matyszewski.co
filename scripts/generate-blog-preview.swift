@@ -4,6 +4,7 @@ import Foundation
 struct Post: Decodable {
     let slug: String
     let title: String
+    let metaTitle: String?
     let description: String
     let date: String
     let tags: [String]?
@@ -264,7 +265,8 @@ func generateSocialCard(
     outputBaseName: String,
     footerUrl: String,
     label: String? = "BLOG",
-    showsSubtitle: Bool = true
+    showsSubtitle: Bool = true,
+    ctaText: String = "Czytaj blog"
 ) throws {
     let lines = titleLines(title)
     let fontSize = lines.count >= 3 ? 54 : (lines.count == 2 ? 68 : 76)
@@ -276,6 +278,9 @@ func generateSocialCard(
     }
     let lineSpacing = lines.count >= 3 ? 62 : 80
     let ctaTop = showsSubtitle ? 492 : 482
+    let ctaWidth = ctaText == "Czytaj blog" ? 190 : 220
+    let ctaTextX = 96 + (ctaWidth / 2)
+    let footerTextX = 96 + ctaWidth + 24
     let subtitle = showsSubtitle ? shortDescription(description) : nil
     let profileImageName = "robert-matyszewski-profile.png"
 
@@ -302,9 +307,9 @@ func generateSocialCard(
 \(label.map { ##"  <text x="96" y="236" fill="#1f6b4a" font-family="Inter, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="3">\##(escapeHtml($0))</text>"## } ?? "")
 \(svgTextLines(lines, fontSize: fontSize, top: firstTextTop, spacing: lineSpacing))
 \(subtitle.map { ##"  <text x="96" y="466" fill="#303330" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600">\##(escapeHtml($0))</text>"## } ?? "")
-  <rect x="96" y="\(ctaTop)" width="190" height="48" rx="12" fill="#1f6b4a"/>
-  <text x="191" y="\(ctaTop + 31)" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" text-anchor="middle">Czytaj blog</text>
-  <text x="310" y="\(ctaTop + 31)" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">\(escapeHtml(footerUrl))</text>
+  <rect x="96" y="\(ctaTop)" width="\(ctaWidth)" height="48" rx="12" fill="#1f6b4a"/>
+  <text x="\(ctaTextX)" y="\(ctaTop + 31)" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" text-anchor="middle">\(escapeHtml(ctaText))</text>
+  <text x="\(footerTextX)" y="\(ctaTop + 31)" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">\(escapeHtml(footerUrl))</text>
 </svg>
 """
 
@@ -318,6 +323,8 @@ func generateSocialCard(
         firstTextTop: CGFloat(firstTextTop),
         lineSpacing: CGFloat(lineSpacing),
         ctaTop: CGFloat(ctaTop),
+        ctaText: ctaText,
+        ctaWidth: CGFloat(ctaWidth),
         profileImage: socialDir.appendingPathComponent(profileImageName),
         output: socialDir.appendingPathComponent("\(outputBaseName).png")
     )
@@ -341,6 +348,8 @@ func renderPngCard(
     firstTextTop: CGFloat,
     lineSpacing: CGFloat,
     ctaTop: CGFloat,
+    ctaText: String,
+    ctaWidth: CGFloat,
     profileImage: URL,
     output: URL
 ) throws {
@@ -462,14 +471,14 @@ func renderPngCard(
     }
 
     let cta = NSBezierPath(
-        roundedRect: NSRect(x: 96, y: topY(ctaTop, 48), width: 190, height: 48),
+        roundedRect: NSRect(x: 96, y: topY(ctaTop, 48), width: ctaWidth, height: 48),
         xRadius: 12,
         yRadius: 12
     )
     color(0x1f6b4a).setFill()
     cta.fill()
-    drawText("Czytaj blog", x: 96, top: ctaTop + 10, w: 190, h: 28, size: 21, weight: .heavy, fill: color(0xffffff), alignment: .center)
-    drawText(footerUrl, x: 310, top: ctaTop + 10, w: 470, h: 28, size: 21, weight: .semibold, fill: color(0x5e625f))
+    drawText(ctaText, x: 96, top: ctaTop + 10, w: ctaWidth, h: 28, size: 21, weight: .heavy, fill: color(0xffffff), alignment: .center)
+    drawText(footerUrl, x: 96 + ctaWidth + 24, top: ctaTop + 10, w: 470, h: 28, size: 21, weight: .semibold, fill: color(0x5e625f))
 
     NSGraphicsContext.restoreGraphicsState()
 
@@ -490,6 +499,15 @@ func renderTags(_ tags: [String]?) -> String {
             \(tags.map { "<li>\(escapeHtml($0))</li>" }.joined(separator: "\n            "))
           </ul>
 """
+}
+
+func metadataTitle(for post: Post) -> String {
+    if let metaTitle = post.metaTitle {
+        return metaTitle
+    }
+
+    let brandedTitle = "\(post.title) - Blog Roberta Matyszewskiego"
+    return brandedTitle.count <= 60 ? brandedTitle : post.title
 }
 
 func syncNavigation() throws {
@@ -524,7 +542,7 @@ func renderPostPage(post: Post, markdown: String) throws {
     let postDir = root.appendingPathComponent("blog/\(post.slug)", isDirectory: true)
     try FileManager.default.createDirectory(at: postDir, withIntermediateDirectories: true)
 
-    let title = "\(post.title) - Blog Roberta Matyszewskiego"
+    let metaTitle = metadataTitle(for: post)
     let postUrl = "\(siteOrigin)/blog/\(post.slug)/"
     let imageUrl = "\(siteOrigin)/blog/assets/social/\(post.slug).png"
     let contentHtml = markdownToHtml(markdown, resourcePrefix: "../")
@@ -534,11 +552,12 @@ func renderPostPage(post: Post, markdown: String) throws {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>\(escapeHtml(title))</title>
-    <meta name="title" content="\(escapeHtml(title))">
+    <title>\(escapeHtml(metaTitle))</title>
+    <meta name="title" content="\(escapeHtml(metaTitle))">
     <meta name="description" content="\(escapeHtml(post.description))">
-    <meta property="og:title" content="\(escapeHtml(title))">
+    <meta property="og:title" content="\(escapeHtml(metaTitle))">
     <meta property="og:description" content="\(escapeHtml(post.description))">
+    <meta property="og:site_name" content="Robert Matyszewski">
     <meta property="og:type" content="article">
     <meta property="og:url" content="\(postUrl)">
     <meta property="og:image" content="\(imageUrl)">
@@ -546,7 +565,7 @@ func renderPostPage(post: Post, markdown: String) throws {
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="\(escapeHtml(post.title))">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="\(escapeHtml(title))">
+    <meta name="twitter:title" content="\(escapeHtml(metaTitle))">
     <meta name="twitter:description" content="\(escapeHtml(post.description))">
     <meta name="twitter:image" content="\(imageUrl)">
     <meta name="twitter:image:alt" content="\(escapeHtml(post.title))">
@@ -604,12 +623,13 @@ try generateSocialCard(title: blogTitle, description: blogDescription, outputBas
 for post in posts {
     let markdown = try String(contentsOf: postsDir.appendingPathComponent(post.file), encoding: .utf8)
     try generateSocialCard(
-        title: post.title,
+        title: post.metaTitle ?? post.title,
         description: post.description,
         outputBaseName: post.slug,
         footerUrl: "matyszewski.co/blog",
         label: nil,
-        showsSubtitle: false
+        showsSubtitle: false,
+        ctaText: "Przeczytaj wpis"
     )
     try renderPostPage(post: post, markdown: markdown)
 }

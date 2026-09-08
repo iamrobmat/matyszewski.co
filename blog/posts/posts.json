@@ -2,6 +2,7 @@
   {
     "slug": "jak-zalogowac-codex-do-github",
     "title": "Jak zalogować się Githubem w Codexie i pobrać swój projekt",
+    "metaTitle": "Jak zalogować Codex do GitHuba i pobrać projekt",
     "description": "Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.",
     "date": "2026-07-09",
     "tags": ["Codex", "GitHub", "Narzędzia AI"],

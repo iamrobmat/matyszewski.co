@@ -18,11 +18,11 @@
   <image href="robert-matyszewski-profile.png" x="820" y="179" width="272" height="272" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-clip)"/>
   <circle cx="956" cy="315" r="136" fill="none" stroke="#151515" stroke-opacity="0.14" stroke-width="2"/>
 
-  <text x="96" y="222" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Jak zalogować się</text>
-  <text x="96" y="284" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Githubem w Codexie i</text>
-  <text x="96" y="346" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">pobrać swój projekt</text>
+  <text x="96" y="222" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">Jak zalogować Codex do</text>
+  <text x="96" y="284" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">GitHuba i pobrać</text>
+  <text x="96" y="346" fill="#151515" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="800">projekt</text>
 
-  <rect x="96" y="482" width="190" height="48" rx="12" fill="#1f6b4a"/>
-  <text x="191" y="513" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" text-anchor="middle">Czytaj blog</text>
-  <text x="310" y="513" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">matyszewski.co/blog</text>
+  <rect x="96" y="482" width="220" height="48" rx="12" fill="#1f6b4a"/>
+  <text x="206" y="513" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="800" text-anchor="middle">Przeczytaj wpis</text>
+  <text x="340" y="513" fill="#5e625f" font-family="Inter, Arial, sans-serif" font-size="21" font-weight="600">matyszewski.co/blog</text>
 </svg>
