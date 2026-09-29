@@ -17,6 +17,7 @@ mkdir -p "$output_dir"
 cp index.html styles.css analytics.js analytics-config.js CNAME .nojekyll "$output_dir/"
 cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"
+cp -R szkolenia "$output_dir/szkolenia"
 cp -R umow-rozmowe "$output_dir/umow-rozmowe"
 
 node scripts/sync-navigation.mjs "$output_dir"

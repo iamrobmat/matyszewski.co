@@ -3,6 +3,7 @@ import { relative, resolve, sep } from "node:path";
 
 const navigationItems = Object.freeze([
   { id: "services", label: "Usługi", href: "/uslugi/" },
+  { id: "training", label: "Szkolenia", href: "/szkolenia/agenci-ai-dla-menedzerow/" },
   { id: "work", label: "Co robię", href: "/#work" },
   { id: "projects", label: "Projekty", href: "/#projects" },
   { id: "blog", label: "Blog", href: "/blog/" },
@@ -27,6 +28,10 @@ function currentNavigationId(filePath) {
 
   if (relativePath.startsWith("uslugi/")) {
     return "services";
+  }
+
+  if (relativePath.startsWith("szkolenia/")) {
+    return "training";
   }
 
   if (relativePath.startsWith("blog/")) {
