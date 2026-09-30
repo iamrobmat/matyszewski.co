@@ -14,7 +14,7 @@ node scripts/sync-navigation.mjs --check .
 rm -rf -- "$output_dir"
 mkdir -p "$output_dir"
 
-cp index.html styles.css analytics.js analytics-config.js szkolenie.md CNAME .nojekyll "$output_dir/"
+cp index.html styles.css analytics.js analytics-config.js szkolenie.md szkolenie.pdf CNAME .nojekyll "$output_dir/"
 cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"
 cp -R szkolenia "$output_dir/szkolenia"
