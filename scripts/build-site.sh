@@ -20,7 +20,6 @@ cp -R uslugi "$output_dir/uslugi"
 cp -R szkolenia "$output_dir/szkolenia"
 cp -R umow-rozmowe "$output_dir/umow-rozmowe"
 cp -R obrazy "$output_dir/obrazy"
-cp -R oferta-pronar "$output_dir/oferta-pronar"
 
 node scripts/sync-navigation.mjs "$output_dir"
 node scripts/configure-analytics.mjs "$output_dir/analytics-config.js"
