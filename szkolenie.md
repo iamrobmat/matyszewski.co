@@ -685,3 +685,7 @@ Integracje · Subagenci · Zadania cykliczne · Zdalne sterowanie · Prototypy o
 ### Dziękuję
 
 **Pytania?** · [matyszewski.co](https://matyszewski.co)
+
+**Ankieta po szkoleniu:** [matyszewski.co/ankieta](https://matyszewski.co/ankieta/)
+
+![Kod QR do ankiety: matyszewski.co/ankieta](obrazy/ankieta-qr.png)
