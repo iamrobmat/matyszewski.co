@@ -1,4 +1,4 @@
-# AI dla menadżerów — od czatu do agenta AI
+# AI dla SPECJALISTÓW — od czatu do agenta AI
 
 **Jak tworzyć i rozwijać agentów AI z użyciem OpenAI Codex lub Claude Code**
 
@@ -101,7 +101,7 @@ Peter Steinberger to twórca OpenClaw, autonomicznego agenta AI, po którym zost
 
 ### 7. Dlaczego tu jestem
 
-**Chcę uczyć menedżerów samodzielnego tworzenia agentów AI oraz oprogramowania.**
+**W przyszłości każda organizacja będzie tworzyć swoje narzędzia informatyczne. Chcę uczyć tego ludzi.**
 
 ![Dlaczego tu jestem](obrazy/misza.png)
 
@@ -124,7 +124,7 @@ Na końcu zabawa.
 
 ## 1. Od czatu do agenta
 
-Czaty AI · Z czym kojarzy się „agent” · Czat odpowiada, agent wykonuje · Pętla agenta · Agent to nie magiczny pracownik
+Czaty AI · Z czym kojarzy się „agent” · Czat odpowiada, agent wykonuje · Rodzaje agentów · Pętla agenta · Agent to nie magiczny pracownik
 
 ### Czaty AI
 
@@ -146,6 +146,13 @@ To miłe, wciągające narzędzie i czasem zmyśla fakty, działa na zasadzie lo
 Przykład z codziennej pracy menedżera: pismo do partnera. W czacie wklejasz dane, dostajesz tekst, kopiujesz go do Worda, poprawiasz i wracasz z kolejnym pytaniem. Agent sam czyta poprzednie pisma i dane z folderu, zapisuje gotowy dokument i sprawdza go z Twoim wzorem.
 
 Uczciwie: granica się zaciera. ChatGPT czy Claude w przeglądarce też szukają w internecie i tworzą pliki. Różnica jest w tym, **gdzie** pracuje agent (na Twoim komputerze, w Twoim folderze) i **kto** wykonuje kolejne kroki.
+
+### Rodzaje agentów
+
+| Nazwa | Przykłady | Skala działania | Miejsce działania | Kiedy używać |
+|---|---|---|---|---|
+| Agent zadaniowy | Claude Cowork lub Projekty w ChatGPT | Rozmowa i kontekst kilku plików | Serwery zewnętrzne | Ograniczone zadanie na kilku plikach, dokumentach, przeglądarce lub konektorach |
+| Agent projektowy | Claude Code, Codex | Folder z dowolną ilością plików i skryptów informatycznych | Nasz folder na komputerze | Duży projekt, duża ilość plików, możliwość programowania i tworzenia własnych narzędzi |
 
 ### Praca z agentami wymaga pętli
 
@@ -171,7 +178,7 @@ Jak mówił Peter: „trochę jak zarządzanie ludźmi”. Praca z agentem to de
 
 ## 2. Czym jest agent — z czego się składa
 
-Wzór na agenta · Kontekst sprawia, że agent jest Twój · Markdown · Ulubione formaty plików · Lepszy kontekst = krótsze polecenie
+Wzór na agenta · Kontekst sprawia, że agent jest Twój · Co jest w pliku Word · Markdown · Ulubione formaty plików · Lepszy kontekst = krótsze polecenie
 
 ### Wzór na agenta
 
@@ -195,7 +202,68 @@ W środku jest **model (LLM)**. Dookoła niego źródła kontekstu:
 
 Ta wiedza nie zależy od modelu. Agentów można przenosić między Claude Code i Codex, korzystając z podstaw z tego szkolenia.
 
-### Markdown: język kontekstu
+### Z czego składa się plik Word
+
+Dla nas plik Word to dokument. Agent, żeby z niego skorzystać, musi go najpierw rozpakować: w środku jest paczka 13 plików.
+
+**Tak widzisz w Wordzie:**
+
+![Plik Word z fragmentem konspektu](<obrazy/word konspekt.png>)
+
+**Tak widzi agent po rozpakowaniu:**
+
+| Plik w paczce | Co zawiera |
+|---|---|
+| `word/document.xml` | **Właściwa treść:** tekst i formatowanie |
+| `word/styles.xml` | Wygląd nagłówków, czcionki, odstępy |
+| `word/numbering.xml` | Punktory i numeracja |
+| `word/theme/theme1.xml` | Motyw kolorów i czcionek |
+| `word/header1.xml, footer1.xml` | Nagłówek i stopka strony |
+| `word/fontTable.xml, settings.xml` | Lista czcionek, ustawienia dokumentu |
+| `docProps/…, _rels/…, [Content_Types].xml` | Metryczka i spis zawartości paczki |
+
+Plik Word to spakowany folder, coś jak ZIP. W tym przykładzie to 13 plików, razem około 49 KB, a sam tekst to kilkaset znaków. Agent nie otworzy pliku Word wprost: musi go rozpakować albo zamienić na tekst (np. programem pandoc).
+
+### Co jest w środku pliku Word
+
+Początek pliku `word/document.xml` (linie 1–12):
+
+```xml
+<?xml version="1.0" ?>
+<w:document xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" …>
+  <w:body>
+    <w:p>
+      <w:pPr>
+        <w:pStyle w:val="Nagłówek 2"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:rtl w:val="0"/>
+        </w:rPr>
+        <w:t xml:space="preserve">2. Czym jest agent </w:t>
+```
+
+Koniec (linie 266–277):
+
+```xml
+      <w:r/>
+    </w:p>
+    <w:sectPr>
+      <w:headerReference w:type="default" r:id="rId4"/>
+      <w:footerReference w:type="default" r:id="rId5"/>
+      <w:pgSz w:w="11900" w:h="16840" w:orient="portrait"/>
+      <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708"/>
+      <w:bidi w:val="0"/>
+    </w:sectPr>
+  </w:body>
+</w:document>
+```
+
+**277 linii XML. Ten sam tekst w Markdownie: 8 linii.**
+
+Słowo „składa” jest zapisane w trzech kawałkach: „sk”, „ł”, „ada”. Kawałki różnią się ukrytymi ustawieniami, np. językiem. Człowiek tego nie widzi, a agent musi się przez to przebić. Markdown agent czyta od razu, bez strat.
+
+### Markdown: format zapisu tekstu
 
 Markdown to zwykły tekst z prostym formatowaniem, czytelny i dla człowieka, i dla AI.
 
@@ -469,7 +537,7 @@ Jak włączyć tryb planowania: Claude Code → wpisz `/plan` · Codex → wpisz
 ### Poprawiaj instrukcje, oceniaj wyniki
 
 - Sukces? To może czas na skill.
-- Coś nie działa? **Zapytaj dlaczego nie działa.**
+- Coś nie działa? **Zapytaj dlaczego nie działa, popraw instrukcje, dane albo skillsy.**
 - Określ kryteria „dobrze zrobione”.
 
 ### Sprawdzaj pracę agenta
@@ -523,7 +591,7 @@ Proces opisany raz w skillu → uruchamiasz go, kiedy chcesz, albo automatycznie
 
 - **Delegować:** szkice, zestawienia, porządkowanie, research, pierwsze wersje.
 - **Człowiek:** decyzje, odpowiedzialność, wysyłka na zewnątrz, dane wrażliwe.
-- **Ryzyka:** zmyślanie faktów, dane firmowe i RODO, zbyt szerokie uprawnienia.
+- **Ryzyka:** zmyślanie faktów, dane firmowe i RODO.
 
 ---
 
@@ -590,17 +658,6 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 
 Pokaz na żywo · Zadanie dla uczestników
 
-### Pokaz na żywo: Jak powstała ta Prezentacja
-
-Co zaraz zobaczycie:
-
-1. Folder z materiałami
-2. Sporo krotkich czatow
-3. Instrukcje Claude.MD
-4. Dodany styl graficzny
-5. Własne skille
-6. Pęlta pracy i poparwek
-
 ### Zadanie dla uczestników
 
 1. Stwórz folder swojego projektu.
@@ -617,7 +674,7 @@ Co dalej · Trzy rzeczy do zapamiętania · Pytania
 
 ### Co dalej
 
-Integracje · Subagenci · Zadania cykliczne · Zdalne sterowanie · Prototypy oprogramowaina
+Integracje · Subagenci · Zadania cykliczne · Zdalne sterowanie · Prototypy oprogramowania
 
 ### Trzy rzeczy do zapamiętania
 
@@ -628,5 +685,3 @@ Integracje · Subagenci · Zadania cykliczne · Zdalne sterowanie · Prototypy o
 ### Dziękuję
 
 **Pytania?** · [matyszewski.co](https://matyszewski.co)
-
-![Kod QR](obrazy/qr.jpeg)
