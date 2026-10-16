@@ -19,6 +19,7 @@ cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"
 cp -R szkolenia "$output_dir/szkolenia"
 cp -R umow-rozmowe "$output_dir/umow-rozmowe"
+cp -R ankieta "$output_dir/ankieta"
 cp -R obrazy "$output_dir/obrazy"
 
 node scripts/sync-navigation.mjs "$output_dir"
