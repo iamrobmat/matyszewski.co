@@ -1,0 +1,23 @@
+# Cloudflare Workers static assets. Działa dopiero na Cloudflare, GitHub Pages go ignoruje.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=300
+
+# Adresy *.workers.dev (produkcyjny i podglądy wersji) nie mogą trafić do indeksu.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+
+# Plik dla agentów uczestników szkolenia: dostępny, ale poza indeksem.
+/szkolenie.md
+  Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex
+
+/obrazy/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/blog/assets/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

@@ -1,0 +1,13 @@
+# Cloudflare Workers static assets: [źródło] [cel] [kod]
+# Przekierowania mają pierwszeństwo przed plikami, więc ankieta/index.html zostaje
+# tylko jako zapas dla GitHub Pages.
+
+# Adres z kodu QR na slajdach. 302, żeby cel można było zmienić bez zmiany kodu.
+/ankieta https://docs.google.com/forms/d/e/1FAIpQLScyHGSDtR3eZFHR1Nw43VfOQSw9nIuSyAio7pHpE5j8cVJDZQ/viewform 302
+/ankieta/ https://docs.google.com/forms/d/e/1FAIpQLScyHGSDtR3eZFHR1Nw43VfOQSw9nIuSyAio7pHpE5j8cVJDZQ/viewform 302
+
+# Usunięty PDF ze slajdami.
+/szkolenie.pdf /szkolenia/agenci-ai-dla-menedzerow/ 301
+
+# Przyszłe zmiany adresów (np. wpisów) dopisuj tutaj, kodem 301:
+# /blog/stary-adres/ /blog/nowy-adres/ 301

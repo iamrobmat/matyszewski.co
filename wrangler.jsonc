@@ -1,0 +1,15 @@
+// Cloudflare Workers with static assets. Build: `bash scripts/build-site.sh`,
+// deploy: `npx wrangler deploy`. GOOGLE_ANALYTICS_ID is a Workers Builds variable.
+{
+  "name": "matyszewski-co",
+  "compatibility_date": "2026-10-21",
+  "assets": {
+    "directory": "./_site",
+    // /uslugi/ serves uslugi/index.html; /uslugi redirects to /uslugi/, as on GitHub Pages.
+    "html_handling": "auto-trailing-slash",
+    // Unknown URLs get 404.html with a real 404 status.
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "preview_urls": true
+}
