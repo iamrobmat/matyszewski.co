@@ -55,6 +55,14 @@ committed pages are current before creating the deployment artifact.
 
 DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
 
+## Cloudflare (migration in progress)
+
+The site is being moved to Cloudflare Workers static assets; see `docs/migracja-cloudflare.md`.
+`wrangler.jsonc` serves the `_site` build output. Workers Builds runs `bash scripts/build-site.sh`
+with the `GOOGLE_ANALYTICS_ID` build variable and deploys with `npx wrangler deploy`. `_headers`
+and `_redirects` only take effect on Cloudflare. The build also writes `sitemap.xml` from the
+canonical URLs of indexable pages (`scripts/generate-sitemap.mjs`).
+
 ## Google Analytics
 
 Analytics uses consent-gated Google tag loading. The tag is not requested until a visitor accepts

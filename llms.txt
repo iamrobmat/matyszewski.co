@@ -1,0 +1,18 @@
+# Robert Matyszewski
+
+> Mentoring i produkty AI. Robert Matyszewski pomaga menedżerom małych i średnich firm samodzielnie budować agentów AI i automatyzować realne procesy: pierwszy proces budują razem, kolejne menedżer rozwija sam. Strona jest po polsku.
+
+## Usługi
+
+- [Usługi AI dla firm](https://matyszewski.co/uslugi/): mentoring dla menedżerów MŚP, tworzenie agentów AI, aplikacje na zlecenie i szkolenia z AI.
+- [Mentoring z budowania agentów AI](https://matyszewski.co/uslugi/mentoring-ai/): budowa agenta na realnym procesie, testowanie i rozwijanie kolejnych automatyzacji.
+- [Szkolenie: AI dla menedżerów](https://matyszewski.co/szkolenia/agenci-ai-dla-menedzerow/): dwugodzinne szkolenie wprowadzające, od czatu do własnego agenta AI w OpenAI Codex lub Claude Code.
+- [Umów rozmowę](https://matyszewski.co/umow-rozmowe/): kontakt i rezerwacja terminu.
+
+## Blog
+
+- [Blog](https://matyszewski.co/blog/): notatki o AI, produktach i narzędziach.
+
+## Optional
+
+- [Materiał szkoleniowy w Markdown](https://matyszewski.co/szkolenie.md): treść slajdów szkolenia dla agentów uczestników.

@@ -552,6 +552,37 @@ func syncNavigation() throws {
     }
 }
 
+func renderStructuredData(post: Post, postUrl: String, imageUrl: String) throws -> String {
+    var data: [String: Any] = [
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.description,
+        "datePublished": post.date,
+        "inLanguage": "pl",
+        "url": postUrl,
+        "mainEntityOfPage": postUrl,
+        "image": imageUrl,
+        "author": [
+            "@type": "Person",
+            "@id": "\(siteOrigin)/#person",
+            "name": "Robert Matyszewski",
+            "url": "\(siteOrigin)/",
+        ],
+    ]
+
+    if let tags = post.tags, !tags.isEmpty {
+        data["keywords"] = tags
+    }
+
+    let json = try JSONSerialization.data(withJSONObject: data, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes])
+    return (String(data: json, encoding: .utf8) ?? "{}")
+        .replacingOccurrences(of: "</", with: "<\\/")
+        .split(separator: "\n")
+        .map { "      \($0)" }
+        .joined(separator: "\n")
+}
+
 func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     let postDir = root.appendingPathComponent("blog/\(post.slug)", isDirectory: true)
     try FileManager.default.createDirectory(at: postDir, withIntermediateDirectories: true)
@@ -560,6 +591,7 @@ func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     let postUrl = "\(siteOrigin)/blog/\(post.slug)/"
     let imageUrl = "\(siteOrigin)/blog/assets/social/\(post.slug).png?v=\(imageVersion)"
     let contentHtml = markdownToHtml(markdown, resourcePrefix: "../")
+    let structuredData = try renderStructuredData(post: post, postUrl: postUrl, imageUrl: imageUrl)
     let page = """
 <!doctype html>
 <html lang="pl">
@@ -589,6 +621,9 @@ func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151515'/%3E%3Cpath d='M15 45V19h8l9 14 9-14h8v26h-7V29L34 42h-4l-8-13v16z' fill='%23f8f8f5'/%3E%3C/svg%3E">
     <script src="../../analytics-config.js" defer></script>
     <script src="../../analytics.js" defer></script>
+    <script type="application/ld+json">
+\(structuredData)
+    </script>
   </head>
   <body>
     <header class="site-header">
