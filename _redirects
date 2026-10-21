@@ -9,5 +9,14 @@
 # Usunięty PDF ze slajdami.
 /szkolenie.pdf /szkolenia/agenci-ai-dla-menedzerow/ 301
 
+# Adresy bez końcowego ukośnika: 301 jak na GitHub Pages (Cloudflare domyślnie daje 307).
+/uslugi /uslugi/ 301
+/uslugi/mentoring-ai /uslugi/mentoring-ai/ 301
+/szkolenia/agenci-ai-dla-menedzerow /szkolenia/agenci-ai-dla-menedzerow/ 301
+/umow-rozmowe /umow-rozmowe/ 301
+/blog /blog/ 301
+/blog/pierwszy-wpis /blog/pierwszy-wpis/ 301
+/blog/jak-zalogowac-codex-do-github /blog/jak-zalogowac-codex-do-github/ 301
+
 # Przyszłe zmiany adresów (np. wpisów) dopisuj tutaj, kodem 301:
 # /blog/stary-adres/ /blog/nowy-adres/ 301
