@@ -102,12 +102,18 @@ Nazwy opcji w panelu Cloudflare często się zmieniają. Sprawdzamy je na żywo 
 
 ## Faza 4: Test pod adresem podglądu (Claude)
 
-- [ ] Każdy adres z sitemapy zwraca 200 pod tym samym URL co dziś, bez łańcuchów przekierowań.
-- [ ] `canonical` na każdej stronie wskazuje na `matyszewski.co`.
-- [ ] Nieistniejący adres zwraca 404.
-- [ ] `/ankieta` i `/szkolenie.pdf` przekierowują, `szkolenie.md` się pobiera.
-- [ ] Adres podglądu ma `noindex`, strony publiczne go nie mają.
-- [ ] `robots.txt` jest dokładnie nasz.
+Worker `matyszewski-co` działa pod https://matyszewski-co.robert-matyszewski.workers.dev
+(21.10.2026). Workers Builds: repo `iamrobmat/matyszewski.co`, build `bash scripts/build-site.sh`,
+deploy `npx wrangler deploy`, zmienna `GOOGLE_ANALYTICS_ID`. Branch produkcyjny to na razie
+`claude/cloudflare-migration-9ecdad`. Po scaleniu do `main` trzeba go przestawić na `main`
+(Settings → Builds → Production branch).
+
+- [x] Każdy adres z sitemapy zwraca 200 pod tym samym URL co dziś, bez łańcuchów przekierowań.
+- [x] `canonical` na każdej stronie wskazuje na `matyszewski.co`.
+- [x] Nieistniejący adres zwraca 404.
+- [x] `/ankieta` i `/szkolenie.pdf` przekierowują, `szkolenie.md` się pobiera.
+- [x] Adres podglądu ma `noindex`, strony publiczne go nie mają.
+- [x] `robots.txt` jest dokładnie nasz.
 - [ ] Google Analytics działa po zgodzie.
 - [ ] Widok mobilny i desktop, brak błędów w konsoli.
 
