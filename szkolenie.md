@@ -30,25 +30,21 @@ Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na 
 
 **Robert Matyszewski**
 
-- w branży IT od 2012 roku, na styku technologii, produktu, sprzedaży i biznesu
-- LemonTea: zbudowałem agencję, sprzedana w 2016 roku
-- kierowałem sprzedażą i marketingiem w SoftwareHut i TenderHut
-- pracowałem w Netguru i YourNextStore
-- tworzyłem GraphQL Editor, używany przez dziesiątki tysięcy osób
-- budowałem TeamFinder: sieć zespołów IT na potrzeby klientów
-- współorganizator Programistoku od 10 lat
-- dziś buduję własne rozwiązania z AI i pomagam budować prototypy
-- **jestem menedżerem, nie programistą**
-
-![Robert Matyszewski](obrazy/foto.png)
+- W branży IT od 2012 roku, między technologią a biznesem.
+- Stwoprzyłem firmę IT LemonTea , sprzedaną w 2016 roku
+- Kierowałem sprzedażą i marketingiem w SoftwareHut i TenderHut
+- Pracowałem w Netguru i YourNextStore
+- Współtworzyłem popularne narzędzia dla programistów GraphQL Editor
+- Rozwijałem własną sieć zespołów IT na potrzeby klientów - TeamFinder
+- Współorganizator konefrencji Programistoku od 10 lat
+- Dziś buduję własne rozwiązania z AI i pomagam budować prototypy
+- **Jestem menedżerem IT**
 
 ### 2. Programistok 2026
 
 **Programistok 2026** · 25–26.09.2026 · Wydział Elektryczny Politechniki Białostockiej
 
 **Zapraszam na Programistok 2027!** Wrzesień 2027, Wydział Elektryczny PB · programistok.org
-
-![Zdjęcie grupowe Programistok 2026](obrazy/programistok-2026-grupowe.jpg)
 
 ### 3. „Nie dałbym rady bez Klaudiusza”
 
@@ -61,8 +57,6 @@ Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na 
 - kiedyś programista i przedsiębiorca, dziś menedżer IT i dyrektor liceum programistycznego INFOTECH
 
 Rozmowa odbyła się w trakcie konferencji Programistok. „Klaudiusz” to potoczna nazwa pracy z Claude jako agentem (Claude Code albo Claude Cowork). O tym jest to szkolenie.
-
-![Karol Przybyszewski na Programistoku](obrazy/karol-przybyszewski.jpg)
 
 ### 4. Początki Claude Code
 
@@ -79,15 +73,11 @@ Dowolna operacja na komputerze z użyciem języka człowieka. Prosty · bardzo s
 - Programistok 2025: praca z agentami to temat każdej prezentacji
 - koniec 2025: Claude Code bardzo popularny w branży IT
 
-![Claude Code w terminalu](<obrazy/claude code cli.png>)
-
 ### 5. Terminal: powrót do komputera tekstowego
 
 **Kiedyś:** MS-DOS, czyli komputer obsługiwany wyłącznie tekstem. Wpisywało się polecenia, nie klikało.
 
 **Dziś:** przez terminal mówimy do komputera ludzkim językiem, a agent AI tłumaczy to na komendy i sam je wykonuje.
-
-![Ekran MS-DOS](obrazy/ms-dos.jpeg)
 
 ### 6. OpenClaw agentic engineering: jak pracował Peter
 
@@ -97,13 +87,9 @@ Kilkanaście okien terminala, jedno duże oprogramowanie. Proces powstawania opi
 
 Peter Steinberger to twórca OpenClaw, autonomicznego agenta AI, po którym został zatrudniony przez OpenAI.
 
-![Stanowisko pracy Petera Steinbergera](obrazy/peter-openclaw.png)
-
 ### 7. Dlaczego tu jestem
 
 **W przyszłości każda organizacja będzie tworzyć swoje narzędzia informatyczne. Chcę uczyć tego ludzi.**
-
-![Dlaczego tu jestem](obrazy/misza.png)
 
 ### 8. Plan szkolenia
 
@@ -120,6 +106,13 @@ Peter Steinberger to twórca OpenClaw, autonomicznego agenta AI, po którym zost
 
 Na końcu zabawa.
 
+### 9. Wymagania części praktycznej
+
+- Desktopowe aplikacje **Claude** albo **ChatGPT** w wersji na komputer: pobrana i zainstalowana
+- Zalogowane konto: w ChatGPT (OpenAI) wystarczy darmowe, w Claude potrzebne płatne
+- Podczas części praktucznej pozamykane wszystkie inne aplikacje, okna i karty przeglądarki
+- **Praca z agentem mocno obciąża komputer. Im mniej otwartych programów, tym lepiej.**
+
 ---
 
 ## 1. Od czatu do agenta
@@ -128,7 +121,7 @@ Czaty AI · Z czym kojarzy się „agent” · Czat odpowiada, agent wykonuje ·
 
 ### Czaty AI
 
-To miłe, wciągające narzędzie i czasem zmyśla fakty, działa na zasadzie losowania następnego słowa.
+To miłe, wciągające narzędzie które czasem zmyśla fakty oraz działa na zasadzie losowania następnego słowa.
 
 ### Pytanie do sali
 
@@ -182,11 +175,11 @@ Wzór na agenta · Kontekst sprawia, że agent jest Twój · Co jest w pliku Wor
 
 ### Wzór na agenta
 
-**MODEL + CEL + KONTEKST (PLIKI) + NARZĘDZIA = AGENT**
+**MODEL + CEL + KONTEKST (PLIKI, INSTRUKCJE) + NARZĘDZIA = AGENT**
 
 - **Model:** Claude, GPT
 - **Cel:** co ma powstać
-- **Kontekst:** pliki
+- **Kontekst:** pliki, instrukcje
 - **Narzędzia:** MCP, wtyczki, API
 
 *Połączenie modelu, Twojego celu, Twojego kontekstu i narzędzi zewnętrznych.*
@@ -204,11 +197,9 @@ Ta wiedza nie zależy od modelu. Agentów można przenosić między Claude Code 
 
 ### Z czego składa się plik Word
 
-Dla nas plik Word to dokument. Agent, żeby z niego skorzystać, musi go najpierw rozpakować: w środku jest paczka 13 plików.
+Dla nas plik Word to dokument. Agent, żeby z niego skorzystać, musi go najpierw rozpakować: w środku jest 13 plików.
 
-**Tak widzisz w Wordzie:**
-
-![Plik Word z fragmentem konspektu](<obrazy/word konspekt.png>)
+**Tak widzisz w Wordzie:** fragment konspektu z nagłówkami, punktorami i pogrubionym wzorem na agenta.
 
 **Tak widzi agent po rozpakowaniu:**
 
@@ -259,15 +250,17 @@ Koniec (linie 266–277):
 </w:document>
 ```
 
-**277 linii XML. Ten sam tekst w Markdownie: 8 linii.**
+**277 linii danych, podczas gdy nasz tekst to tylko 8 linii.**
 
 Słowo „składa” jest zapisane w trzech kawałkach: „sk”, „ł”, „ada”. Kawałki różnią się ukrytymi ustawieniami, np. językiem. Człowiek tego nie widzi, a agent musi się przez to przebić. Markdown agent czyta od razu, bez strat.
 
-### Markdown: format zapisu tekstu
+### Markdown (.MD) - format zapisu tekstu
 
-Markdown to zwykły tekst z prostym formatowaniem, czytelny i dla człowieka, i dla AI.
+Zwykły tekst z prostym formatowaniem, czytelny i dla człowieka, i dla AI.
 
-**Tak piszesz:**
+**Tak widzisz w podglądzie:** nagłówek, pogrubienie i lista, bez znaczków. Ten plik, który właśnie czytasz, też jest napisany w Markdown.
+
+**Tak zapisuje to agent:** ten sam tekst ze znakami `#`, `**`, `-`.
 
 ```markdown
 # AI dla menedżerów — od czatu do własnego agenta AI
@@ -278,16 +271,12 @@ Markdown to zwykły tekst z prostym formatowaniem, czytelny i dla człowieka, i 
 - Język materiałów: polski.
 ```
 
-**Tak widzisz w podglądzie:** nagłówek, pogrubienie i lista, już bez znaczków `#`, `**`, `-`. Ten plik, który właśnie czytasz, też jest napisany w Markdown.
-
 ### Edycja Markdown w aplikacji
 
 **Pliki .md otwierasz i poprawiasz tam, gdzie rozmawiasz z agentem.**
 
 - Claude Code w aplikacji: menu **⋮ → Files** (⇧⌘F)
 - Po lewej rozmowa z agentem, obok podgląd i edycja plików projektu.
-
-![Edycja Markdown w aplikacji](<obrazy/jak powstala ta prezentacja.png>)
 
 ### Ulubione formaty plików agentów
 
@@ -329,7 +318,7 @@ czesc,tytul,czas_min
 
 **Z kontekstem — krótkie polecenie:**
 
-> „Przygotuj slajdy do 02-czym-jest-agent.md zgodnie z moim stylem”
+> „Przygotuj slajdy do pliku 02-czym-jest-agent.md zgodnie z moim stylem graficznym”
 
 \+ folder z materiałami:
 
@@ -362,8 +351,6 @@ Aplikację kupujesz lub zamawiasz. Agenta budujesz i rozwijasz sam, tak jak wdra
 - Ruszysz jeden element, ruszają się inne.
 - Dlatego każda zmiana to praca programisty i testy.
 - Agent nie ma sztywnej konstrukcji: kroki dobiera pod cel.
-
-![Bierki](obrazy/bierki.jpg)
 
 ### Czym się różnią
 
@@ -399,8 +386,6 @@ Instrukcje projektu są czytane na starcie każdej sesji. Opisują zasady: odbio
 
 `CLAUDE.md` i skille (folder `.claude/skills`) to zwykłe pliki w folderze projektu.
 
-![CLAUDE.md i skille w folderze projektu](<obrazy/claude folder.png>)
-
 ### Skill od środka
 
 Skill to zapisana procedura: nazwa, opis „kiedy mnie użyć”, kroki procedury, kryteria dobrego wyniku. Skill jest wczytywany tylko wtedy, gdy jest potrzebny.
@@ -434,8 +419,6 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Claude: w aplikacji Claude przełączasz się na zakładkę **Code**.
 - Codex: osobna aplikacja → **Nowy czat**.
 
-![Claude Code i Codex: ekran startowy](<obrazy/claude codex intro screen.png>)
-
 ### Nowy projekt = nowy folder
 
 **Każdy projekt to osobny folder na dysku.**
@@ -443,14 +426,10 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Codex: **Wybierz projekt → Nowy projekt**
 - Claude Code: lista folderów → **Open folder…**
 
-![Zakładanie nowego projektu, krok 1](<obrazy/zakladanie nowego projektu-1.png>)
-
 **Folder wybrany: agent pracuje na jego plikach.**
 
 - Nazwę folderu widać nad polem polecenia.
 - Do folderu wrzucasz materiały, instrukcje i skille.
-
-![Zakładanie nowego projektu, krok 2](<obrazy/zakladanie nowego projektu-2.png>)
 
 ### Dostęp do Chrome: Claude
 
@@ -460,15 +439,11 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Ustawienia → Claude in Chrome → **Enable Claude in Chrome**
 - Osobno ustawiasz, na których stronach agent może działać (Site permissions).
 
-![Dostęp do Chrome w Claude](<obrazy/access do chrome claude.png>)
-
 ### Dostęp do Chrome: Codex
 
 - Ustawienia → Integracje → **Korzystanie z komputera**
 - **Google Chrome:** zainstalowane rozszerzenie przeglądarki
 - W tym samym miejscu zgoda na inne aplikacje, np. Excel.
-
-![Dostęp do Chrome w Codeksie](<obrazy/access do chrome codex.png>)
 
 ### Wtyczki: Claude
 
@@ -478,15 +453,11 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Np. Google Drive, Gmail, Google Calendar, Canva
 - Dodajesz jednym kliknięciem (+).
 
-![Wtyczki w Claude](<obrazy/wtyczki claude.png>)
-
 ### Wtyczki: Codex
 
 - Ustawienia → Integracje → **Wtyczki**
 - W jednym miejscu: wtyczki, aplikacje, serwery MCP i umiejętności (skille)
 - Np. Google Calendar, Google Drive, Gmail, GitHub; każdą włączasz przełącznikiem.
-
-![Wtyczki w Codeksie](<obrazy/wtyczki codex.png>)
 
 ### Uprawnienia: co sam, o co pyta
 
@@ -498,23 +469,17 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 
 Tryby idą od „pytaj o wszystko” do „działaj samodzielnie”.
 
-![Uprawnienia w Codeksie i Claude Code](obrazy/uprawnienia.png)
-
 ### Wyłącz trenowanie na Twoich danych: Claude
 
 W aplikacji Claude: **Settings → Privacy** → wyłącz **Help improve our AI models**.
 
 Wtedy Twoje czaty i sesje w Claude Code nie są używane do trenowania modeli.
 
-![Claude: wyłączenie trenowania na danych](<obrazy/claude data.png>)
-
 ### Wyłącz trenowanie na Twoich danych: Codex
 
 Ustawienie zmieniasz w przeglądarce: **chatgpt.com → Ustawienia → Kontrola danych** → wyłącz **Pomóż ulepszać model dla wszystkich**.
 
 Dotyczy też Codeksu (to samo konto). Więcej: https://privacy.openai.com/policies/pl/
-
-![Codex / ChatGPT: wyłączenie trenowania na danych](<obrazy/codex data.png>)
 
 ---
 
@@ -531,8 +496,6 @@ Najpierw plan, potem wykonanie · Poprawiaj instrukcje, oceniaj wyniki · Sprawd
 - struktura pracy jest bardzo ważna
 
 Jak włączyć tryb planowania: Claude Code → wpisz `/plan` · Codex → wpisz `/plan` i wybierz **Tryb planowania**.
-
-![Tryb planowania w Claude Code i Codeksie](<obrazy/tryb planowania.png>)
 
 ### Poprawiaj instrukcje, oceniaj wyniki
 
@@ -607,13 +570,9 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 - Claude Code wprowadza zmiany w plikach i buduje z nich slajdy.
 - Skille: **aktualizuj-prezentacje** (z plików md robi slajdy) i **porownaj-md-z-deckiem** (sprawdza, czy slajdy i pliki mówią to samo).
 
-![Jak powstała ta prezentacja](<obrazy/jak powstala ta prezentacja.png>)
-
 - Po lewej rozmowa z Claude Code, po prawej gotowy deck w claude.ai.
 - Slajdy można poprawiać też w przeglądarce.
 - Skill **porownaj-md-z-deckiem** przenosi takie zmiany z powrotem do plików md.
-
-![Jak powstała ta prezentacja, część 2](<obrazy/jak powstala ta prezentacja-2.png>)
 
 ### Baza wiedzy z moich książek
 
@@ -621,15 +580,11 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 - Agent pyta bazę książek po polsku i po angielsku, a potem łączy odpowiedzi.
 - Przy każdym punkcie podaje źródło: książkę i autora.
 
-![Baza wiedzy z książek: odpowiedź](obrazy/books-1.png)
-
 **Skąd ta odpowiedź?**
 
 - Odpowiedź powstała z fragmentów 9 książek.
 - Agent wypisuje książki, autorów i użyte rozdziały.
 - Mówi też wprost, co dopisał sam.
-
-![Baza wiedzy z książek: źródła](obrazy/books-2.png)
 
 ### Dashboard z wyników badań
 
@@ -637,14 +592,10 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 - Z plików powstała tabela CSV: 550 wyników, 95 parametrów.
 - Na tej podstawie powstał dashboard z trendami.
 
-![Dashboard zdrowia: strona główna](obrazy/health-1.png)
-
 **Wykresy badań**
 
 - Małe wykresy dla parametrów, które warto widzieć w czasie.
 - Pod każdym wykresem krótki komentarz.
-
-![Dashboard zdrowia: wykresy](obrazy/health-2.png)
 
 **Źródła: zwykłe pliki**
 
@@ -658,13 +609,25 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 
 Pokaz na żywo · Zadanie dla uczestników
 
-### Zadanie dla uczestników
+### Zadanie dla uczestników (1/2)
+
+**Spróbuj w którymś zadaniu trybu planowania /plan**
 
 1. Stwórz folder swojego projektu.
-2. Zainstaluj wtyczkę do Chrome, i posteruj przeglądarką tekstowo
+2. Zainstaluj wtyczkę do Chrome i zleć agentowi przeczytanie dzisiejszych newsów na gazeta.pl
 3. Zleć agentowi „Pobierz plik: **matyszewski.co/szkolenie.md**”
-4. Poproś agenta o znalezienie błędów ortograficcznych w tym pliku.
-5. Poproś agenta o stworzenie pliku notatki.md i tam wpisz co chcesz.
+4. Poproś agenta o znalezienie błędów ortograficcznych i stylistycznych w tym pliku.
+5. Poproś agenta o stworzenie pliku notatki.md zapisz tam znalezione błędy
+
+### Zadanie dla uczestników (2/2)
+
+**Pytanie do zadań: Kiedy otwieramy nowy czat do nowego zadania?**
+
+6. Poproś agenta: „Zrób z pliku szkolenie.md prezentację” — i opisz własnymi słowami, jak ma wyglądać (kolory, styl, nastrój).
+7. Zmień coś w pliku tekstowym szkolenie.md (np. dopisz albo usuń jeden punkt).
+8. Poproś agenta o zaktualizowanie prezentacji po tej zmianie.
+9. Poproś agenta o zbudowanie z tej prezentacji strony HTML.
+10. Połącz agenta z Chrome i poproś go o wysłanie Twojego feedbacku o tym szkoleniu przez formularz: **matyszewski.co/ankieta**
 
 ---
 
@@ -686,6 +649,4 @@ Integracje · Subagenci · Zadania cykliczne · Zdalne sterowanie · Prototypy o
 
 **Pytania?** · [matyszewski.co](https://matyszewski.co)
 
-**Ankieta po szkoleniu:** [matyszewski.co/ankieta](https://matyszewski.co/ankieta/)
-
-![Kod QR do ankiety: matyszewski.co/ankieta](obrazy/ankieta-qr.png)
+Ankieta po szkoleniu: [matyszewski.co/ankieta](https://matyszewski.co/ankieta)
