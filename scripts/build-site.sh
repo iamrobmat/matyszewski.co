@@ -14,7 +14,7 @@ node scripts/sync-navigation.mjs --check .
 rm -rf -- "$output_dir"
 mkdir -p "$output_dir"
 
-cp index.html 404.html styles.css analytics.js analytics-config.js szkolenie.md szkolenie.pdf zarzadzanie-wiedza.pdf robots.txt llms.txt "$output_dir/"
+cp index.html 404.html styles.css analytics.js analytics-config.js szkolenie.md szkolenie.pdf zarzadzanie-wiedza.pdf kwartalnik-78.pdf robots.txt llms.txt "$output_dir/"
 # GitHub Pages (CNAME, .nojekyll) and Cloudflare Workers static assets (_headers, _redirects).
 cp CNAME .nojekyll _headers _redirects "$output_dir/"
 cp -R blog "$output_dir/blog"
