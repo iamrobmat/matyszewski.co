@@ -17,6 +17,7 @@ mkdir -p "$output_dir"
 cp index.html 404.html styles.css analytics.js analytics-config.js szkolenie.md szkolenie.pdf zarzadzanie-wiedza.pdf kwartalnik-78.pdf robots.txt llms.txt "$output_dir/"
 # GitHub Pages (CNAME, .nojekyll) and Cloudflare Workers static assets (_headers, _redirects).
 cp CNAME .nojekyll _headers _redirects "$output_dir/"
+cp -R assets "$output_dir/assets"
 cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"
 cp -R szkolenia "$output_dir/szkolenia"
