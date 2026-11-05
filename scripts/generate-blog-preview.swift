@@ -1,5 +1,6 @@
 import AppKit
 import Foundation
+import ImageIO
 
 struct Post: Decodable {
     let slug: String
@@ -9,6 +10,26 @@ struct Post: Decodable {
     let date: String
     let tags: [String]?
     let file: String
+    // Optional photo header: `cover` is relative to blog/, like Markdown images.
+    // `heroTitle` may mark one phrase with ==signal== for the yellow plate.
+    let cover: String?
+    let coverAlt: String?
+    let kicker: String?
+    let heroTitle: String?
+}
+
+struct MarkdownImage {
+    let alt: String
+    let src: String
+    let caption: String?
+    let size: (width: Int, height: Int)?
+
+    var isPortrait: Bool {
+        guard let size else {
+            return false
+        }
+        return size.height > size.width
+    }
 }
 
 let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
@@ -124,36 +145,159 @@ func flushParagraph(_ buffer: inout [String], into html: inout [String]) {
     buffer.removeAll()
 }
 
-func flushList(_ buffer: inout [String], into html: inout [String]) {
+func flushList(_ buffer: inout [String], into html: inout [String], tag: String = "ul") {
     if buffer.isEmpty {
         return
     }
-    html.append("<ul>")
+    html.append("<\(tag)>")
     for item in buffer {
         html.append("<li>\(renderInline(item))</li>")
     }
-    html.append("</ul>")
+    html.append("</\(tag)>")
     buffer.removeAll()
 }
 
-func markdownToHtml(_ markdown: String, resourcePrefix: String) -> String {
+// A quote whose last line starts with "— " gets an attribution and the plate style.
+func flushQuote(_ buffer: inout [String], into html: inout [String]) {
+    if buffer.isEmpty {
+        return
+    }
+    var lines = buffer
+    var cite: String?
+    if let last = lines.last, last.hasPrefix("— ") {
+        cite = String(last.dropFirst(2))
+        lines.removeLast()
+    }
+
+    if lines.count == 1, cite == nil {
+        html.append("<blockquote>\(renderInline(lines[0]))</blockquote>")
+    } else {
+        let body = lines.map { "<p>\(renderInline($0))</p>" }.joined()
+        let footer = cite.map { "<footer>\(renderInline($0))</footer>" } ?? ""
+        let classAttribute = cite == nil ? "" : #" class="post-quote""#
+        html.append("<blockquote\(classAttribute)>\(body)\(footer)</blockquote>")
+    }
+    buffer.removeAll()
+}
+
+func imageSize(at fileUrl: URL) -> (width: Int, height: Int)? {
+    guard let source = CGImageSourceCreateWithURL(fileUrl as CFURL, nil),
+          let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+          let width = properties[kCGImagePropertyPixelWidth] as? Int,
+          let height = properties[kCGImagePropertyPixelHeight] as? Int else {
+        return nil
+    }
+    let orientation = properties[kCGImagePropertyOrientation] as? Int ?? 1
+    return orientation >= 5 ? (height, width) : (width, height)
+}
+
+// Resolves a page-relative image URL to a file in the repository, so local images get intrinsic dimensions.
+func localImageSize(_ src: String, pageDirectory: URL) -> (width: Int, height: Int)? {
+    if src.hasPrefix("http://") || src.hasPrefix("https://") {
+        return nil
+    }
+    let path = src.split(separator: "?", maxSplits: 1).first.map(String.init) ?? src
+    let fileUrl = path.hasPrefix("/")
+        ? root.appendingPathComponent(String(path.dropFirst()))
+        : URL(fileURLWithPath: path, relativeTo: pageDirectory).standardizedFileURL
+    return imageSize(at: fileUrl)
+}
+
+func renderFigure(_ image: MarkdownImage, className: String) -> String {
+    let dimensions = image.size.map { #" width="\#($0.width)" height="\#($0.height)""# } ?? ""
+    let caption = image.caption.map { "<figcaption>\(renderInline($0))</figcaption>" } ?? ""
+    return #"<figure class="\#(className)"><img src="\#(escapeHtml(image.src))" alt="\#(escapeHtml(image.alt))"\#(dimensions) loading="lazy" decoding="async">\#(caption)</figure>"#
+}
+
+// Images on consecutive lines form one block: 1 = single figure, 2-3 = grid, 4+ = horizontal strip.
+func flushImages(_ buffer: inout [MarkdownImage], into html: inout [String]) {
+    if buffer.isEmpty {
+        return
+    }
+
+    switch buffer.count {
+    case 1:
+        let orientation = buffer[0].isPortrait ? "is-portrait" : "is-landscape"
+        html.append(renderFigure(buffer[0], className: "post-image \(orientation)"))
+    case 2...3:
+        let figures = buffer.map { renderFigure($0, className: "post-gallery-item") }.joined()
+        html.append(#"<div class="post-gallery" data-count="\#(buffer.count)">\#(figures)</div>"#)
+    default:
+        let figures = buffer.map { renderFigure($0, className: "post-strip-item") }.joined()
+        html.append(#"<div class="post-strip" role="region" aria-label="Galeria \#(buffer.count) obrazów, przewijana w poziomie" tabindex="0">\#(figures)</div>"#)
+    }
+    buffer.removeAll()
+}
+
+// ```stats fence: one "value | label" pair per line.
+func renderStats(_ lines: [String]) -> String {
+    let items = lines.compactMap { line -> String? in
+        let parts = line.split(separator: "|", maxSplits: 1).map { $0.trimmingCharacters(in: .whitespaces) }
+        guard parts.count == 2, !parts[0].isEmpty else {
+            return nil
+        }
+        return "<li><strong>\(renderInline(parts[0]))</strong><span>\(renderInline(parts[1]))</span></li>"
+    }
+    return #"<ul class="post-stats">\#(items.joined())</ul>"#
+}
+
+func parseImage(_ line: String, resourcePrefix: String, pageDirectory: URL) -> MarkdownImage? {
+    guard let match = line.range(of: #"^!\[([^\]]*)\]\(([^)]+)\)$"#, options: .regularExpression) else {
+        return nil
+    }
+    let matched = String(line[match])
+    let parts = matched.dropFirst(2).dropLast().split(separator: "](", maxSplits: 1).map(String.init)
+    guard parts.count == 2 else {
+        return nil
+    }
+
+    var target = parts[1].trimmingCharacters(in: .whitespaces)
+    var caption: String?
+    if let titleRange = target.range(of: #"\s+"[^"]*"$"#, options: .regularExpression) {
+        caption = String(target[titleRange]).trimmingCharacters(in: .whitespaces).trimmingCharacters(in: CharacterSet(charactersIn: "\""))
+        target = String(target[..<titleRange.lowerBound])
+    }
+
+    guard let src = safeResourceUrl(target, prefixRelativeWith: resourcePrefix) else {
+        return nil
+    }
+    return MarkdownImage(alt: parts[0], src: src, caption: caption, size: localImageSize(src, pageDirectory: pageDirectory))
+}
+
+func markdownToHtml(_ markdown: String, resourcePrefix: String, pageDirectory: URL) -> String {
     let lines = markdown.replacingOccurrences(of: "\r\n", with: "\n").split(separator: "\n", omittingEmptySubsequences: false).map(String.init)
     var html: [String] = []
     var paragraph: [String] = []
     var list: [String] = []
+    var orderedList: [String] = []
+    var quote: [String] = []
+    var images: [MarkdownImage] = []
     var inCodeBlock = false
+    var codeLanguage = ""
     var codeLines: [String] = []
+
+    func flushBlocks(except kept: String = "") {
+        if kept != "paragraph" { flushParagraph(&paragraph, into: &html) }
+        if kept != "list" { flushList(&list, into: &html) }
+        if kept != "orderedList" { flushList(&orderedList, into: &html, tag: "ol") }
+        if kept != "quote" { flushQuote(&quote, into: &html) }
+        if kept != "images" { flushImages(&images, into: &html) }
+    }
 
     for line in lines {
         if line.hasPrefix("```") {
-            flushParagraph(&paragraph, into: &html)
-            flushList(&list, into: &html)
+            flushBlocks()
 
             if inCodeBlock {
-                html.append("<pre><code>\(escapeHtml(codeLines.joined(separator: "\n")))</code></pre>")
+                if codeLanguage == "stats" {
+                    html.append(renderStats(codeLines))
+                } else {
+                    html.append("<pre><code>\(escapeHtml(codeLines.joined(separator: "\n")))</code></pre>")
+                }
                 codeLines.removeAll()
                 inCodeBlock = false
             } else {
+                codeLanguage = line.dropFirst(3).trimmingCharacters(in: .whitespaces)
                 inCodeBlock = true
             }
             continue
@@ -165,20 +309,14 @@ func markdownToHtml(_ markdown: String, resourcePrefix: String) -> String {
         }
 
         if line.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            flushParagraph(&paragraph, into: &html)
-            flushList(&list, into: &html)
+            flushBlocks()
             continue
         }
 
-        if let match = line.range(of: #"^!\[([^\]]*)\]\(([^)]+)\)$"#, options: .regularExpression) {
-            let matched = String(line[match])
-            let parts = matched.dropFirst(2).dropLast().split(separator: "](", maxSplits: 1).map(String.init)
-            if parts.count == 2, let src = safeResourceUrl(parts[1], prefixRelativeWith: resourcePrefix) {
-                flushParagraph(&paragraph, into: &html)
-                flushList(&list, into: &html)
-                html.append(#"<figure class="post-image"><img src="\#(escapeHtml(src))" alt="\#(escapeHtml(parts[0]))" loading="lazy"></figure>"#)
-                continue
-            }
+        if let image = parseImage(line, resourcePrefix: resourcePrefix, pageDirectory: pageDirectory) {
+            flushBlocks(except: "images")
+            images.append(image)
+            continue
         }
 
         if let match = line.range(of: #"^(#{1,3})\s+(.+)$"#, options: .regularExpression) {
@@ -186,31 +324,34 @@ func markdownToHtml(_ markdown: String, resourcePrefix: String) -> String {
             let hashCount = matched.prefix { $0 == "#" }.count
             let text = matched.dropFirst(hashCount).trimmingCharacters(in: .whitespaces)
             let level = min(hashCount + 1, 4)
-            flushParagraph(&paragraph, into: &html)
-            flushList(&list, into: &html)
+            flushBlocks()
             html.append("<h\(level)>\(renderInline(text))</h\(level)>")
             continue
         }
 
         if line.hasPrefix("- ") {
-            flushParagraph(&paragraph, into: &html)
+            flushBlocks(except: "list")
             list.append(String(line.dropFirst(2)))
             continue
         }
 
-        if line.hasPrefix("> ") {
-            flushParagraph(&paragraph, into: &html)
-            flushList(&list, into: &html)
-            html.append("<blockquote>\(renderInline(String(line.dropFirst(2))))</blockquote>")
+        if let match = line.range(of: #"^\d+\.\s+"#, options: .regularExpression) {
+            flushBlocks(except: "orderedList")
+            orderedList.append(String(line[match.upperBound...]))
             continue
         }
 
-        flushList(&list, into: &html)
+        if line.hasPrefix("> ") {
+            flushBlocks(except: "quote")
+            quote.append(String(line.dropFirst(2)))
+            continue
+        }
+
+        flushBlocks(except: "paragraph")
         paragraph.append(line.trimmingCharacters(in: .whitespacesAndNewlines))
     }
 
-    flushParagraph(&paragraph, into: &html)
-    flushList(&list, into: &html)
+    flushBlocks()
 
     if inCodeBlock {
         html.append("<pre><code>\(escapeHtml(codeLines.joined(separator: "\n")))</code></pre>")
@@ -583,6 +724,41 @@ func renderStructuredData(post: Post, postUrl: String, imageUrl: String) throws 
         .joined(separator: "\n")
 }
 
+func renderHeroTitle(_ title: String) -> String {
+    replaceRegex(#"==(.+?)=="#, in: escapeHtml(title)) { match, value in
+        #"<span class="hero-signal">\#(capture(1, from: match, in: value))</span>"#
+    }
+}
+
+func renderCoverArticle(post: Post, contentHtml: String, pageDirectory: URL) -> String {
+    let coverSrc = post.cover.flatMap { safeResourceUrl($0, prefixRelativeWith: "../") } ?? ""
+    let coverSize = localImageSize(coverSrc, pageDirectory: pageDirectory)
+    let dimensions = coverSize.map { #" width="\#($0.width)" height="\#($0.height)""# } ?? ""
+    let kicker = post.kicker.map { #"<p class="eyebrow">\#(escapeHtml($0))</p>"# } ?? ""
+    return """
+      <article class="post-article">
+        <header class="post-hero">
+          <div class="post-hero-copy">
+            <a class="back-link" href="../">Wróć do wszystkich wpisów</a>
+            \(kicker)
+            <h1>\(renderHeroTitle(post.heroTitle ?? post.title))</h1>
+            <p class="lead">\(escapeHtml(post.description))</p>
+            <div class="post-hero-meta">
+              <p class="post-date">\(escapeHtml(post.date))</p>
+              \(renderTags(post.tags))
+            </div>
+          </div>
+          <figure class="post-hero-media">
+            <img src="\(escapeHtml(coverSrc))" alt="\(escapeHtml(post.coverAlt ?? ""))"\(dimensions) fetchpriority="high">
+          </figure>
+        </header>
+        <section class="section post-body">
+          <div class="post-content">\(contentHtml)</div>
+        </section>
+      </article>
+"""
+}
+
 func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     let postDir = root.appendingPathComponent("blog/\(post.slug)", isDirectory: true)
     try FileManager.default.createDirectory(at: postDir, withIntermediateDirectories: true)
@@ -590,8 +766,21 @@ func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     let metaTitle = metadataTitle(for: post)
     let postUrl = "\(siteOrigin)/blog/\(post.slug)/"
     let imageUrl = "\(siteOrigin)/blog/assets/social/\(post.slug).png?v=\(imageVersion)"
-    let contentHtml = markdownToHtml(markdown, resourcePrefix: "../")
+    let contentHtml = markdownToHtml(markdown, resourcePrefix: "../", pageDirectory: postDir)
     let structuredData = try renderStructuredData(post: post, postUrl: postUrl, imageUrl: imageUrl)
+    let mainHtml = post.cover == nil
+        ? """
+      <section class="section blog-page">
+        <article class="post-view">
+          <a class="back-link" href="../">Wróć do wszystkich wpisów</a>
+          <p class="post-date">\(escapeHtml(post.date))</p>
+          <h2>\(escapeHtml(post.title))</h2>
+          \(renderTags(post.tags))
+          <div class="post-content">\(contentHtml)</div>
+        </article>
+      </section>
+"""
+        : renderCoverArticle(post: post, contentHtml: contentHtml, pageDirectory: postDir)
     let page = """
 <!doctype html>
 <html lang="pl">
@@ -635,15 +824,7 @@ func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
     </header>
 
     <main id="top">
-      <section class="section blog-page">
-        <article class="post-view">
-          <a class="back-link" href="../">Wróć do wszystkich wpisów</a>
-          <p class="post-date">\(escapeHtml(post.date))</p>
-          <h2>\(escapeHtml(post.title))</h2>
-          \(renderTags(post.tags))
-          <div class="post-content">\(contentHtml)</div>
-        </article>
-      </section>
+\(mainHtml)
     </main>
 
     <footer class="site-footer">

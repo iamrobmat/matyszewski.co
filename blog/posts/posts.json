@@ -1,11 +1,32 @@
 [
   {
+    "slug": "szkolenie-agenci-ai-bpnt",
+    "title": "Naukowcy, prawnicy, inżynier, menedżer: szkolenie z agentów AI w BPNT",
+    "metaTitle": "Szkolenie z agentów AI w BPNT – podsumowanie",
+    "heroTitle": "Naukowcy, prawnicy, inżynier, ==menedżer.==",
+    "kicker": "Szkolenie · BPNT Białystok",
+    "description": "Jedna sala, 12 osób i dwie godziny pracy z agentami AI. Podsumowanie szkolenia „AI dla menedżerów: od czatu do agenta AI”.",
+    "date": "2026-10-23",
+    "tags": [
+      "Szkolenia",
+      "Agenci AI",
+      "BPNT"
+    ],
+    "cover": "assets/bpnt-szkolenie-agenci-ai/foto-27.jpg",
+    "coverAlt": "Robert Matyszewski prowadzi szkolenie z agentów AI dla uczestników przy laptopach",
+    "file": "szkolenie-agenci-ai-bpnt.md"
+  },
+  {
     "slug": "jak-zalogowac-codex-do-github",
     "title": "Jak zalogować się Githubem w Codexie i pobrać swój projekt",
     "metaTitle": "Jak zalogować Codex do GitHuba i pobrać projekt",
     "description": "Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.",
     "date": "2026-07-09",
-    "tags": ["Codex", "GitHub", "Narzędzia AI"],
+    "tags": [
+      "Codex",
+      "GitHub",
+      "Narzędzia AI"
+    ],
     "file": "jak-zalogowac-codex-do-github.md"
   },
   {
@@ -13,7 +34,22 @@
     "title": "Pierwszy wpis",
     "description": "Krótka notatka startowa o tym, co będzie trafiało na blog.",
     "date": "2026-07-09",
-    "tags": ["Blog", "AI", "Produkt"],
+    "tags": [
+      "Blog",
+      "AI",
+      "Produkt"
+    ],
     "file": "pierwszy-wpis.md"
+  },
+  {
+    "slug": "test-podgladu-linku-social-media",
+    "title": "Test podglądu linku w social mediach",
+    "description": "Krótki test sprawdzający, czy Facebook i LinkedIn pobierają obrazek podglądu wpisu.",
+    "date": "2026-09-08",
+    "file": "test-podgladu-linku-social-media.md",
+    "tags": [
+      "Test",
+      "Social media"
+    ]
   }
 ]
