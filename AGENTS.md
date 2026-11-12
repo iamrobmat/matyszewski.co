@@ -13,12 +13,15 @@ The project-specific custom agent is `website_developer`, configured in
 
 ## Architecture
 
-- The site is static HTML and CSS, published from the `main` branch with GitHub Pages.
+- The site is static HTML and CSS. GitHub Pages publishes `matyszewski.co` from `main`; Cloudflare
+  Workers publishes a non-indexable technical mirror from the same branch.
 - `index.html` and `styles.css` own the homepage.
 - `blog/` contains the blog UI, generated post pages, post source files, and assets.
 - Markdown post sources live in `blog/posts/`.
 - `blog/posts/posts.json` is the blog index and metadata source.
 - `scripts/generate-blog-preview.swift` regenerates public post pages and social preview assets.
+- `drafts/` and `kurs/` contain unpublished work and must never be copied to deployment artifacts.
+- `scripts/build-site.sh` accepts an output directory and a `github` or `cloudflare` target.
 - `CNAME` and `.nojekyll` are deployment-critical; change them only when the task requires it.
 
 ## Full-auto working mode
@@ -45,6 +48,9 @@ swift scripts/generate-blog-preview.swift
 ```
 
 - Do not hand-edit generated blog output when the source or generator should own the change.
+- Keep unpublished posts under `drafts/blog/`, outside `blog/posts/posts.json`.
+- Keep the incomplete course prototype under `kurs/`; do not publish it until its build-time
+  encryption and content have been reviewed in a separate task.
 
 ## Verification
 
@@ -61,6 +67,7 @@ Choose checks proportionate to the change and complete all relevant ones:
 4. Check affected pages in a browser at mobile and desktop widths.
 5. Verify navigation, external links, focus states, console errors, overflow, and missing assets for the changed surface.
 6. Confirm generated files and public URLs remain consistent with `blog/posts/posts.json`.
+7. For deployment changes, build both targets and verify their intentional file differences.
 
 ## Handoff
 

@@ -1,0 +1,496 @@
+.course-badge {
+  padding: 8px 11px;
+  border-radius: 999px;
+  background: rgba(31, 107, 74, 0.1);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+/* Ekran hasła */
+.course-gate {
+  max-width: 760px;
+  min-height: calc(80svh - 76px);
+  padding: clamp(54px, 9vw, 116px) clamp(18px, 5vw, 72px);
+}
+
+.gate-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 750;
+}
+
+.gate-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gate-row input {
+  flex: 1 1 240px;
+  min-height: 46px;
+  min-width: 0;
+  padding: 11px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+}
+
+.gate-row input:focus-visible,
+.course-gate button:focus-visible,
+.course-content button:focus-visible,
+.course-content input:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+.gate-row button,
+.copy-button {
+  cursor: pointer;
+  font: inherit;
+}
+
+.gate-row button:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.gate-message {
+  min-height: 1.5em;
+  margin: 12px 0 0;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.gate-note {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Nagłówek ćwiczeń */
+.course-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.7fr);
+  gap: clamp(32px, 6vw, 84px);
+  align-items: center;
+  padding: clamp(46px, 8vw, 94px) clamp(18px, 5vw, 72px);
+}
+
+.course-hero h1:focus {
+  outline: none;
+}
+
+.course-panel {
+  display: grid;
+  gap: 22px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.course-panel .project-kicker {
+  justify-self: start;
+  margin-bottom: 0;
+}
+
+.course-downloads {
+  display: grid;
+  gap: 10px;
+}
+
+.tool-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.tool-switch legend {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tool-switch label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.tool-switch label:has(input:checked) {
+  border-color: var(--green);
+  background: rgba(31, 107, 74, 0.1);
+  color: var(--green);
+}
+
+.tool-switch input {
+  accent-color: var(--green);
+}
+
+.course-progress p {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.course-progress progress {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
+  accent-color: var(--green);
+  appearance: none;
+}
+
+.course-progress progress::-webkit-progress-bar {
+  background: var(--line);
+}
+
+.course-progress progress::-webkit-progress-value {
+  background: var(--green);
+}
+
+.course-progress progress::-moz-progress-bar {
+  background: var(--green);
+}
+
+/* Części i kroki */
+.course-part {
+  border-top: 1px solid var(--line);
+}
+
+.course-part:nth-of-type(odd) {
+  background: var(--white);
+}
+
+.step-list {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  transition: border-color 0.2s ease;
+}
+
+.course-part:nth-of-type(even) .step {
+  background: var(--white);
+}
+
+.step.is-done {
+  border-left-color: var(--green);
+}
+
+.step > p,
+.step li,
+.variant p {
+  color: #303330;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.step > p:last-child {
+  margin-bottom: 0;
+}
+
+.step ul {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+
+.step code,
+.course-content code {
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: rgba(21, 21, 21, 0.08);
+  font-size: 0.92em;
+}
+
+.step-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.step-head h3 {
+  margin: 0;
+  font-size: clamp(21px, 2.4vw, 26px);
+}
+
+.step-number {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.step-tag {
+  margin-left: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(40, 95, 159, 0.11);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.step-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.step-done input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--green);
+}
+
+.step.is-done .step-done {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.variant {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.variant > :last-child,
+.variant ul:last-child {
+  margin-bottom: 0;
+}
+
+.variant-label {
+  margin-bottom: 8px;
+  color: var(--green) !important;
+  font-size: 13px !important;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.variant[data-variant="codex"] .variant-label {
+  color: var(--blue) !important;
+}
+
+:root[data-course-tool="claude"] .variant[data-variant="codex"],
+:root[data-course-tool="codex"] .variant[data-variant="claude"] {
+  display: none;
+}
+
+:root[data-course-tool="claude"] .variants,
+:root[data-course-tool="codex"] .variants {
+  grid-template-columns: 1fr;
+}
+
+.step-figure {
+  margin: 0 0 16px;
+}
+
+.step-figure:last-child {
+  margin-bottom: 0;
+}
+
+.step-figure a {
+  display: block;
+}
+
+.step-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.step > .step-figure,
+.step > .figure-pair {
+  max-width: 880px;
+}
+
+.figure-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Polecenia do skopiowania */
+.prompt {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.prompt-label {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.prompt-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.copy-button {
+  min-height: 42px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--white);
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.copy-button:hover {
+  border-color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.course-tips {
+  margin-top: 28px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--yellow);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.course-tips ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 22px;
+  color: #303330;
+  line-height: 1.6;
+}
+
+.step-fallback {
+  color: var(--muted) !important;
+}
+
+/* Zakończenie */
+.course-finish {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(300px, 1.05fr);
+  gap: clamp(30px, 7vw, 100px);
+  align-items: start;
+  border-top: 1px solid var(--line);
+}
+
+.finish-list {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 24px;
+  padding-left: 24px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.course-finish p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+@media (max-width: 920px) {
+  .course-hero,
+  .course-finish {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-header .course-badge {
+    align-self: flex-start;
+  }
+
+  .variants,
+  .figure-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .step-head {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .step-done {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+
+  .prompt {
+    grid-template-columns: 1fr;
+  }
+
+  .copy-button {
+    justify-self: start;
+  }
+}

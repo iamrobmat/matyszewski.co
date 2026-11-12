@@ -1,0 +1,311 @@
+<!--
+  Treść strefy uczestnika. Ten plik nie jest publikowany wprost:
+  scripts/encrypt-course-page.mjs szyfruje go hasłem COURSE_PASSWORD
+  i wstawia do _site/kurs/index.html.
+-->
+<section class="course-hero" aria-labelledby="course-title">
+  <div>
+    <p class="eyebrow">Strefa uczestnika · we własnym tempie</p>
+    <h1 id="course-title" tabindex="-1">Od czatu do agenta. Krok po kroku.</h1>
+    <p class="lead">Przejdź przez kroki w swoim tempie. Zaznaczaj, co masz już za sobą: postęp zapisuje się w tej przeglądarce.</p>
+  </div>
+  <aside class="course-panel" aria-label="Materiały i ustawienia">
+    <p class="project-kicker">Materiały</p>
+    <div class="course-downloads">
+      <a class="button primary" href="/szkolenie.pdf" download>Pobierz prezentację (PDF, 18 MB)</a>
+      <a class="button secondary" href="/szkolenie.md">Konspekt w Markdown</a>
+    </div>
+    <fieldset class="tool-switch">
+      <legend>Pracuję w</legend>
+      <label><input type="radio" name="course-tool" value="both" checked> Oba</label>
+      <label><input type="radio" name="course-tool" value="claude"> Claude Code</label>
+      <label><input type="radio" name="course-tool" value="codex"> Codex</label>
+    </fieldset>
+    <div class="course-progress">
+      <p id="course-progress-label" aria-live="polite">Ukończono <strong data-progress-done>0</strong> z <strong data-progress-total>0</strong> kroków</p>
+      <progress value="0" max="1" data-progress-bar aria-labelledby="course-progress-label"></progress>
+    </div>
+  </aside>
+</section>
+
+<section class="section course-part" aria-labelledby="part-setup">
+  <div class="section-head">
+    <p class="eyebrow">Część 1</p>
+    <h2 id="part-setup">Przygotuj aplikację</h2>
+    <p>Ustawiasz agenta raz, a potem korzystasz z tego przy każdym projekcie.</p>
+  </div>
+
+  <ol class="step-list">
+    <li class="step" id="krok-1">
+      <div class="step-head">
+        <span class="step-number">01</span>
+        <h3>Otwórz agenta</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-1"> Zrobione</label>
+      </div>
+      <p>Agent to osobny tryb albo osobna aplikacja.</p>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <p>W aplikacji Claude przełącz się na zakładkę <strong>Code</strong>.</p>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <p>Otwórz aplikację Codex i kliknij <strong>Nowy czat</strong>.</p>
+        </div>
+      </div>
+      <figure class="step-figure">
+        <a href="/obrazy/claude%20codex%20intro%20screen.png"><img src="/obrazy/claude%20codex%20intro%20screen.png" width="1680" height="900" loading="lazy" alt="Ekrany startowe Claude Code i Codeksu obok siebie."></a>
+      </figure>
+    </li>
+
+    <li class="step" id="krok-2">
+      <div class="step-head">
+        <span class="step-number">02</span>
+        <h3>Załóż projekt, czyli nowy folder</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-2"> Zrobione</label>
+      </div>
+      <p>Każdy projekt to osobny folder na dysku. Na ćwiczenie załóż folder, np. <code>szkolenie-agent</code>, i otwórz go w agencie.</p>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <p>Lista folderów → <strong>Open folder…</strong></p>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <p><strong>Wybierz projekt → Nowy projekt</strong></p>
+        </div>
+      </div>
+      <p>Nazwę folderu widać nad polem polecenia. Agent pracuje na plikach z tego folderu.</p>
+      <div class="figure-pair">
+        <figure class="step-figure">
+          <a href="/obrazy/zakladanie%20nowego%20projektu-1.png"><img src="/obrazy/zakladanie%20nowego%20projektu-1.png" width="1756" height="1166" loading="lazy" alt="Wybór nowego projektu w Codeksie i otwieranie folderu w Claude Code."></a>
+        </figure>
+        <figure class="step-figure">
+          <a href="/obrazy/zakladanie%20nowego%20projektu-2.png"><img src="/obrazy/zakladanie%20nowego%20projektu-2.png" width="1746" height="1141" loading="lazy" alt="Wybrany folder projektu widoczny nad polem polecenia."></a>
+        </figure>
+      </div>
+    </li>
+
+    <li class="step" id="krok-3">
+      <div class="step-head">
+        <span class="step-number">03</span>
+        <h3>Daj agentowi dostęp do Chrome</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-3"> Zrobione</label>
+      </div>
+      <p>Agent może czytać strony i klikać w Twojej przeglądarce. Przyda się w zadaniu i w ankiecie.</p>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <ul>
+            <li>Zainstaluj rozszerzenie <strong>Claude in Chrome</strong>.</li>
+            <li>Ustawienia → Claude in Chrome → <strong>Enable Claude in Chrome</strong>.</li>
+            <li>W <strong>Site permissions</strong> ustawiasz, na których stronach agent może działać.</li>
+          </ul>
+          <figure class="step-figure">
+            <a href="/obrazy/access%20do%20chrome%20claude.png"><img src="/obrazy/access%20do%20chrome%20claude.png" width="1259" height="1172" loading="lazy" alt="Ustawienia Claude z włączoną opcją Claude in Chrome."></a>
+          </figure>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <ul>
+            <li>Ustawienia → Integracje → <strong>Korzystanie z komputera</strong>.</li>
+            <li><strong>Google Chrome:</strong> zainstaluj rozszerzenie przeglądarki.</li>
+            <li>W tym samym miejscu dajesz zgodę na inne aplikacje, np. Excel.</li>
+          </ul>
+          <figure class="step-figure">
+            <a href="/obrazy/access%20do%20chrome%20codex.png"><img src="/obrazy/access%20do%20chrome%20codex.png" width="1763" height="1141" loading="lazy" alt="Ustawienia Codeksu: Integracje, Korzystanie z komputera, Google Chrome."></a>
+          </figure>
+        </div>
+      </div>
+    </li>
+
+    <li class="step" id="krok-4">
+      <div class="step-head">
+        <span class="step-number">04</span>
+        <h3>Ustaw uprawnienia</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-4"> Zrobione</label>
+      </div>
+      <p>Ty decydujesz, ile agent może zrobić bez pytania. Tryby idą od „pytaj o wszystko” do „działaj samodzielnie”. Na początek wybierz tryb, w którym agent pyta o zgodę.</p>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <p><strong>Manual</strong> (zawsze pyta) → <strong>Accept edits</strong> → <strong>Auto</strong> → <strong>Bypass permissions</strong></p>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <p><strong>Poproś o zatwierdzenie</strong> → <strong>Zatwierdzaj za mnie</strong> → <strong>Pełny dostęp</strong></p>
+        </div>
+      </div>
+      <p>Tryb <strong>Plan</strong> oznacza: najpierw plan, potem zmiany. W obu aplikacjach włączysz go, wpisując <code>/plan</code>.</p>
+      <figure class="step-figure">
+        <a href="/obrazy/uprawnienia.png"><img src="/obrazy/uprawnienia.png" width="2416" height="1666" loading="lazy" alt="Menu wyboru uprawnień w Codeksie i Claude Code."></a>
+      </figure>
+    </li>
+
+    <li class="step" id="krok-5">
+      <div class="step-head">
+        <span class="step-number">05</span>
+        <h3>Wyłącz trenowanie na Twoich danych</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-5"> Zrobione</label>
+      </div>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <p>W aplikacji Claude: <strong>Settings → Privacy</strong> → wyłącz <strong>Help improve our AI models</strong>.</p>
+          <figure class="step-figure">
+            <a href="/obrazy/claude%20data.png"><img src="/obrazy/claude%20data.png" width="1200" height="908" loading="lazy" alt="Ustawienia prywatności Claude z wyłączoną opcją Help improve our AI models."></a>
+          </figure>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <p>W przeglądarce: <strong>chatgpt.com → Ustawienia → Kontrola danych</strong> → wyłącz <strong>Pomóż ulepszać model dla wszystkich</strong>. Ustawienie dotyczy też Codeksu (to samo konto). Więcej: <a class="inline-link" href="https://privacy.openai.com/policies/pl/">privacy.openai.com</a>.</p>
+          <figure class="step-figure">
+            <a href="/obrazy/codex%20data.png"><img src="/obrazy/codex%20data.png" width="1091" height="896" loading="lazy" alt="Ustawienia kontroli danych w ChatGPT z wyłączonym ulepszaniem modelu."></a>
+          </figure>
+        </div>
+      </div>
+    </li>
+
+    <li class="step step-optional" id="krok-6">
+      <div class="step-head">
+        <span class="step-number">06</span>
+        <h3>Podłącz wtyczki <span class="step-tag">opcjonalnie</span></h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-6"> Zrobione</label>
+      </div>
+      <p>Wtyczki łączą agenta z aplikacjami, których używasz, np. Google Drive, Gmail czy Kalendarz Google.</p>
+      <div class="variants">
+        <div class="variant" data-variant="claude">
+          <p class="variant-label">Claude Code</p>
+          <p>Ustawienia → <strong>Connectors</strong> → Discover. Dodajesz jednym kliknięciem (+).</p>
+          <figure class="step-figure">
+            <a href="/obrazy/wtyczki%20claude.png"><img src="/obrazy/wtyczki%20claude.png" width="2236" height="1586" loading="lazy" alt="Lista dostępnych konektorów w ustawieniach Claude."></a>
+          </figure>
+        </div>
+        <div class="variant" data-variant="codex">
+          <p class="variant-label">Codex</p>
+          <p>Ustawienia → Integracje → <strong>Wtyczki</strong>. Każdą włączasz przełącznikiem.</p>
+          <figure class="step-figure">
+            <a href="/obrazy/wtyczki%20codex.png"><img src="/obrazy/wtyczki%20codex.png" width="2410" height="1538" loading="lazy" alt="Lista wtyczek w ustawieniach Codeksu."></a>
+          </figure>
+        </div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="section course-part" aria-labelledby="part-task">
+  <div class="section-head">
+    <p class="eyebrow">Część 2</p>
+    <h2 id="part-task">Zadanie: pierwsza praca agenta</h2>
+    <p>Skopiuj polecenie, wklej je agentowi w folderze projektu z kroku 2 i sprawdź wynik.</p>
+  </div>
+
+  <ol class="step-list" start="7">
+    <li class="step" id="krok-7">
+      <div class="step-head">
+        <span class="step-number">07</span>
+        <h3>Posteruj przeglądarką</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-7"> Zrobione</label>
+      </div>
+      <p>Sprawdź, czy agent ma dostęp do Chrome. Jeśli poprosi o zgodę na stronę, zatwierdź ją.</p>
+      <div class="prompt">
+        <p class="prompt-label">Polecenie dla agenta</p>
+        <p class="prompt-text">Otwórz w Chrome stronę matyszewski.co/blog, wejdź w najnowszy wpis i streść go w trzech punktach.</p>
+        <button class="copy-button" type="button">Kopiuj</button>
+      </div>
+    </li>
+
+    <li class="step" id="krok-8">
+      <div class="step-head">
+        <span class="step-number">08</span>
+        <h3>Pobierz plik</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-8"> Zrobione</label>
+      </div>
+      <div class="prompt">
+        <p class="prompt-label">Polecenie dla agenta</p>
+        <p class="prompt-text">Pobierz plik matyszewski.co/szkolenie.md i zapisz go w tym folderze.</p>
+        <button class="copy-button" type="button">Kopiuj</button>
+      </div>
+      <p>Sprawdź, czy plik <code>szkolenie.md</code> pojawił się w folderze projektu.</p>
+    </li>
+
+    <li class="step" id="krok-9">
+      <div class="step-head">
+        <span class="step-number">09</span>
+        <h3>Znajdź błędy ortograficzne</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-9"> Zrobione</label>
+      </div>
+      <div class="prompt">
+        <p class="prompt-label">Polecenie dla agenta</p>
+        <p class="prompt-text">Znajdź błędy ortograficzne w pliku szkolenie.md. Wypisz je w tabeli: błąd, poprawna forma, fragment zdania. Nie zmieniaj jeszcze pliku.</p>
+        <button class="copy-button" type="button">Kopiuj</button>
+      </div>
+      <p>Przejrzyj listę. Jeśli się zgadzasz, poproś agenta o poprawienie pliku.</p>
+    </li>
+
+    <li class="step" id="krok-10">
+      <div class="step-head">
+        <span class="step-number">10</span>
+        <h3>Zapisz notatki</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-10"> Zrobione</label>
+      </div>
+      <div class="prompt">
+        <p class="prompt-label">Polecenie dla agenta</p>
+        <p class="prompt-text">Utwórz plik notatki.md i zapisz w nim: [wpisz, co chcesz zapamiętać z dzisiejszego szkolenia].</p>
+        <button class="copy-button" type="button">Kopiuj</button>
+      </div>
+      <p>Otwórz <code>notatki.md</code> i sprawdź, co zapisał agent. Sprawdzanie pracy agenta to Twoja część pętli.</p>
+    </li>
+  </ol>
+
+  <aside class="course-tips" aria-labelledby="tips-title">
+    <h3 id="tips-title">Gdy coś nie działa</h3>
+    <ul>
+      <li><strong>Zapytaj, dlaczego nie działa,</strong> i popraw polecenie albo instrukcje.</li>
+      <li><strong>Dziel duże zadania na etapy</strong> i zaczynaj od trybu planowania.</li>
+      <li><strong>Otwórz nowy czat,</strong> gdy zmieniasz temat albo agent „gubi wątek”.</li>
+      <li><strong>Zrestartuj aplikację albo zmień model,</strong> gdy coś przestaje działać bez powodu.</li>
+    </ul>
+  </aside>
+</section>
+
+<section class="section course-part course-survey" aria-labelledby="part-survey">
+  <div class="section-head">
+    <p class="eyebrow">Część 3 · zadanie końcowe</p>
+    <h2 id="part-survey">Oceń szkolenie z pomocą agenta</h2>
+    <p>Ostatnie ćwiczenie: agent wypełnia ankietę w przeglądarce, a Ty podajesz odpowiedzi i decydujesz o wysłaniu.</p>
+  </div>
+
+  <ol class="step-list" start="11">
+    <li class="step" id="krok-11">
+      <div class="step-head">
+        <span class="step-number">11</span>
+        <h3>Wypełnij ankietę agentem</h3>
+        <label class="step-done"><input type="checkbox" data-step="krok-11"> Zrobione</label>
+      </div>
+      <div class="prompt">
+        <p class="prompt-label">Polecenie dla agenta</p>
+        <p class="prompt-text">Otwórz w Chrome ankietę matyszewski.co/ankieta i pomóż mi ją wypełnić. Czytaj mi pytania po kolei i wpisuj tylko moje odpowiedzi. Zanim klikniesz „Prześlij”, pokaż mi wypełniony formularz i poczekaj na moją zgodę.</p>
+        <button class="copy-button" type="button">Kopiuj</button>
+      </div>
+      <p>Wysyłka na zewnątrz to decyzja człowieka, także w tej ankiecie. Jeśli agent poprosi o zgodę na stronę <code>docs.google.com</code>, zatwierdź ją.</p>
+      <p class="step-fallback">Agent nie daje rady? <a class="inline-link" href="/ankieta/">Otwórz ankietę samodzielnie</a>.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="section course-finish" aria-labelledby="finish-title">
+  <div>
+    <p class="eyebrow">Na koniec</p>
+    <h2 id="finish-title">Trzy rzeczy do zapamiętania</h2>
+  </div>
+  <div>
+    <ol class="finish-list">
+      <li>Agent = model + cel + kontekst + narzędzia.</li>
+      <li>Kontekst zapisuj w plikach, procesy w skillach.</li>
+      <li>Eksperymentuj i sprawdzaj wyniki, zanim osiągniesz biegłość.</li>
+    </ol>
+    <p>Dziękuję za udział. Masz pytania albo pomysł na własnego agenta?</p>
+    <a class="button primary" href="/umow-rozmowe/">Umów rozmowę</a>
+  </div>
+</section>

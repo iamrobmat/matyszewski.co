@@ -1,4 +1,4 @@
-// Cloudflare Workers with static assets. Build: `bash scripts/build-site.sh`,
+// Cloudflare mirror with static assets. Build: `bash scripts/build-site.sh _site cloudflare`,
 // deploy: `npx wrangler deploy`. GOOGLE_ANALYTICS_ID is a Workers Builds variable.
 {
   "name": "matyszewski-co",

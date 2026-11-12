@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ćwiczenia dla uczestników | Robert Matyszewski</title>
+    <meta name="description" content="Ćwiczenia dla uczestników szkolenia „Od czatu do własnego agenta AI”. Dostęp na hasło podane przez prowadzącego.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="kurs.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23151515'/%3E%3Cpath d='M15 45V19h8l9 14 9-14h8v26h-7V29L34 42h-4l-8-13v16z' fill='%23f8f8f5'/%3E%3C/svg%3E">
+    <script src="../analytics-config.js" defer></script>
+    <script src="../analytics.js" defer></script>
+    <script src="kurs.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Strona główna Roberta Matyszewskiego">
+        <span class="brand-mark">RM</span><span>Robert Matyszewski</span>
+      </a>
+      <span class="course-badge">Strefa uczestnika</span>
+    </header>
+
+    <main id="top">
+      <section class="course-gate" id="course-gate" aria-labelledby="gate-title">
+        <p class="eyebrow">Szkolenie · Od czatu do własnego agenta AI</p>
+        <h1 id="gate-title">Ćwiczenia dla uczestników</h1>
+        <p class="lead">Wpisz hasło podane przez prowadzącego.</p>
+
+        <form class="gate-form" id="gate-form" hidden>
+          <label for="gate-password">Hasło do szkolenia</label>
+          <div class="gate-row">
+            <input id="gate-password" name="password" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+            <button class="button primary" type="submit">Otwórz ćwiczenia</button>
+          </div>
+          <p class="gate-message" id="gate-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="gate-note" id="gate-unavailable" hidden>Strona z ćwiczeniami jest chwilowo niedostępna. Zapytaj prowadzącego o materiały.</p>
+        <noscript><p class="gate-note">Ta strona wymaga włączonego JavaScriptu.</p></noscript>
+      </section>
+
+      <div id="course-content"></div>
+    </main>
+
+    <footer class="site-footer"><span>© <span id="year">2026</span> Robert Matyszewski</span><a href="#top">Wróć na górę</a></footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <!-- COURSE_PAYLOAD -->
+  </body>
+</html>

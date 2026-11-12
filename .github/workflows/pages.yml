@@ -23,7 +23,7 @@ jobs:
       - name: Build site with Analytics configuration
         env:
           GOOGLE_ANALYTICS_ID: ${{ vars.GOOGLE_ANALYTICS_ID }}
-        run: bash scripts/build-site.sh
+        run: bash scripts/build-site.sh _site github
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

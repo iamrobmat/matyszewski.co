@@ -2,7 +2,7 @@ Tworzenie treści od zawsze było czymś, co mnie interesowało. Wraz z rozwojem
 
 Coraz więcej jest też wideorozmów, spotkań online i okazji do nagrywania. Dlatego postanowiłem przygotować sobie na biurku proste mini studio. Chciałem stworzyć wygodne miejsce do rozmów i nagrywania bez kupowania osobnej kamery oraz drogiego sprzętu.
 
-![Gotowe mini studio na biurku](assets/mini-studio-na-biurku-za-99-zl/01-efekt-koncowy.png)
+![Gotowe mini studio na biurku](assets/01-efekt-koncowy.png)
 
 ## Założenie: wykorzystać to, co już mam
 
@@ -22,7 +22,7 @@ Cały zestaw miał być również:
 
 Kupiłem zwykły uchwyt na monitor za 99 zł. Zamiast korzystać z mocowania zaciskowego, przykręciłem go przelotowo do blatu. Wymagało to przewiercenia biurka, ale dzięki temu cała konstrukcja jest mocniejsza i stabilniejsza.
 
-![Przygotowanie otworu do montażu uchwytu](assets/mini-studio-na-biurku-za-99-zl/02-montaz-przelotowy.png)
+![Przygotowanie otworu do montażu uchwytu](assets/02-montaz-przelotowy.png)
 
 Na jednym ramieniu znajduje się podstawka pod laptopa, na drugim monitor, a pionowy element uchwytu wykorzystałem jako bazę do zamontowania telefonu.
 
@@ -30,7 +30,7 @@ Na jednym ramieniu znajduje się podstawka pod laptopa, na drugim monitor, a pio
 
 Telefon miał znaleźć się dokładnie pomiędzy ekranami, dlatego na górze uchwytu postanowiłem zamontować mocowanie MagSafe. iPhone może być dzięki temu zakładany i zdejmowany w kilka sekund, bez dodatkowych klamer.
 
-![Uchwyt MagSafe przygotowany do montażu](assets/mini-studio-na-biurku-za-99-zl/03-magsafe.png)
+![Uchwyt MagSafe przygotowany do montażu](assets/03-magsafe.png)
 
 Do połączenia użyłem standardowej śruby statywowej 1/4 cala. To popularny format stosowany w uchwytach fotograficznych i sprzęcie do nagrywania, więc wydawało się, że wszystkie elementy powinny po prostu do siebie pasować.
 
@@ -38,11 +38,11 @@ Do połączenia użyłem standardowej śruby statywowej 1/4 cala. To popularny f
 
 Okazało się jednak, że śruba 1/4 cala była za długa. Nie dało się przez to dobrze docisnąć mocowania MagSafe do uchwytu.
 
-![Zbliżenie uchwytu i zbyt długiej śruby](assets/mini-studio-na-biurku-za-99-zl/04-zbyt-dluga-sruba.png)
+![Zbliżenie uchwytu i zbyt długiej śruby](assets/04-zbyt-dluga-sruba.png)
 
 Rozwiązanie było proste: skróciłem śrubę szlifierką. Ta niewielka poprawka wystarczyła, żeby mocowanie pasowało, MagSafe trzymał telefon na właściwej wysokości, a cała konstrukcja pozostała stabilna.
 
-![Zamontowany uchwyt po skróceniu śruby](assets/mini-studio-na-biurku-za-99-zl/05-gotowy-uchwyt.png)
+![Zamontowany uchwyt po skróceniu śruby](assets/05-gotowy-uchwyt.png)
 
 ## Mój aktualny zestaw
 

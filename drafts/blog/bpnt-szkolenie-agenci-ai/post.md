@@ -17,12 +17,12 @@ To nie była sala pełna programistów. Przyszli ludzie, którzy na co dzień pr
 - dyrektor marketingu jednej z największych firm na Podlasiu,
 - analityk internetowy pracujący dla firmy z USA.
 
-![Uczestnicy szkolenia pracują przy laptopach](assets/bpnt-szkolenie-agenci-ai/foto-09.jpg "Każdy pracował na własnym laptopie i własnym koncie.")
-![Uczestnicy przy wspólnym stole podczas ćwiczeń](assets/bpnt-szkolenie-agenci-ai/foto-25.jpg "Ćwiczenia robiliśmy na prawdziwych plikach uczestników.")
+![Uczestnicy szkolenia pracują przy laptopach](assets/foto-09.jpg "Każdy pracował na własnym laptopie i własnym koncie.")
+![Uczestnicy przy wspólnym stole podczas ćwiczeń](assets/foto-25.jpg "Ćwiczenia robiliśmy na prawdziwych plikach uczestników.")
 
 ## 60 minut teorii, 60 minut praktyki
 
-![Dłonie uczestnika na klawiaturze laptopa z otwartym agentem](assets/bpnt-szkolenie-agenci-ai/foto-10.jpg "Czat odpowiada. Agent wykonuje pracę.")
+![Dłonie uczestnika na klawiaturze laptopa z otwartym agentem](assets/foto-10.jpg "Czat odpowiada. Agent wykonuje pracę.")
 
 Pierwsza godzina to fundament: czym agent różni się od czatu i z czego się składa. Sprowadzam to do jednego wzoru, który łatwo zapamiętać.
 
@@ -41,9 +41,9 @@ Druga godzina to praca na własnych plikach. Zamiast wymyślonych przykładów k
 7. Budowa stron www i baz wiedzy z agentami
 8. Pokaz na żywo i ćwiczenie
 
-![Robert prowadzi część teoretyczną przy ekranie](assets/bpnt-szkolenie-agenci-ai/foto-18.jpg "Teoria: od czatu do agenta.")
-![Slajd o obsłudze aplikacji przez agenta](assets/bpnt-szkolenie-agenci-ai/foto-16.jpg "MCP, wtyczki i API.")
-![Pokaz na żywo przed salą](assets/bpnt-szkolenie-agenci-ai/foto-24.jpg "Pokaz na żywo.")
+![Robert prowadzi część teoretyczną przy ekranie](assets/foto-18.jpg "Teoria: od czatu do agenta.")
+![Slajd o obsłudze aplikacji przez agenta](assets/foto-16.jpg "MCP, wtyczki i API.")
+![Pokaz na żywo przed salą](assets/foto-24.jpg "Pokaz na żywo.")
 
 ## Co usłyszałem po szkoleniu
 
@@ -57,7 +57,7 @@ Najbardziej cieszą mnie dwie wiadomości, które dostałem po zajęciach.
 
 Bartek następnego dnia oddał agentowi aktualizację slajdów do szkoły doktorskiej. Dokładnie o to chodzi: wiedza, która zaczyna pracować od razu, a nie notatki, które czekają na „kiedyś”.
 
-![Szeroki widok sali szkoleniowej BPNT podczas warsztatu](assets/bpnt-szkolenie-agenci-ai/foto-19.jpg "Sala szkoleniowa Białostockiego Parku Naukowo-Technologicznego.")
+![Szeroki widok sali szkoleniowej BPNT podczas warsztatu](assets/foto-19.jpg "Sala szkoleniowa Białostockiego Parku Naukowo-Technologicznego.")
 
 ## Ankieta BPNT: średnia 5.0
 
@@ -69,28 +69,13 @@ Bartek następnego dnia oddał agentowi aktualizację slajdów do szkoły doktor
 
 ## „Zadania były za łatwe”
 
-![Dwóch uczestników pracuje razem przy jednym laptopie](assets/bpnt-szkolenie-agenci-ai/foto-23.jpg)
+![Dwóch uczestników pracuje razem przy jednym laptopie](assets/foto-23.jpg)
 
 Taki feedback też dostałem i biorę go dosłownie. Poszło lepiej, niż się spodziewałem, więc następnym razem podnoszę poprzeczkę: więcej pracy na własnych procesach uczestników, mniej gotowych ćwiczeń.
 
-## Podsumowanie w 10 slajdach
-
-Ta sama historia w formie karuzeli, którą opublikowałem w social mediach.
-
-![Slajd 1: Naukowcy, prawnicy, inżynier, menedżer](assets/bpnt-szkolenie-agenci-ai/karuzela-01.jpg)
-![Slajd 2: Miejsca wyprzedały się w 1 dzień](assets/bpnt-szkolenie-agenci-ai/karuzela-02.jpg)
-![Slajd 3: 12 osób, sami doświadczeni ludzie](assets/bpnt-szkolenie-agenci-ai/karuzela-03.jpg)
-![Slajd 4: 60 minut teorii, 60 minut praktyki](assets/bpnt-szkolenie-agenci-ai/karuzela-04.jpg)
-![Slajd 5: Co było na szkoleniu](assets/bpnt-szkolenie-agenci-ai/karuzela-05.jpg)
-![Slajd 6: Dopiero u Ciebie zrozumiałem istotę agentów](assets/bpnt-szkolenie-agenci-ai/karuzela-06.jpg)
-![Slajd 7: Następnego dnia agent już pracował](assets/bpnt-szkolenie-agenci-ai/karuzela-07.jpg)
-![Slajd 8: Ankieta BPNT, każda ocena 5/5](assets/bpnt-szkolenie-agenci-ai/karuzela-08.jpg)
-![Slajd 9: Zadania były za łatwe](assets/bpnt-szkolenie-agenci-ai/karuzela-09.jpg)
-![Slajd 10: Następny krok, cały dzień](assets/bpnt-szkolenie-agenci-ai/karuzela-10.jpg)
-
 ## Następny krok: cały dzień
 
-![Robert uśmiechnięty przy stole z certyfikatami uczestników](assets/bpnt-szkolenie-agenci-ai/foto-02.jpg "Certyfikaty gotowe do wręczenia.")
+![Robert uśmiechnięty przy stole z certyfikatami uczestników](assets/foto-02.jpg "Certyfikaty gotowe do wręczenia.")
 
 Na sali był dyrektor marketingu jednej z największych firm na Podlasiu. Efekt: zaproszenie na całodniowe szkolenie dla jego zespołu. Dziękuję BPNT i wszystkim uczestnikom.
 
