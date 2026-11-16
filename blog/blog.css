@@ -117,6 +117,36 @@
   line-height: 1;
 }
 
+.post-event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: -8px 0 20px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.post-event-meta span {
+  position: relative;
+}
+
+.post-event-meta span + span {
+  padding-left: 18px;
+}
+
+.post-event-meta span + span::before {
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--green);
+  content: "";
+}
+
 .post-view > .post-tags {
   margin-bottom: 26px;
 }
@@ -215,6 +245,19 @@
   .post-row small,
   .post-date {
     white-space: normal;
+  }
+
+  .post-event-meta {
+    display: grid;
+    gap: 4px;
+  }
+
+  .post-event-meta span + span {
+    padding-left: 0;
+  }
+
+  .post-event-meta span + span::before {
+    display: none;
   }
 
   .post-content {

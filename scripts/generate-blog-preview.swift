@@ -7,6 +7,8 @@ struct Post: Decodable {
     let metaTitle: String?
     let description: String
     let date: String
+    let eventDate: String?
+    let eventLocation: String?
     let tags: [String]?
     let file: String
 }
@@ -515,6 +517,22 @@ func renderTags(_ tags: [String]?) -> String {
 """
 }
 
+func renderEventMeta(_ post: Post) -> String {
+    let values = [post.eventDate, post.eventLocation]
+        .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
+        .filter { !$0.isEmpty }
+
+    guard !values.isEmpty else {
+        return ""
+    }
+
+    return """
+          <p class="post-event-meta" aria-label="Data i miejsce wydarzenia">
+            \(values.map { "<span>\(escapeHtml($0))</span>" }.joined(separator: "\n            "))
+          </p>
+""" + "\n"
+}
+
 func metadataTitle(for post: Post) -> String {
     if let metaTitle = post.metaTitle {
         return metaTitle
@@ -640,7 +658,7 @@ func renderPostPage(post: Post, markdown: String, imageVersion: String) throws {
           <a class="back-link" href="../">Wróć do wszystkich wpisów</a>
           <p class="post-date">\(escapeHtml(post.date))</p>
           <h2>\(escapeHtml(post.title))</h2>
-          \(renderTags(post.tags))
+\(renderEventMeta(post))          \(renderTags(post.tags))
           <div class="post-content">\(contentHtml)</div>
         </article>
       </section>
