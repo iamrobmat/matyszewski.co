@@ -9,6 +9,7 @@ struct Post: Decodable {
     let date: String
     let eventDate: String?
     let eventLocation: String?
+    let customSocialImage: Bool?
     let tags: [String]?
     let file: String
 }
@@ -710,15 +711,31 @@ if versionedBlogIndex != html {
 
 for post in posts {
     let markdown = try String(contentsOf: postsDir.appendingPathComponent(post.file), encoding: .utf8)
-    let postImageVersion = try generateSocialCard(
-        title: post.metaTitle ?? post.title,
-        description: post.description,
-        outputBaseName: post.slug,
-        footerUrl: "matyszewski.co/blog",
-        label: nil,
-        showsSubtitle: false,
-        ctaText: "Przeczytaj wpis"
-    )
+    let postImageUrl = socialDir.appendingPathComponent("\(post.slug).png")
+    let postSvgUrl = socialDir.appendingPathComponent("\(post.slug).svg")
+    let postImageVersion: String
+
+    if post.customSocialImage == true {
+        guard FileManager.default.fileExists(atPath: postImageUrl.path),
+              FileManager.default.fileExists(atPath: postSvgUrl.path) else {
+            throw NSError(
+                domain: "SocialCard",
+                code: 2,
+                userInfo: [NSLocalizedDescriptionKey: "Missing custom social image for \(post.slug)."]
+            )
+        }
+        postImageVersion = try imageVersion(at: postImageUrl)
+    } else {
+        postImageVersion = try generateSocialCard(
+            title: post.metaTitle ?? post.title,
+            description: post.description,
+            outputBaseName: post.slug,
+            footerUrl: "matyszewski.co/blog",
+            label: nil,
+            showsSubtitle: false,
+            ctaText: "Przeczytaj wpis"
+        )
+    }
     try renderPostPage(post: post, markdown: markdown, imageVersion: postImageVersion)
 }
 
