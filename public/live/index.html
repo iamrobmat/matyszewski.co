@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Live Slides — Robert Matyszewski</title>
+  <link rel="stylesheet" href="/live/live.css">
+  <style>
+    body { overflow: hidden; }
+    .participant { min-height: 100vh; display: grid; place-items: center; }
+    .participant .deck-shell { width: 100vw; max-height: 100vh; border: 0; }
+    .participant-bar {
+      position: fixed; z-index: 10; left: 50%; bottom: 1rem; transform: translateX(-50%);
+      display: flex; align-items: center; gap: .65rem; max-width: calc(100vw - 2rem); padding: .55rem;
+      background: rgba(5,5,5,.9); border: 1px solid var(--border); backdrop-filter: blur(12px);
+    }
+    .participant-bar__slide { min-width: 5.25rem; text-align: center; font-variant-numeric: tabular-nums; }
+    .participant-bar .connection { padding-inline: .35rem; }
+    @media (max-width: 720px) { .participant-bar .connection { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="participant" aria-label="Prezentacja na żywo">
+    <div class="deck-shell">
+      <iframe id="deck" src="/live/deck/index.html#1" title="Slajdy szkolenia"></iframe>
+    </div>
+  </main>
+  <nav class="participant-bar" aria-label="Sterowanie slajdami">
+    <button class="button" id="previous" type="button" aria-label="Poprzedni slajd">←</button>
+    <span class="participant-bar__slide" id="slide-number">1 / …</span>
+    <button class="button" id="next" type="button" aria-label="Następny pokazany slajd">→</button>
+    <button class="button button--accent" id="follow" type="button" hidden>Wróć do prowadzącego</button>
+    <span class="connection" id="connection" data-state="connecting">Łączenie</span>
+  </nav>
+  <p class="error" id="error" role="alert" hidden></p>
+  <script type="module" src="/live/participant.js"></script>
+</body>
+</html>

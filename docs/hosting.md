@@ -1,14 +1,15 @@
-# Hosting: GitHub Pages i lustro Cloudflare
+# Hosting: GitHub Pages, proxy Cloudflare i Live Slides
 
-Stan na 5 listopada 2026.
+Stan na 16 listopada 2026.
 
 ## Model docelowy
 
-- `https://matyszewski.co/` pozostaje publiczną stroną produkcyjną na GitHub Pages.
+- `https://matyszewski.co/` pozostaje publiczną stroną produkcyjną z GitHub Pages jako originem.
+- Cztery rekordy A domeny głównej nadal wskazują IP GitHub Pages, ale są proxied przez Cloudflare.
+- Trasy Workera `matyszewski.co/live` i `matyszewski.co/live/*` przechwytują wyłącznie Live Slides.
 - `https://matyszewski-co.robert-matyszewski.workers.dev/` jest technicznym lustrem Cloudflare
   Workers, używanym do testów i zawsze oznaczonym nagłówkiem `X-Robots-Tag: noindex`.
-- Oba środowiska budują ten sam commit z gałęzi `main`.
-- DNS domeny, rekordy poczty i konfiguracja custom domain pozostają bez zmian.
+- Rekordy MX, DKIM, SPF, DMARC i weryfikacyjne pozostają DNS-only i nie zostały zmienione.
 
 Canonicale, Open Graph i sitemap wskazują wyłącznie na `https://matyszewski.co/`. Adres Workera
 nie jest drugim publicznym źródłem treści.
@@ -28,9 +29,11 @@ Wymagana zmienna repozytorium GitHub Actions:
 
 - `GOOGLE_ANALYTICS_ID` — identyfikator GA4 w formacie `G-...`.
 
-## Cloudflare Workers — lustro
+## Cloudflare Workers — lustro i Live Slides
 
-Worker `matyszewski-co` używa static assets zdefiniowanych w `wrangler.jsonc`.
+Worker `matyszewski-co` używa static assets i Durable Object `Session` zdefiniowanych w
+`wrangler.jsonc`. Na domenie głównej obsługuje tylko `/live` i `/live/*`; na `workers.dev` nadal
+udostępnia techniczne lustro całej strony.
 
 Ustawienia Workers Builds:
 
@@ -44,10 +47,11 @@ Ustawienia Workers Builds:
 | Preview builds | wyłączone |
 | Build variable | `GOOGLE_ANALYTICS_ID` |
 
-Profil `cloudflare` zawiera `_headers` i `_redirects`, ale pomija `CNAME`, `.nojekyll` oraz
-`kwartalnik-78.pdf`. Kwartalnik ma 58 MB i przekracza limit 25 MiB pojedynczego assetu Workers;
-zgodnie z decyzją projektową jego adres zwraca w lustrze prawdziwe 404. Pozostałe dwa PDF-y są
-publikowane na obu hostach.
+Profil `cloudflare` zawiera `_headers`, `_redirects` i `public/live`, ale pomija `CNAME`,
+`.nojekyll` oraz `kwartalnik-78.pdf`. Profil `github` celowo nie kopiuje `public/live`, ponieważ
+WebSocket i Durable Object działają wyłącznie w Workerze. Kwartalnik ma 58 MB i przekracza limit
+25 MiB pojedynczego assetu Workers; zgodnie z decyzją projektową jego adres zwraca w lustrze
+prawdziwe 404. Pozostałe dwa PDF-y są publikowane na obu hostach.
 
 Skrypt `scripts/check-cloudflare-assets.mjs` przerywa build, jeżeli do artefaktu Cloudflare trafi
 plik większy niż 25 MiB.
@@ -61,6 +65,7 @@ plik większy niż 25 MiB.
 | `/ankieta` | zapasowy redirect HTML | redirect HTTP 302 z `_redirects` |
 | Nieznany URL | GitHub Pages 404 | własny `404.html` z kodem 404 |
 | Indeksowanie | dozwolone zgodnie z `robots.txt` | zablokowane `X-Robots-Tag: noindex` |
+| `/live` i `/live/*` | brak w artefakcie | Worker + Durable Object, `X-Robots-Tag: noindex` |
 
 ## Materiały niepublikowane
 
@@ -69,8 +74,9 @@ katalogów wymaga osobnej decyzji i zmiany źródeł buildu.
 
 ## Kontrola po zmianie `main`
 
-1. Sprawdzić zielony workflow GitHub Pages.
-2. Sprawdzić udany build produkcyjny Workera z tego samego SHA commita.
-3. Porównać reprezentatywne HTML i CSS na obu hostach.
-4. Potwierdzić `X-Robots-Tag: noindex` na `workers.dev`.
-5. Potwierdzić statusy PDF-ów, `/ankieta`, `robots.txt`, `sitemap.xml` i nieznanego adresu.
+1. Sprawdzić zielony workflow GitHub Pages i dostępność strony głównej przez proxy Cloudflare.
+2. Sprawdzić udany build produkcyjny Workera.
+3. Porównać reprezentatywne HTML i CSS na originie i lustrze.
+4. Potwierdzić `X-Robots-Tag: noindex` na `workers.dev` oraz pod `/live/*`.
+5. Przetestować `/live`, `/live/present`, WebSocket, nowego uczestnika i wznowienie połączenia.
+6. Potwierdzić statusy PDF-ów, `/ankieta`, `robots.txt`, `sitemap.xml` i nieznanego adresu.

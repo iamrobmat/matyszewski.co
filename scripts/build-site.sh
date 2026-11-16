@@ -26,6 +26,7 @@ if [[ "$deploy_target" == "github" ]]; then
   cp kwartalnik-78.pdf CNAME .nojekyll "$output_dir/"
 else
   cp _headers _redirects "$output_dir/"
+  cp -R public/live "$output_dir/live"
 fi
 cp -R blog "$output_dir/blog"
 cp -R uslugi "$output_dir/uslugi"

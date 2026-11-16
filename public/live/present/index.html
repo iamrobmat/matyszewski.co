@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Prezenter — Live Slides</title>
+  <link rel="stylesheet" href="/live/live.css">
+  <style>
+    .presenter { min-height: 100vh; display: grid; grid-template-rows: auto 1fr auto; gap: 1rem; padding: 1rem; }
+    .presenter-header, .presenter-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .presenter-header h1 { margin: .2rem 0 0; font-size: clamp(1.25rem, 2.5vw, 2rem); }
+    .presenter-grid { min-height: 0; display: grid; grid-template-columns: minmax(0, 2fr) minmax(17rem, 1fr); gap: 1rem; align-items: start; }
+    .preview { min-width: 0; }
+    .preview-label { display: flex; justify-content: space-between; margin: 0 0 .5rem; color: var(--muted); font-size: .85rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .preview-label strong { color: var(--white); font-variant-numeric: tabular-nums; }
+    .preview iframe { pointer-events: none; }
+    .input-layer { position: absolute; z-index: 2; inset: 0; cursor: pointer; }
+    .presenter-footer { justify-content: flex-start; }
+    .presenter-footer .hint { margin-left: auto; color: var(--muted); font-size: .85rem; }
+    @media (max-width: 880px) {
+      .presenter-grid { grid-template-columns: 1fr; }
+      .preview--next { max-width: 50%; }
+      .presenter-footer .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="presenter">
+    <header class="presenter-header">
+      <div><p class="eyebrow">Live Slides</p><h1>Widok prezentera</h1></div>
+      <span class="connection" id="connection" data-state="connecting">Łączenie</span>
+    </header>
+    <section class="presenter-grid" aria-label="Podglądy prezentacji">
+      <article class="preview">
+        <p class="preview-label"><span>Teraz</span><strong id="current-number">1 / …</strong></p>
+        <div class="deck-shell">
+          <iframe id="current-deck" src="/live/deck/index.html#1" title="Bieżący slajd" tabindex="-1"></iframe>
+          <div class="input-layer" id="input-layer" aria-label="Kliknij, aby przejść dalej"></div>
+        </div>
+      </article>
+      <article class="preview preview--next">
+        <p class="preview-label"><span>Następny</span><strong id="next-number">2 / …</strong></p>
+        <div class="deck-shell">
+          <iframe id="next-deck" src="/live/deck/index.html#2" title="Następny slajd" tabindex="-1"></iframe>
+        </div>
+      </article>
+    </section>
+    <footer class="presenter-footer">
+      <button class="button" id="previous" type="button">← Poprzedni</button>
+      <button class="button button--accent" id="next" type="button">Następny →</button>
+      <span class="hint">PageUp / PageDown · strzałki · spacja · lewy klik</span>
+    </footer>
+    <p class="error" id="error" role="alert" hidden></p>
+  </main>
+  <script type="module" src="/live/present/presenter.js"></script>
+</body>
+</html>

@@ -11,6 +11,14 @@
 https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
 
+# Live Slides jest publiczne tylko dla osób znających link warsztatu.
+/live/*
+  X-Robots-Tag: noindex
+
+# Nazwy obrazów zawierają hash treści, więc mogą być przechowywane bez rewalidacji.
+/live/deck/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Plik dla agentów uczestników szkolenia: dostępny, ale poza indeksem.
 /szkolenie.md
   Content-Type: text/markdown; charset=utf-8

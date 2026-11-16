@@ -55,13 +55,16 @@ node scripts/sync-navigation.mjs
 The blog generator runs this synchronization automatically, and the production build verifies that
 committed pages are current before creating the deployment artifact.
 
-DNS for `matyszewski.co` must point to GitHub Pages for the custom domain to resolve.
+The apex DNS records for `matyszewski.co` point at GitHub Pages and are proxied through Cloudflare.
+Cloudflare forwards ordinary site traffic to GitHub Pages and intercepts only the `/live` and
+`/live/*` Worker routes.
 
 ## Deployment targets
 
-GitHub Pages remains the production host for `matyszewski.co`. Cloudflare Workers serves a
-non-indexable technical mirror at its `workers.dev` address. Both deployments build from `main`.
-See `docs/hosting.md` for the operational setup and intentional differences.
+GitHub Pages remains the origin for the ordinary production site. Cloudflare proxies the apex
+domain so Live Slides can run at `/live`, while the same Worker also serves a non-indexable
+technical mirror at its `workers.dev` address. See `docs/hosting.md` for the routing model and
+intentional build differences.
 
 Build GitHub Pages, including `CNAME`, `.nojekyll` and all public PDFs:
 
@@ -101,3 +104,23 @@ python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Live Slides
+
+The Cloudflare build also contains the workshop follow-along presentation at `/live/` and the
+presenter view at `/live/present/`. These files are intentionally excluded from the GitHub Pages
+artifact because their WebSocket endpoint and Durable Object run in the Worker.
+
+Prepare the current exported deck, build the Worker assets and run the complete local checks:
+
+```bash
+node scripts/prepare-deck.mjs
+GOOGLE_ANALYTICS_ID=G-TEST bash scripts/build-site.sh _site cloudflare
+node --test tests/live-core.test.mjs tests/prepare-deck.test.mjs
+npx wrangler dev --local
+LIVE_BASE_URL=http://127.0.0.1:8787 node --test tests/live-websocket.integration.mjs
+```
+
+`prepare-deck.mjs` defaults to `~/dev/prezki/Eastmedia od czatu do agenta AI.html`, extracts
+embedded images without recompression, adds local images to the deck CSP and writes the prepared
+presentation under `public/live/deck/`.
