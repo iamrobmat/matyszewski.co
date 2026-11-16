@@ -5,7 +5,11 @@
     "metaTitle": "Jak zalogować Codex do GitHuba i pobrać projekt",
     "description": "Krótka instrukcja logowania Codex do GitHuba przez GitHub CLI, z kodem urządzenia i autoryzacją.",
     "date": "2026-07-09",
-    "tags": ["Codex", "GitHub", "Narzędzia AI"],
+    "tags": [
+      "Codex",
+      "GitHub",
+      "Narzędzia AI"
+    ],
     "file": "jak-zalogowac-codex-do-github.md"
   },
   {
@@ -13,7 +17,23 @@
     "title": "Pierwszy wpis",
     "description": "Krótka notatka startowa o tym, co będzie trafiało na blog.",
     "date": "2026-07-09",
-    "tags": ["Blog", "AI", "Produkt"],
+    "tags": [
+      "Blog",
+      "AI",
+      "Produkt"
+    ],
     "file": "pierwszy-wpis.md"
+  },
+  {
+    "slug": "od-czatu-do-agenta-ai-szkolenie-bpnt",
+    "title": "Od czatu do agenta AI. Relacja ze szkolenia w BPNT",
+    "description": "Relacja z dwugodzinnego szkolenia o agentach AI w BPNT: 12 uczestników, praca na własnych plikach, oceny 5/5 i wnioski na kolejną edycję.",
+    "date": "2026-11-16",
+    "file": "od-czatu-do-agenta-ai-szkolenie-bpnt.md",
+    "tags": [
+      "Agenci AI",
+      "Szkolenia",
+      "BPNT"
+    ]
   }
 ]
