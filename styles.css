@@ -126,6 +126,10 @@ a:focus-visible {
   display: none;
 }
 
+.nav-dropdown > summary::marker {
+  content: "";
+}
+
 .nav-dropdown > summary::after {
   width: 6px;
   height: 6px;
@@ -176,13 +180,6 @@ a:focus-visible {
 .nav-dropdown > summary:focus-visible {
   outline: 3px solid var(--yellow);
   outline-offset: 4px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .nav-dropdown:hover > .nav-dropdown-menu,
-  .nav-dropdown:focus-within > .nav-dropdown-menu {
-    display: grid;
-  }
 }
 
 .hero {

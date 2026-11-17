@@ -31,7 +31,7 @@ if (unknownFlags.length > 0) {
 
 const root = resolve(args.find((argument) => !argument.startsWith("-")) ?? ".");
 const ignoredDirectories = new Set([".git", "_site", "node_modules"]);
-const navigationPattern = /(^[ \t]*)?<nav class="nav" aria-label="Główna nawigacja"[^>]*>[\s\S]*?<\/nav>/m;
+const navigationPattern = /(^[ \t]*)?<nav class="nav" aria-label="Główna nawigacja"[^>]*>[\s\S]*?<\/nav>(?:\s*<script src="\/navigation\.js" defer><\/script>)?/m;
 
 function currentNavigationId(filePath) {
   const relativePath = relative(root, filePath).split(sep).join("/");
@@ -79,6 +79,7 @@ function renderNavigation(indent, currentId) {
     `${indent}  </details>`,
     ...remainingItems.map(renderLink),
     `${indent}</nav>`,
+    `${indent}<script src="/navigation.js" defer></script>`,
   ].join("\n");
 }
 

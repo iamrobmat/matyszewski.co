@@ -20,7 +20,7 @@ node scripts/sync-navigation.mjs --check .
 rm -rf -- "$output_dir"
 mkdir -p "$output_dir"
 
-cp index.html 404.html styles.css analytics.js analytics-config.js szkolenie.md szkolenie.pdf zarzadzanie-wiedza.pdf git-for-agents.pdf claude-design.pdf git-marketing.pdf robots.txt llms.txt "$output_dir/"
+cp index.html 404.html styles.css navigation.js analytics.js analytics-config.js szkolenie.md szkolenie.pdf zarzadzanie-wiedza.pdf git-for-agents.pdf claude-design.pdf git-marketing.pdf robots.txt llms.txt "$output_dir/"
 
 if [[ "$deploy_target" == "github" ]]; then
   cp kwartalnik-78.pdf CNAME .nojekyll "$output_dir/"
