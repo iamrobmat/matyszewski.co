@@ -3,7 +3,7 @@ import { relative, resolve, sep } from "node:path";
 
 const navigationItems = Object.freeze([
   { id: "services", label: "Usługi", href: "/uslugi/" },
-  { id: "training", label: "Szkolenia", href: "/szkolenia/agenci-ai-dla-menedzerow/" },
+  { id: "training", label: "Szkolenia", href: "/szkolenia/" },
   { id: "work", label: "Co robię", href: "/#work" },
   { id: "projects", label: "Projekty", href: "/#projects" },
   { id: "blog", label: "Blog", href: "/blog/" },
