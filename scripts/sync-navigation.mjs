@@ -3,11 +3,21 @@ import { relative, resolve, sep } from "node:path";
 
 const navigationItems = Object.freeze([
   { id: "services", label: "Usługi", href: "/uslugi/" },
-  { id: "training", label: "Szkolenia", href: "/szkolenia/" },
   { id: "work", label: "Co robię", href: "/#work" },
   { id: "projects", label: "Projekty", href: "/#projects" },
   { id: "blog", label: "Blog", href: "/blog/" },
   { id: "booking", label: "Umów rozmowę", href: "/umow-rozmowe/", className: "nav-cta" },
+]);
+
+const trainingItems = Object.freeze([
+  { label: "Wszystkie szkolenia", href: "/szkolenia/" },
+  { label: "Od czatu do agenta", href: "/szkolenia/od-czatu-do-agenta/" },
+  {
+    label: "Zarządzanie wiedzą z agentami AI",
+    href: "/szkolenia/zarzadzanie-wiedza-z-agentami-ai/",
+  },
+  { label: "Git w pracy z agentami", href: "/szkolenia/git-w-pracy-z-agentami/" },
+  { label: "Claude Design", href: "/szkolenia/claude-design/" },
 ]);
 
 const args = process.argv.slice(2);
@@ -21,7 +31,7 @@ if (unknownFlags.length > 0) {
 
 const root = resolve(args.find((argument) => !argument.startsWith("-")) ?? ".");
 const ignoredDirectories = new Set([".git", "_site", "node_modules"]);
-const navigationPattern = /(^[ \t]*)<nav class="nav" aria-label="Główna nawigacja"[^>]*>[\s\S]*?<\/nav>/m;
+const navigationPattern = /(^[ \t]*)?<nav class="nav" aria-label="Główna nawigacja"[^>]*>[\s\S]*?<\/nav>/m;
 
 function currentNavigationId(filePath) {
   const relativePath = relative(root, filePath).split(sep).join("/");
@@ -46,15 +56,28 @@ function currentNavigationId(filePath) {
 }
 
 function renderNavigation(indent, currentId) {
-  const links = navigationItems.map((item) => {
+  const renderLink = (item) => {
     const classAttribute = item.className ? ` class="${item.className}"` : "";
     const currentAttribute = item.id === currentId ? ' aria-current="page"' : "";
     return `${indent}  <a${classAttribute} href="${item.href}"${currentAttribute}>${item.label}</a>`;
-  });
+  };
+
+  const [servicesItem, ...remainingItems] = navigationItems;
+  const trainingCurrentAttribute = currentId === "training" ? ' aria-current="page"' : "";
+  const trainingLinks = trainingItems
+    .map((item) => `${indent}      <a href="${item.href}">${item.label}</a>`)
+    .join("\n");
 
   return [
     `${indent}<nav class="nav" aria-label="Główna nawigacja" data-nav-current="${currentId}">`,
-    ...links,
+    renderLink(servicesItem),
+    `${indent}  <details class="nav-dropdown">`,
+    `${indent}    <summary${trainingCurrentAttribute}>Szkolenia</summary>`,
+    `${indent}    <div class="nav-dropdown-menu">`,
+    trainingLinks,
+    `${indent}    </div>`,
+    `${indent}  </details>`,
+    ...remainingItems.map(renderLink),
     `${indent}</nav>`,
   ].join("\n");
 }
@@ -93,7 +116,7 @@ for (const filePath of htmlFiles) {
   }
 
   navigationCount += 1;
-  const expectedNavigation = renderNavigation(match[1], currentNavigationId(filePath));
+  const expectedNavigation = renderNavigation(match[1] ?? "", currentNavigationId(filePath));
   const updatedHtml = html.replace(navigationPattern, expectedNavigation);
 
   if (updatedHtml === html) {
