@@ -44,8 +44,12 @@ Ustawienia Workers Builds:
 | Root directory | `/` |
 | Build command | `bash scripts/build-site.sh _site cloudflare` |
 | Deploy command | `npx wrangler deploy` |
-| Preview builds | wyłączone |
+| Preview builds | wyłączone (zakładka „Previews Base” → „Builds for Preview branches” off) |
 | Build variable | `GOOGLE_ANALYTICS_ID` |
+
+Uwaga (17 listopada 2026): przy włączonych „Builds for Preview branches” Cloudflare budował
+także `main` jako preview (`npx wrangler preview`, bez build command) i każdy build padał.
+Build command musi zawierać profil: samo `bash scripts/build-site.sh` buduje profil `github`.
 
 Profil `cloudflare` zawiera `_headers`, `_redirects` i `public/live`, ale pomija `CNAME`,
 `.nojekyll` oraz `kwartalnik-78.pdf`. Profil `github` celowo nie kopiuje `public/live`, ponieważ
