@@ -1,6 +1,6 @@
 # AI dla SPECJALISTÓW — od czatu do agenta AI
 
-**Jak tworzyć i rozwijać agentów AI z użyciem OpenAI Codex lub Claude Code**
+**Jak tworzyć i rozwijać agentów AI z Claude Code**
 
 Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na żywo i krótkie ćwiczenie
 
@@ -15,7 +15,7 @@ Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na 
 4. [Z czego składa się agent — przykłady](#4-z-czego-składa-się-agent--przykłady)
 5. [Obsługa aplikacji](#5-obsługa-aplikacji)
 6. [Tips and tricks: jak prowadzić pracę z agentem](#6-tips-and-tricks-jak-prowadzić-pracę-z-agentem)
-7. [Od polecenia do skilla i automatyzacji](#7-od-polecenia-do-skilla-i-automatyzacji)
+7. [Od rozmowy do skilla i automatyzacji](#7-od-rozmowy-do-skilla-i-automatyzacji)
 8. [Przykłady zaawansowane](#8-przykłady-zaawansowane)
 9. [Pokaz na żywo i ćwiczenie](#9-pokaz-na-żywo-i-ćwiczenie)
 10. [Zakończenie](#10-zakończenie)
@@ -40,13 +40,17 @@ Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na 
 - Dziś buduję własne rozwiązania z AI i pomagam budować prototypy
 - **Jestem menedżerem IT**
 
-### 2. Programistok 2026
+### 2. Pytanie do sali
+
+**Kto najlepiej dziś sobie radzi z AI?**
+
+### 3. Programistok 2026
 
 **Programistok 2026** · 25–26.09.2026 · Wydział Elektryczny Politechniki Białostockiej
 
 **Zapraszam na Programistok 2027!** Wrzesień 2027, Wydział Elektryczny PB · programistok.org
 
-### 3. „Nie dałbym rady bez Klaudiusza”
+### 4. „Nie dałbym rady bez Klaudiusza”
 
 > „Wiecie co, miałem tyle pism oficjalnych do napisania, że nie dałbym rady bez Klaudiusza.”
 > — Karol Przybyszewski, organizator Programistoku, dyrektor liceum programistycznego INFOTECH
@@ -58,7 +62,7 @@ Robert Matyszewski · BPNT, Białystok · szkolenie 2 godziny: teoria, pokaz na 
 
 Rozmowa odbyła się w trakcie konferencji Programistok. „Klaudiusz” to potoczna nazwa pracy z Claude jako agentem (Claude Code albo Claude Cowork). O tym jest to szkolenie.
 
-### 4. Początki Claude Code
+### 5. Początki Claude Code
 
 **Claude Code = model językowy + terminal**
 
@@ -69,17 +73,16 @@ Dowolna operacja na komputerze z użyciem języka człowieka. Prosty · bardzo s
 **Oś czasu:**
 
 - 2025: wewnętrzne narzędzie Anthropic zostaje udostępnione publicznie
-- chwilę później: pojawia się Codex (OpenAI)
 - Programistok 2025: praca z agentami to temat każdej prezentacji
 - koniec 2025: Claude Code bardzo popularny w branży IT
 
-### 5. Terminal: powrót do komputera tekstowego
+### 6. Terminal: powrót do komputera tekstowego
 
 **Kiedyś:** MS-DOS, czyli komputer obsługiwany wyłącznie tekstem. Wpisywało się polecenia, nie klikało.
 
 **Dziś:** przez terminal mówimy do komputera ludzkim językiem, a agent AI tłumaczy to na komendy i sam je wykonuje.
 
-### 6. OpenClaw agentic engineering: jak pracował Peter
+### 7. OpenClaw agentic engineering: jak pracował Peter
 
 Kilkanaście okien terminala, jedno duże oprogramowanie. Proces powstawania opisany na blogu.
 
@@ -87,11 +90,11 @@ Kilkanaście okien terminala, jedno duże oprogramowanie. Proces powstawania opi
 
 Peter Steinberger to twórca OpenClaw, autonomicznego agenta AI, po którym został zatrudniony przez OpenAI.
 
-### 7. Dlaczego tu jestem
+### 8. Dlaczego tu jestem
 
 **W przyszłości każda organizacja będzie tworzyć swoje narzędzia informatyczne. Chcę uczyć tego ludzi.**
 
-### 8. Plan szkolenia
+### 9. Plan szkolenia
 
 1. Od czatu do agenta
 2. Czym jest agent
@@ -99,17 +102,17 @@ Peter Steinberger to twórca OpenClaw, autonomicznego agenta AI, po którym zost
 4. Elementy agenta
 5. Obsługa aplikacji
 6. Tips and tricks
-7. Od polecenia do skilla
+7. Od rozmowy do skilla
 8. Przykłady zaawansowane
 9. Pokaz i ćwiczenie
 10. Zakończenie
 
 Na końcu zabawa.
 
-### 9. Wymagania części praktycznej
+### 10. Wymagania części praktycznej
 
-- Desktopowe aplikacje **Claude** albo **ChatGPT** w wersji na komputer: pobrana i zainstalowana
-- Zalogowane konto: w ChatGPT (OpenAI) wystarczy darmowe, w Claude potrzebne płatne
+- Desktopowa aplikacja **Claude** w wersji na komputer: pobrana i zainstalowana
+- Zalogowane płatne konto Claude
 - Podczas części praktucznej pozamykane wszystkie inne aplikacje, okna i karty przeglądarki
 - **Praca z agentem mocno obciąża komputer. Im mniej otwartych programów, tym lepiej.**
 
@@ -125,7 +128,7 @@ To miłe, wciągające narzędzie które czasem zmyśla fakty oraz działa na za
 
 ### Pytanie do sali
 
-**Zanim zaczniemy:** Z czym kojarzy Wam się „agent”?
+**Zanim zaczniemy:** Z czym kojarzy Wam się słowo agent?
 
 ### Czat odpowiada, agent wykonuje
 
@@ -138,14 +141,14 @@ To miłe, wciągające narzędzie które czasem zmyśla fakty oraz działa na za
 
 Przykład z codziennej pracy menedżera: pismo do partnera. W czacie wklejasz dane, dostajesz tekst, kopiujesz go do Worda, poprawiasz i wracasz z kolejnym pytaniem. Agent sam czyta poprzednie pisma i dane z folderu, zapisuje gotowy dokument i sprawdza go z Twoim wzorem.
 
-Uczciwie: granica się zaciera. ChatGPT czy Claude w przeglądarce też szukają w internecie i tworzą pliki. Różnica jest w tym, **gdzie** pracuje agent (na Twoim komputerze, w Twoim folderze) i **kto** wykonuje kolejne kroki.
+Uczciwie: granica się zaciera. Claude w przeglądarce też szuka w internecie i tworzy pliki. Różnica jest w tym, **gdzie** pracuje agent (na Twoim komputerze, w Twoim folderze) i **kto** wykonuje kolejne kroki.
 
 ### Rodzaje agentów
 
 | Nazwa | Przykłady | Skala działania | Miejsce działania | Kiedy używać |
 |---|---|---|---|---|
-| Agent zadaniowy | Claude Cowork lub Projekty w ChatGPT | Rozmowa i kontekst kilku plików | Serwery zewnętrzne | Ograniczone zadanie na kilku plikach, dokumentach, przeglądarce lub konektorach |
-| Agent projektowy | Claude Code, Codex | Folder z dowolną ilością plików i skryptów informatycznych | Nasz folder na komputerze | Duży projekt, duża ilość plików, możliwość programowania i tworzenia własnych narzędzi |
+| Agent zadaniowy | Claude Cowork | Rozmowa i kontekst kilku plików | Serwery zewnętrzne | Ograniczone zadanie na kilku plikach, dokumentach, przeglądarce lub konektorach |
+| Agent projektowy | Claude Code | Folder z dowolną ilością plików i skryptów informatycznych | Nasz folder na komputerze | Duży projekt, duża ilość plików, możliwość programowania i tworzenia własnych narzędzi |
 
 ### Praca z agentami wymaga pętli
 
@@ -177,7 +180,7 @@ Wzór na agenta · Kontekst sprawia, że agent jest Twój · Co jest w pliku Wor
 
 **MODEL + CEL + KONTEKST (PLIKI, INSTRUKCJE) + NARZĘDZIA = AGENT**
 
-- **Model:** Claude, GPT
+- **Model:** Claude
 - **Cel:** co ma powstać
 - **Kontekst:** pliki, instrukcje
 - **Narzędzia:** MCP, wtyczki, API
@@ -193,15 +196,17 @@ W środku jest **model (LLM)**. Dookoła niego źródła kontekstu:
 3. Połączenia z aplikacjami: MCP (wtyczki), API (np. Google Docs, kalendarz, CRM)
 4. Nasza rozmowa i możliwość pobierania danych z internetu
 
-Ta wiedza nie zależy od modelu. Agentów można przenosić między Claude Code i Codex, korzystając z podstaw z tego szkolenia.
+Ta wiedza nie zależy od modelu.
 
 ### Z czego składa się plik Word
 
-Dla nas plik Word to dokument. Agent, żeby z niego skorzystać, musi go najpierw rozpakować: w środku jest 13 plików.
+Dla nas plik Word to dokument. Agent AI widzi go zupełnie inaczej.
 
-**Tak widzisz w Wordzie:** fragment konspektu z nagłówkami, punktorami i pogrubionym wzorem na agenta.
+Plik Word to spakowany folder, coś jak ZIP. W tym przykładzie to 13 plików, razem około 49 KB, a sam tekst to kilkaset znaków. Agent nie otworzy pliku Word wprost: musi go rozpakować albo zamienić na tekst (np. programem pandoc).
 
-**Tak widzi agent po rozpakowaniu:**
+### Co jest w środku pliku Word
+
+**Tak widzi agent po rozpakowaniu: 13 plików**
 
 | Plik w paczce | Co zawiera |
 |---|---|
@@ -213,11 +218,7 @@ Dla nas plik Word to dokument. Agent, żeby z niego skorzystać, musi go najpier
 | `word/fontTable.xml, settings.xml` | Lista czcionek, ustawienia dokumentu |
 | `docProps/…, _rels/…, [Content_Types].xml` | Metryczka i spis zawartości paczki |
 
-Plik Word to spakowany folder, coś jak ZIP. W tym przykładzie to 13 plików, razem około 49 KB, a sam tekst to kilkaset znaków. Agent nie otworzy pliku Word wprost: musi go rozpakować albo zamienić na tekst (np. programem pandoc).
-
-### Co jest w środku pliku Word
-
-Początek pliku `word/document.xml` (linie 1–12):
+Skrót pliku `word/document.xml`: linie 1–5 i 274–277.
 
 ```xml
 <?xml version="1.0" ?>
@@ -225,26 +226,7 @@ Początek pliku `word/document.xml` (linie 1–12):
   <w:body>
     <w:p>
       <w:pPr>
-        <w:pStyle w:val="Nagłówek 2"/>
-      </w:pPr>
-      <w:r>
-        <w:rPr>
-          <w:rtl w:val="0"/>
-        </w:rPr>
-        <w:t xml:space="preserve">2. Czym jest agent </w:t>
-```
-
-Koniec (linie 266–277):
-
-```xml
-      <w:r/>
-    </w:p>
-    <w:sectPr>
-      <w:headerReference w:type="default" r:id="rId4"/>
-      <w:footerReference w:type="default" r:id="rId5"/>
-      <w:pgSz w:w="11900" w:h="16840" w:orient="portrait"/>
-      <w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708"/>
-      <w:bidi w:val="0"/>
+…
     </w:sectPr>
   </w:body>
 </w:document>
@@ -263,13 +245,29 @@ Zwykły tekst z prostym formatowaniem, czytelny i dla człowieka, i dla AI.
 **Tak zapisuje to agent:** ten sam tekst ze znakami `#`, `**`, `-`.
 
 ```markdown
-# AI dla menedżerów — od czatu do własnego agenta AI
+# AI dla specjalistów — od czatu do agenta AI
 
 ## Kontekst szkolenia
 - Szkolenie otwarte, 2 godziny, poziom wprowadzający
 - Odbiorcy: menedżerowie, właściciele firm, liderzy…
 - Język materiałów: polski.
 ```
+
+### markdown - Frontmatter
+
+Kilka linii między `---` na początku pliku .md. Agent szuka i filtruje po nich bez czytania całego tekstu.
+
+```
+---
+tytul: Precyzyjne podcinanie…
+dzial: Maszyny komunalne…
+typ: artykul
+strony: 24
+autor: Aneta Kralik
+---
+```
+
+Przykład z bazy kwartalnika Pronar: aplikacja pokazuje te pola jako tabelkę, a w pliku to zwykłe linie „pole: wartość”. Dzięki nim agent znajdzie np. wszystkie artykuły jednego autora albo działu bez czytania całych tekstów.
 
 ### Edycja Markdown w aplikacji
 
@@ -289,7 +287,7 @@ Przykład pliku JSON:
 
 ```json
 {
-  "szkolenie": "AI dla menedżerów",
+  "szkolenie": "AI dla specjalistów",
   "miasto": "Białystok",
   "czas_min": 120,
   "czesci": [
@@ -314,11 +312,11 @@ czesc,tytul,czas_min
 
 **Bez kontekstu — długie polecenie:**
 
-> „Przygotuj slajdy na dwugodzinne szkolenie dla menedżerów bez doświadczenia programistycznego. Pisz po polsku, prostym językiem, bez żargonu. Prowadzący jest menedżerem, nie programistą. Szkolenie ma 9 części, w części 3 omawiamy…”
+> „Przygotuj slajdy na dwugodzinne szkolenie dla menedżerów bez doświadczenia programistycznego. Pisz po polsku, prostym językiem, bez żargonu. Prowadzący jest menedżerem, nie programistą. Szkolenie ma 10 części, w części 3 omawiamy…”
 
 **Z kontekstem — krótkie polecenie:**
 
-> „Przygotuj slajdy do pliku 02-czym-jest-agent.md zgodnie z moim stylem graficznym”
+> „Przygotuj slajdy do pliku @02-czym-jest-agent.md zgodnie z moim stylem graficznym”
 
 \+ folder z materiałami:
 
@@ -340,7 +338,7 @@ Czym się różni aplikacja od agenta · Aplikacja jak bierki · Porównanie pun
 
 **Aplikacja** to statyczny zespół elementów, funkcji i narzędzi. Robi dokładnie to, do czego została zbudowana.
 
-**Agent** to dynamiczny „asystent” z instrukcjami. Dostaje cel i sam dobiera kroki. Agent tworzy kod i uruchamia go na potrzeby realizacji celu.
+**Agent** to dynamiczny „asystent” z instrukcjami. Dostaje cel i dobiera kroki. Agent tworzy kod i uruchamia go na potrzeby realizacji celu.
 
 Aplikację kupujesz lub zamawiasz. Agenta budujesz i rozwijasz sam, tak jak wdrażasz pracownika.
 
@@ -356,7 +354,7 @@ Aplikację kupujesz lub zamawiasz. Agenta budujesz i rozwijasz sam, tak jak wdra
 
 | | Aplikacja | Agent |
 |---|---|---|
-| Jak się z nią pracuje | przyciski, formularze, menu | chat i cele opisane zwykłym językiem |
+| Jak się z nią pracuje | przyciski, formularze, menu | chat, cele i pliki i instrukcje opisane zwykłym językiem |
 | Co potrafi | tylko to, co zaprogramowano (statyczna) | dobiera kroki do sytuacji |
 | Nietypowa sytuacja | błąd albo „nieobsługiwane” | próbuje sobie poradzić, czasem pyta |
 | Jak ją zmienić | programista i nowa wersja: tygodnie | poprawiasz instrukcję w pliku: minuty, sam |
@@ -369,16 +367,18 @@ Aplikację kupujesz lub zamawiasz. Agenta budujesz i rozwijasz sam, tak jak wdra
 
 ## 4. Z czego składa się agent — przykłady
 
-Claude Code a Codex · Instrukcje projektu (CLAUDE.md) · Skill od środka
+Pliki agenta w Claude Code · Instrukcje projektu (CLAUDE.md) · Skill od środka
 
-### Claude Code a Codex
+### Pliki agenta w Claude Code
 
-| Claude Code | Codex |
+**Agent to zwykłe pliki w folderze projektu.**
+
+| Plik | Do czego służy |
 |---|---|
-| `CLAUDE.md` | `AGENTS.md` |
-| `.claude/skills/<nazwa>/SKILL.md` | skille w tym samym formacie (`SKILL.md`) |
-| `.claude/settings.json` | `config.toml` |
-| `.mcp.json` | MCP w konfiguracji |
+| `CLAUDE.md` | instrukcje projektu, czytane na starcie |
+| `.claude/skills/<nazwa>/SKILL.md` | skill: zapisana procedura |
+| `.claude/settings.json` | ustawienia i uprawnienia agenta |
+| `.mcp.json` | połączenia z aplikacjami (MCP) |
 
 ### Instrukcje projektu na żywym przykładzie
 
@@ -394,16 +394,16 @@ Skill to zapisana procedura: nazwa, opis „kiedy mnie użyć”, kroki procedur
 
 ```markdown
 ---
-name: aktualizuj-prezentacje
-description: Aktualizuje prezentację szkoleniową
-  na podstawie konspektu i obrazów. Użyj, gdy
-  zmienił się konspekt albo doszły grafiki.
+name: synchronizuj-prezentacje
+description: Synchronizuje prezentację w obie strony:
+  pliki md ↔ slajdy w claude.ai. Użyj, gdy zmienił
+  się konspekt albo slajdy w edytorze.
 ---
-# Aktualizacja prezentacji
-1. Sprawdź, co się zmieniło w konspekcie.
-2. Wgraj nowe obrazy.
-3. Popraw slajdy i zbuduj deck.
-4. Wyślij tylko zmienione slajdy.
+# Synchronizacja md ↔ slajdy
+1. Sprawdź, gdzie są nowsze zmiany: w md czy w slajdach.
+2. Pokaż zmiany i poczekaj na zgodę.
+3. Przenieś zmiany w ustaloną stronę.
+4. Popraw numerację slajdów i wyślij deck.
 ```
 
 ---
@@ -412,18 +412,16 @@ description: Aktualizuje prezentację szkoleniową
 
 Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki Chrome · Wtyczki: połączenia z aplikacjami · Uprawnienia: co sam, o co pyta · Twoje dane a trenowanie modeli
 
-### Gdzie znaleźć agenta
+### Od czego zacząć
 
-**Agent to osobny tryb albo osobna aplikacja.**
+**Agent to osobny tryb w aplikacji Claude.**
 
-- Claude: w aplikacji Claude przełączasz się na zakładkę **Code**.
-- Codex: osobna aplikacja → **Nowy czat**.
+- W aplikacji Claude przełączasz się na zakładkę **Code**.
 
 ### Nowy projekt = nowy folder
 
 **Każdy projekt to osobny folder na dysku.**
 
-- Codex: **Wybierz projekt → Nowy projekt**
 - Claude Code: lista folderów → **Open folder…**
 
 **Folder wybrany: agent pracuje na jego plikach.**
@@ -431,7 +429,7 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Nazwę folderu widać nad polem polecenia.
 - Do folderu wrzucasz materiały, instrukcje i skille.
 
-### Dostęp do Chrome: Claude
+### Dostęp do Chrome
 
 **Agent może czytać strony i klikać w Twojej przeglądarce.**
 
@@ -439,13 +437,7 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Ustawienia → Claude in Chrome → **Enable Claude in Chrome**
 - Osobno ustawiasz, na których stronach agent może działać (Site permissions).
 
-### Dostęp do Chrome: Codex
-
-- Ustawienia → Integracje → **Korzystanie z komputera**
-- **Google Chrome:** zainstalowane rozszerzenie przeglądarki
-- W tym samym miejscu zgoda na inne aplikacje, np. Excel.
-
-### Wtyczki: Claude
+### Wtyczki
 
 **Wtyczki łączą agenta z aplikacjami, których używasz.**
 
@@ -453,39 +445,26 @@ Gdzie znaleźć agenta · Nowy projekt = nowy folder · Dostęp do przeglądarki
 - Np. Google Drive, Gmail, Google Calendar, Canva
 - Dodajesz jednym kliknięciem (+).
 
-### Wtyczki: Codex
-
-- Ustawienia → Integracje → **Wtyczki**
-- W jednym miejscu: wtyczki, aplikacje, serwery MCP i umiejętności (skille)
-- Np. Google Calendar, Google Drive, Gmail, GitHub; każdą włączasz przełącznikiem.
-
 ### Uprawnienia: co sam, o co pyta
 
 **Ty decydujesz, ile agent może zrobić bez pytania.**
 
-- Codex: **Poproś o zatwierdzenie** → **Zatwierdzaj za mnie** → **Pełny dostęp**
 - Claude Code: **Manual** (zawsze pyta) → **Accept edits** → **Auto** → **Bypass permissions**
 - Tryb **Plan**: najpierw plan, potem zmiany.
 
 Tryby idą od „pytaj o wszystko” do „działaj samodzielnie”.
 
-### Wyłącz trenowanie na Twoich danych: Claude
+### Wyłącz trenowanie na Twoich danych
 
 W aplikacji Claude: **Settings → Privacy** → wyłącz **Help improve our AI models**.
 
 Wtedy Twoje czaty i sesje w Claude Code nie są używane do trenowania modeli.
 
-### Wyłącz trenowanie na Twoich danych: Codex
-
-Ustawienie zmieniasz w przeglądarce: **chatgpt.com → Ustawienia → Kontrola danych** → wyłącz **Pomóż ulepszać model dla wszystkich**.
-
-Dotyczy też Codeksu (to samo konto). Więcej: https://privacy.openai.com/policies/pl/
-
 ---
 
 ## 6. Tips and tricks: jak prowadzić pracę z agentem
 
-Najpierw plan, potem wykonanie · Poprawiaj instrukcje, oceniaj wyniki · Sprawdzaj pracę agenta · Kiedy otworzyć nowy czat · Agenty bywają niestabilne
+Najpierw plan, potem wykonanie · Poprawiaj instrukcje, oceniaj wyniki · Powiedz, po czym poznać gotową pracę · Otwarta droga, zamknięta meta · Przykłady przekazują ukrytą wiedzę · Sprawdzaj pracę agenta · Kiedy otworzyć nowy czat · Kompaktuj długą rozmowę · Agenty bywają niestabilne
 
 ### Najpierw plan, potem wykonanie
 
@@ -495,13 +474,55 @@ Najpierw plan, potem wykonanie · Poprawiaj instrukcje, oceniaj wyniki · Sprawd
 - staraj się pamiętać co gdzie jest w folderze
 - struktura pracy jest bardzo ważna
 
-Jak włączyć tryb planowania: Claude Code → wpisz `/plan` · Codex → wpisz `/plan` i wybierz **Tryb planowania**.
+Jak włączyć tryb planowania: w Claude Code wpisz `/plan`.
 
 ### Poprawiaj instrukcje, oceniaj wyniki
 
 - Sukces? To może czas na skill.
 - Coś nie działa? **Zapytaj dlaczego nie działa, popraw instrukcje, dane albo skillsy.**
 - Określ kryteria „dobrze zrobione”.
+
+### Nie dawaj agentowi tylko zadania
+
+Powiedz mu również, po czym poznać, że praca jest gotowa.
+
+- **Słabe polecenie:** „Oceń prace studentów.”
+- **Lepsze polecenie:** „Oceń prace według podanych kryteriów. Jako punkt odniesienia wykorzystaj wzorcowo wykonaną pracę.”
+
+Agent działa lepiej, gdy otrzymuje nie tylko cel, ale również kryterium poprawnego wykonania.
+
+### Otwarta droga, zamknięta meta
+
+Agent może mieć swobodę wyboru sposobu działania. Nie powinien jednak samodzielnie decydować, co oznacza sukces.
+
+**Otwarta droga:**
+
+- agent wybiera sposób wykonania,
+- korzysta z dostępnych narzędzi,
+- może poprawiać własne rezultaty.
+
+**Zamknięta meta:**
+
+- istnieje wzorzec,
+- są kryteria akceptacji,
+- wynik można sprawdzić.
+
+**Agent może mieć swobodę tworzenia, jeśli nie ma swobody ogłaszania sukcesu.**
+
+### Przykłady przekazują ukrytą wiedzę
+
+Menedżer od dawna opisuje faktury według zasad księgowej. Ma wiele poprawnie opisanych przykładów. Zamiast tworzyć rozbudowaną instrukcję, może powiedzieć:
+
+> „Opisz nowe faktury tak jak wcześniejsze, zgodnie z zasadami księgowej.”
+
+Agent otrzymuje wtedy:
+
+- nowe faktury,
+- poprawne przykłady z przeszłości,
+- aktualne zasady,
+- oczekiwany format wyniku.
+
+**Przykłady stają się dla agenta pamięcią organizacji.**
 
 ### Sprawdzaj pracę agenta
 
@@ -513,6 +534,12 @@ Jak włączyć tryb planowania: Claude Code → wpisz `/plan` · Codex → wpisz
 - **Kontynuuj:** to samo zadanie, ten sam kontekst i cel. Po osiągnięciu celu warto pomyśleć o skillach.
 - **Nowa sesja:** zmiana tematu, długa rozmowa, agent „gubi wątek”, potrzebne świeże spojrzenie.
 
+### Kompaktuj długą rozmowę
+
+- Wpisz `/compact`.
+- Agent streszcza dotychczasową rozmowę i zwalnia miejsce w kontekście.
+- Przydaje się, gdy rozmowa jest długa, a zadanie to samo.
+
 ### Agenty bywają niestabilne
 
 - Interfejs często się zmienia.
@@ -522,7 +549,7 @@ Jak włączyć tryb planowania: Claude Code → wpisz `/plan` · Codex → wpisz
 
 ---
 
-## 7. Od polecenia do skilla i automatyzacji
+## 7. Od rozmowy do skilla i automatyzacji
 
 Schodki · Przykład: pisma urzędowe · Automatyzacja = skill · Co delegować, a gdzie zostaje człowiek
 
@@ -530,10 +557,10 @@ Schodki · Przykład: pisma urzędowe · Automatyzacja = skill · Co delegować,
 
 ### Schodki
 
-1. jednorazowe polecenie
-2. folder z dużą ilością plików
-3. powtarzalna potrzeba
-4. zapisana procedura (skill)
+1. folder z danymi źródłowymi
+2. pierwsze polecenia / eksperymenty
+3. potrzeby powtarzalne (skille)
+4. tworzenie skilla na końcu dobrego czatu
 5. ponowne lub cykliczne uruchamianie
 
 ### Przykład: pisma urzędowe
@@ -568,11 +595,11 @@ Co da się zbudować, gdy agent ma dobry kontekst i skille.
 
 - Treść w plikach Markdown: konspekt i jeden plik na każdą część.
 - Claude Code wprowadza zmiany w plikach i buduje z nich slajdy.
-- Skille: **aktualizuj-prezentacje** (z plików md robi slajdy) i **porownaj-md-z-deckiem** (sprawdza, czy slajdy i pliki mówią to samo).
+- Skill **synchronizuj-prezentacje** sprawdza, gdzie są nowsze zmiany: w plikach czy w slajdach.
 
 - Po lewej rozmowa z Claude Code, po prawej gotowy deck w claude.ai.
 - Slajdy można poprawiać też w przeglądarce.
-- Skill **porownaj-md-z-deckiem** przenosi takie zmiany z powrotem do plików md.
+- Ten sam skill **synchronizuj-prezentacje** przenosi takie zmiany z powrotem do plików md.
 
 ### Baza wiedzy z moich książek
 
